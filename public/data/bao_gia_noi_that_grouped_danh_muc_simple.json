@@ -1,0 +1,3360 @@
+[
+  {
+    "Danh mục": "Tủ bếp",
+    "Sản phẩm": [
+      {
+        "id": "25b743f1-a67a-41de-8561-79ee09e24e6e",
+        "Đầu mục": "Tủ bếp dưới",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2894000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 3907000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1085000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1465000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2197000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2527000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1685000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2190000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1071000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1446000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2957000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3548000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "be1b1fb5-1cd9-4a9d-863e-d7ae099bd7b3",
+        "Đầu mục": "Tủ bếp trên",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 903000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1219000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1605000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2006000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 890000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1068000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2994000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3443000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3493000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4716000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1440000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1728000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Kệ tivi",
+    "Sản phẩm": [
+      {
+        "id": "97eff7ac-b15e-4389-91c3-4133de0b4c32",
+        "Đầu mục": "Kệ tivi treo",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4666000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5832000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4955000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 6689000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4102000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5128000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1270000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1714000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5305000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 6631000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3059000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 3977000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "a365a139-cc52-4f54-8c66-855ffd385897",
+        "Đầu mục": "Kệ tivi đứng",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1951000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2536000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3402000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3912000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1845000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2122000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3468000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4682000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5469000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 6289000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4668000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5835000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Bàn ăn",
+    "Sản phẩm": [
+      {
+        "id": "8e0aee8c-45ce-40c6-8556-f9ade68b4202",
+        "Đầu mục": "Bàn ăn 6 ghế",
+        "Mặc định đơn vị": "bộ",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 12325000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 15406000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 15641000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 20333000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 24910000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 29892000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 10150000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 12180000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 12418000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 16143000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 7238000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 8324000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "b35d742b-c811-4384-8418-84a0122a70ae",
+        "Đầu mục": "Bàn ăn 4 ghế",
+        "Mặc định đơn vị": "bộ",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 17107000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 22239000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 21029000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 27338000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 12123000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 14548000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 24578000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 31951000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 10645000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 12774000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 3395000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 4244000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Bàn trà",
+    "Sản phẩm": [
+      {
+        "id": "1cbfec9b-86a6-42dc-a847-5847b441f71b",
+        "Đầu mục": "Bàn trà",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2956000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3399000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9345000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 12616000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 11018000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 14323000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 11292000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 13550000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7460000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 8952000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1919000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2303000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Giường ngủ",
+    "Sản phẩm": [
+      {
+        "id": "40a7410f-27c9-440f-a394-608c4322311b",
+        "Đầu mục": "Giường ngủ 1m6",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9691000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 13083000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2562000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2946000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6857000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 9257000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 10767000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 12382000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6866000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 8926000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8668000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 11268000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "64a34b7c-cfa7-4d60-8e22-e61686ee2dd0",
+        "Đầu mục": "Giường ngủ 1m8",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5237000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 7070000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8741000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 10489000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 3545000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 4431000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9552000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 10985000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5783000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 7229000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 11433000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 14291000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tủ quần áo",
+    "Sản phẩm": [
+      {
+        "id": "914d544b-b291-40c9-a315-c64ca05a39fe",
+        "Đầu mục": "Tủ quần áo 2 cánh",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2427000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 3155000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2198000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2638000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2561000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 3457000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2888000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3466000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4468000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 6032000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2723000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 3540000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "6cfd8cc9-0a79-4973-af3f-4e5d534d6e5d",
+        "Đầu mục": "Tủ quần áo 3 cánh",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2458000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3072000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4450000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5785000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2211000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 2985000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1582000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2057000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3782000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 4917000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2232000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2790000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Bàn học",
+    "Sản phẩm": [
+      {
+        "id": "4bc72936-9c28-4b2a-9d47-be52c37b06bd",
+        "Đầu mục": "Bàn học",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 3502000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 4027000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 3685000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4975000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2981000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3577000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 3454000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 4145000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9889000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 11372000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9883000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 11365000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Bàn làm việc",
+    "Sản phẩm": [
+      {
+        "id": "88b36f55-58ea-48c2-b1fa-17a7cad972e8",
+        "Đầu mục": "Bàn làm việc",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1358000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 1698000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5026000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 6031000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4386000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5482000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1897000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 2561000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6696000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 8705000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8406000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 10087000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Kệ sách treo tường",
+    "Sản phẩm": [
+      {
+        "id": "a28be9f4-ed24-47c8-97a7-c92c7129381a",
+        "Đầu mục": "Kệ sách treo tường",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1827000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2375000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2011000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2313000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1759000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2023000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1469000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1763000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5189000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 6486000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1065000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 1225000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Kệ trang trí",
+    "Sản phẩm": [
+      {
+        "id": "9443d4b1-5609-4eae-bf34-54e57c7e4c53",
+        "Đầu mục": "Kệ trang trí",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4741000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5926000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4795000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 6473000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2233000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2903000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5183000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 6220000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2259000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2598000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4266000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5546000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Cửa",
+    "Sản phẩm": [
+      {
+        "id": "776490eb-62da-42bc-bec9-8008ceec3146",
+        "Đầu mục": "Cửa gỗ phòng",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Gỗ sồi tự nhiên",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3080000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3850000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Sơn PU",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1602000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2002000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1865000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2424000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Nhựa gỗ composite",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4591000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 5509000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Sơn PU",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1933000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2513000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2432000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 3162000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "e9154241-d72b-4d9e-a6a0-3b0d6d23468e",
+        "Đầu mục": "Cửa nhựa composite",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Nhựa PVC",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3597000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4856000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 759000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 987000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3368000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3873000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "PVC foam",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1524000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 1753000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2472000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3090000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1458000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1750000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "b9060230-c2dc-4b7e-a591-11b88d42c0be",
+        "Đầu mục": "Cửa sổ nhôm Xingfa",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Kính cường lực 10mm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Phụ kiện nhôm",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1823000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 2461000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Phụ kiện Inox 304",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4995000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 6494000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Kính cường lực 12mm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Phụ kiện nhôm",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2886000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3463000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Phụ kiện Inox 304",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1071000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 1232000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Vách ngăn gỗ",
+    "Sản phẩm": [
+      {
+        "id": "50fdd19b-9d0b-49ad-84a6-e4a98b1a25c8",
+        "Đầu mục": "Vách ngăn gỗ",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Khung xương Vĩnh Tường",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2421000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3026000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1145000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1488000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Khung xương mạ kẽm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2794000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3213000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1658000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1990000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Vách thạch cao",
+    "Sản phẩm": [
+      {
+        "id": "d310735a-5355-463e-9eb6-a7425ef47dfe",
+        "Đầu mục": "Vách thạch cao 1 mặt",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Khung xương Vĩnh Tường",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2252000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2815000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3155000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3786000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Khung xương mạ kẽm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2816000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3238000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3442000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3958000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "7c0e84f6-a028-4b65-806c-ae26de21acee",
+        "Đầu mục": "Vách thạch cao 2 mặt",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Khung xương Vĩnh Tường",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4262000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5541000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1470000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1911000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Khung xương mạ kẽm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2362000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2952000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2480000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2976000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Trần thạch cao",
+    "Sản phẩm": [
+      {
+        "id": "8d4ec84b-1c06-44a2-a9aa-71f0775c18d1",
+        "Đầu mục": "Trần thạch cao phẳng",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Khung xương mạ kẽm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1179000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1533000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2693000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3097000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Khung xương Vĩnh Tường",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2584000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2972000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3000000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3600000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "c78b8a4a-64ff-44ff-a631-b51ef596fc68",
+        "Đầu mục": "Trần thạch cao giật cấp",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Khung xương mạ kẽm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3583000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4837000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3294000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3953000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Khung xương Vĩnh Tường",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3521000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 4049000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2098000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2727000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ốp tường",
+    "Sản phẩm": [
+      {
+        "id": "c0889975-29ca-47a9-a59d-b0e5cb9fcacd",
+        "Đầu mục": "Ốp tường lam gỗ",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4734000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5918000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 640000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 768000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1344000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1814000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3092000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4174000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2507000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3008000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1292000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1744000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "3ab9192d-046b-4a19-b438-6243cd645e3c",
+        "Đầu mục": "Ốp tường PVC",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Nhựa PVC",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 958000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1293000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4802000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 6483000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4116000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 5557000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "PVC foam",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 855000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 1069000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 942000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1225000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1690000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 2282000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Sàn gỗ",
+    "Sản phẩm": [
+      {
+        "id": "66160340-93be-43a6-b284-f25ac4cab0de",
+        "Đầu mục": "Sàn gỗ công nghiệp",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "HDF cốt xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate AC5",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 627000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 721000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Laminate AC4",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4343000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 5863000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "WPC cốt nhựa",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate AC4",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4481000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 5153000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Laminate AC5",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2665000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3198000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      },
+      {
+        "id": "e3fbcdda-8179-486a-84e1-68161fc08397",
+        "Đầu mục": "Sàn gỗ tự nhiên",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Gỗ sồi",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn UV bóng",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3733000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 4853000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Sơn UV mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1228000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 1535000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Gỗ óc chó",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn UV mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1807000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2259000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Sơn UV bóng",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3317000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 4146000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Cầu thang gỗ (mặt bậc)",
+    "Sản phẩm": [
+      {
+        "id": "de57ed7a-ab64-406a-aa4c-59eb0f7d9b1c",
+        "Đầu mục": "Cầu thang gỗ (mặt bậc)",
+        "Mặc định đơn vị": "bậc",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Gỗ óc chó",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn UV mờ",
+                "Đơn vị": "bậc",
+                "Đơn giá gốc": 824000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 1030000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Sơn UV bóng",
+                "Đơn vị": "bậc",
+                "Đơn giá gốc": 1694000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 1948000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Gỗ sồi",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn UV mờ",
+                "Đơn vị": "bậc",
+                "Đơn giá gốc": 1295000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1748000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Sơn UV bóng",
+                "Đơn vị": "bậc",
+                "Đơn giá gốc": 2151000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2796000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Lan can kính",
+    "Sản phẩm": [
+      {
+        "id": "bc173722-4f57-4972-adf7-fa5e37bb0ffa",
+        "Đầu mục": "Lan can kính",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Kính cường lực 12mm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Phụ kiện Inox 304",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1051000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 1209000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Phụ kiện nhôm",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2637000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 3428000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Kính cường lực 10mm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Phụ kiện nhôm",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2284000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2741000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Phụ kiện Inox 304",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1559000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 2105000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tay vịn gỗ",
+    "Sản phẩm": [
+      {
+        "id": "1d3aaf44-3b71-422c-abfb-8c104c158eb2",
+        "Đầu mục": "Tay vịn gỗ",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1161000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1393000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3580000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 4654000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2195000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2524000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2360000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2832000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1936000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2420000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3678000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 4598000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Kệ giày",
+    "Sản phẩm": [
+      {
+        "id": "d8e82ce8-e2bb-44a8-b1c3-198ccea974a7",
+        "Đầu mục": "Kệ giày",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2866000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3582000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4107000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5134000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1092000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1420000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7913000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 9891000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5408000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 6219000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1690000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2112000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Bàn trang điểm",
+    "Sản phẩm": [
+      {
+        "id": "f63704c8-29bc-40dd-94db-d40ff2645032",
+        "Đầu mục": "Bàn trang điểm",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4010000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 4612000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7016000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 9121000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7908000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 10676000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7631000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 9157000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8286000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 10358000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 10974000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 12620000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Táp đầu giường",
+    "Sản phẩm": [
+      {
+        "id": "23d43560-b41a-4728-8f99-e9f04b3a5277",
+        "Đầu mục": "Táp đầu giường",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5516000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 6895000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5778000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 6934000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5090000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 6617000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 3641000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 4187000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 11438000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 15441000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 3548000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4790000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tủ giày 2 cánh",
+    "Sản phẩm": [
+      {
+        "id": "387a7f1a-0a3c-4a0a-a02f-17a1de24a731",
+        "Đầu mục": "Tủ giày 2 cánh",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9874000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 11355000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4052000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5065000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4899000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 5634000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 10232000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 13302000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4211000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5474000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1229000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 1659000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tủ giày 3 cánh",
+    "Sản phẩm": [
+      {
+        "id": "a0a84ac1-e222-480a-8edc-b4c9d9476e3e",
+        "Đầu mục": "Tủ giày 3 cánh",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5446000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 6535000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 10309000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 13917000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6800000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 8160000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7449000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 9684000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 11480000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 13202000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8204000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 9435000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tủ rượu",
+    "Sản phẩm": [
+      {
+        "id": "3e13821c-8718-4d12-b0fa-015e134297c9",
+        "Đầu mục": "Tủ rượu",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1199000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1559000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3807000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 4568000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4924000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 5909000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4346000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 4998000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1296000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1555000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5117000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 6908000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tủ lavabo",
+    "Sản phẩm": [
+      {
+        "id": "5957eb18-eee1-4f89-a996-508b8fd2a1cd",
+        "Đầu mục": "Tủ lavabo",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2737000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3421000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2529000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 3414000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 2052000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2668000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1071000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1392000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 9706000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 12132000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5840000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 7008000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ốp mặt bếp đá",
+    "Sản phẩm": [
+      {
+        "id": "fd66bfaa-96ca-4d5a-b789-62862c96a7f5",
+        "Đầu mục": "Ốp mặt bếp đá",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Đá granite",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Bóng mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3586000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 4482000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Bóng gương",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3360000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3864000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Đá quartz nhân tạo",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Bóng gương",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1032000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1238000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Bóng mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1753000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2279000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Lắp đặt bản lề",
+    "Sản phẩm": [
+      {
+        "id": "0645e02f-d716-4e9c-9d8a-c581fe722d8d",
+        "Đầu mục": "Lắp đặt bản lề",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6836000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 7861000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7393000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 9981000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4145000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 4974000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4681000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 5851000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8520000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 9798000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4528000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5886000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Lắp đặt ray ngăn kéo",
+    "Sản phẩm": [
+      {
+        "id": "6a0d311c-159e-4371-9d32-691be102a871",
+        "Đầu mục": "Lắp đặt ray ngăn kéo",
+        "Mặc định đơn vị": "bộ",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 22490000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 25863000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 7796000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 8965000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 15892000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 19070000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 15888000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 18271000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 17733000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 21280000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 13295000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 15954000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Tay nắm cửa tủ",
+    "Sản phẩm": [
+      {
+        "id": "b21dcf08-8244-4668-a837-1e808eb39582",
+        "Đầu mục": "Tay nắm cửa tủ",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Nhựa gỗ composite",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn PU",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7025000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 8430000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6334000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 7284000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8148000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 10185000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Gỗ lim Nam Phi",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 10093000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 12616000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4298000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5587000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Sơn PU",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 7128000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 8197000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Bản lề giảm chấn",
+    "Sản phẩm": [
+      {
+        "id": "c35973fc-e8c8-4969-8531-0470313cce89",
+        "Đầu mục": "Bản lề giảm chấn",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 4062000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5281000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6197000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 8056000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6867000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 8927000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1925000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2310000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1915000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2202000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 5110000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 6388000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ray giảm chấn",
+    "Sản phẩm": [
+      {
+        "id": "5da0c633-82ac-48e1-bfa9-698d68d94fee",
+        "Đầu mục": "Ray giảm chấn",
+        "Mặc định đơn vị": "bộ",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 13370000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 15375000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 12031000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 16242000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 12745000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 14657000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 18261000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 23739000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 15665000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 18798000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "bộ",
+                "Đơn giá gốc": 11226000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 13471000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Gương treo tường",
+    "Sản phẩm": [
+      {
+        "id": "254157e4-1373-4106-a819-92dfdb74c73f",
+        "Đầu mục": "Gương treo tường",
+        "Mặc định đơn vị": "cái",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6270000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 7838000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 6135000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 7055000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 8449000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 10139000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1960000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2548000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 11542000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 15582000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "cái",
+                "Đơn giá gốc": 1454000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1745000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Vách kính tắm",
+    "Sản phẩm": [
+      {
+        "id": "a5ace0ef-6554-4f09-b928-ad77f137d9f6",
+        "Đầu mục": "Vách kính tắm",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Kính cường lực 10mm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Phụ kiện nhôm",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2306000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2998000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Phụ kiện Inox 304",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1389000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1806000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Kính cường lực 12mm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Phụ kiện Inox 304",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4014000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 5419000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Phụ kiện nhôm",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4375000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 5250000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ốp gỗ cầu thang",
+    "Sản phẩm": [
+      {
+        "id": "a5086fc2-f6fd-4144-9462-b12c59871be2",
+        "Đầu mục": "Ốp gỗ cầu thang",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Acrylic bóng gương",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5243000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 6554000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2792000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3490000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3655000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 4752000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1856000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2227000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2904000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3340000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 5337000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 6671000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ốp gỗ trần",
+    "Sản phẩm": [
+      {
+        "id": "6d910bd1-996d-4c16-a857-6bdf51177d4a",
+        "Đầu mục": "Ốp gỗ trần",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Khung xương Vĩnh Tường",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1438000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 1869000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 636000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 827000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Khung xương mạ kẽm",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Tấm thạch cao + sơn nước mịn",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2507000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2883000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Tấm chịu ẩm + sơn nước",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1576000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 2128000,
+                "Ghi chú": "Màu theo catalogue"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ốp PVC trần",
+    "Sản phẩm": [
+      {
+        "id": "b31412bd-d2bf-4c48-87f0-52aa4bbb35fb",
+        "Đầu mục": "Ốp PVC trần",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "PVC foam",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2729000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 3684000,
+                "Ghi chú": "Cốt đạt chuẩn CARB-P2"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 651000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 879000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1466000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1759000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "Nhựa PVC",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 961000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 1105000,
+                "Ghi chú": "Màu theo catalogue"
+              },
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2270000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2724000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2688000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 3360000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Ốp PVC tường",
+    "Sản phẩm": [
+      {
+        "id": "377e4b46-2edb-44d1-86a7-b5c282ea3e0a",
+        "Đầu mục": "Ốp PVC tường",
+        "Mặc định đơn vị": "m2",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Nhựa PVC",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2266000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 3059000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 857000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 986000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 4660000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 5359000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "PVC foam",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn phủ UV",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 1940000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 2522000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Film PVC vân gỗ",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 3858000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 4822000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Film PVC vân đá",
+                "Đơn vị": "m2",
+                "Đơn giá gốc": 2821000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3244000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Nẹp kết thúc sàn",
+    "Sản phẩm": [
+      {
+        "id": "8cb7a31c-8551-4cdc-85f9-ffb24090d708",
+        "Đầu mục": "Nẹp kết thúc sàn",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3840000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 4608000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3985000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 5180000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2190000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 2518000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MFC lõi xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1070000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 1338000,
+                "Ghi chú": "Bảo hành 24 tháng"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2363000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2836000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3066000,
+                "Lợi nhuận (%)": 15,
+                "Giá báo khách": 3526000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  },
+  {
+    "Danh mục": "Len chân tường",
+    "Sản phẩm": [
+      {
+        "id": "52b6176d-208a-48b0-9e00-24fd296f0a49",
+        "Đầu mục": "Len chân tường",
+        "Mặc định đơn vị": "md",
+        "Chất liệu cốt": [
+          {
+            "Tên cốt": "Plywood Birch",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Sơn 2K mờ",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3046000,
+                "Lợi nhuận (%)": 35,
+                "Giá báo khách": 4112000,
+                "Ghi chú": "Đã gồm nhân công"
+              },
+              {
+                "Tên phủ": "Veneer sồi",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 3248000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 3898000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2218000,
+                "Lợi nhuận (%)": 25,
+                "Giá báo khách": 2772000,
+                "Ghi chú": "Đã gồm nhân công"
+              }
+            ]
+          },
+          {
+            "Tên cốt": "MDF chống ẩm xanh",
+            "Chất liệu phủ": [
+              {
+                "Tên phủ": "Veneer óc chó",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 1145000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 1374000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              },
+              {
+                "Tên phủ": "Laminate",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2271000,
+                "Lợi nhuận (%)": 20,
+                "Giá báo khách": 2725000,
+                "Ghi chú": "Chưa bao gồm VAT"
+              },
+              {
+                "Tên phủ": "Melamine",
+                "Đơn vị": "md",
+                "Đơn giá gốc": 2709000,
+                "Lợi nhuận (%)": 30,
+                "Giá báo khách": 3522000,
+                "Ghi chú": "Bảo hành 12 tháng"
+              }
+            ]
+          }
+        ],
+        "Ngày tạo": "2025-07-30"
+      }
+    ]
+  }
+]
