@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Header from "@/components/Header";
+import { ToastContainer, Bounce } from "react-toastify";
 
 export default function ClientLayout({
   children,
@@ -19,6 +20,18 @@ export default function ClientLayout({
 
   return (
     <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        theme="light"
+        transition={Bounce}
+      />
       <Header activeTab={getActiveTab()} />
       {children}
     </>

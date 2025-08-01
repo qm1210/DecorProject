@@ -1,23 +1,29 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import { useState, useMemo, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import formatCurrency from "@/utils/FormatCurrency";
+import useQuoteStore from "@/store/CartStore";
 
-interface Categories {
-  "Danh mục": string;
-  "Sản phẩm": [];
+interface CategoriesContainerProps {
+  categories: string[];
+  loading: boolean;
+  error: string | null;
 }
 
-const removeVietnameseTones = (str: string): string => {
+// Chuyển tiếng Việt có dấu thành không dấu và slug
+const toSlug = (str: string): string => {
   return str
-    .normalize("NFD") // chuyển về Unicode tổ hợp
-    .replace(/[\u0300-\u036f]/g, "") // xóa dấu
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
     .replace(/đ/g, "d")
     .replace(/Đ/g, "D")
-    .toLowerCase();
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-");
 };
 
-// Icon mapping cho từng danh mục
+// Icon tương ứng với một số danh mục
 const categoryIcons: { [key: string]: React.ReactNode } = {
   "Tủ bếp": (
     <svg
@@ -93,160 +99,212 @@ const categoryIcons: { [key: string]: React.ReactNode } = {
   ),
 };
 
-const CategoriesContainer: React.FC = () => {
-  const [categories, setCategories] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
+  categories,
+  loading,
+  error,
+}) => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const router = useRouter();
+  const { totalPrice, listedProducts, removeProduct, loadFromStorage } =
+    useQuoteStore();
 
+  // Load dữ liệu từ localStorage khi component mount
   useEffect(() => {
-    const fetchCategories = async (): Promise<void> => {
-      try {
-        setLoading(true);
-        const response = await axios.get<Categories[]>(
-          "/data/bao_gia_noi_that_grouped_danh_muc_simple.json"
-        );
+    loadFromStorage();
+  }, [loadFromStorage]);
 
-        const danhMucList: string[] = Array.from(
-          new Set(response.data.map((item) => item["Danh mục"]))
-        ).filter(Boolean);
-
-        setCategories(danhMucList);
-        setError(null);
-      } catch (err) {
-        console.error("Lỗi khi load JSON:", err);
-        setError("Không thể tải dữ liệu danh mục");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  // Filter danh mục dựa trên search term
   const filteredCategories = useMemo(() => {
-    if (!searchTerm.trim()) {
-      return categories;
-    }
-    return categories.filter((category) =>
-      removeVietnameseTones(category).includes(
-        removeVietnameseTones(searchTerm)
-      )
-    );
+    if (!searchTerm.trim()) return categories;
+    return categories.filter((cat) => toSlug(cat).includes(toSlug(searchTerm)));
   }, [categories, searchTerm]);
 
-  const handleCategoryClick = (categoryName: string): void => {
-    console.log(`Clicked on category: ${categoryName}`);
-    // TODO: Navigate to category detail page
+  const handleClick = (name: string) => {
+    const slug = toSlug(name);
+    router.push(`/categories/${slug}`);
   };
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchTerm(e.target.value);
+  const handleRemoveProduct = (productId: string) => {
+    removeProduct(productId);
+
+    // Cập nhật localStorage sau khi xóa
+    const updatedProducts = listedProducts.filter((p) => p.id !== productId);
+    localStorage.setItem("quoteItems", JSON.stringify(updatedProducts));
   };
 
-  const handleClearSearch = (): void => {
-    setSearchTerm("");
+  const handleClearAll = () => {
+    // Xóa tất cả sản phẩm
+    listedProducts.forEach((product) => removeProduct(product.id));
+
+    // Xóa localStorage
+    localStorage.removeItem("quoteItems");
+
+    // Xóa tất cả localStorage của các category
+    Object.keys(localStorage).forEach((key) => {
+      if (key.startsWith("category-") && key.endsWith("-quantities")) {
+        localStorage.removeItem(key);
+      }
+    });
   };
 
   return (
     <div className="bg-white min-h-screen py-8 px-2 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex gap-6">
-          {/* Sidebar trái */}
-          <aside className="hidden md:block w-56 bg-white rounded-lg shadow p-4">
-            <h2 className="text-lg font-semibold mb-3">Sản phẩm đã chọn</h2>
+      <div className="max-w-7xl mx-auto flex gap-6">
+        {/* Sidebar trái */}
+        <aside className="hidden md:block w-56 bg-white rounded-lg shadow p-4">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-lg font-semibold">Sản phẩm đã chọn</h2>
+            {listedProducts.length > 0 && (
+              <button
+                onClick={handleClearAll}
+                className="text-sm text-red-500 hover:text-red-700 underline hover:cursor-pointer"
+                title="Xóa tất cả"
+              >
+                Xóa tất cả
+              </button>
+            )}
+          </div>
+
+          <div className="max-h-96 overflow-y-auto">
             <ul className="space-y-2 text-sm text-gray-700">
-              <li>- Tủ bếp gỗ MDF</li>
-              <li>- Lavabo đá granite</li>
-              <li>- Gương LED</li>
-            </ul>
-          </aside>
-
-          {/* Nội dung chính */}
-          <main className="flex-1 space-y-6">
-            <div className="bg-blue-100 rounded-lg shadow p-4">
-              <h3 className="text-xl font-bold text-blue-800 mb-2">
-                Tổng chi phí:
-              </h3>
-              <p className="text-3xl font-bold text-blue-900">45.000.000đ</p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-              {loading ? (
-                <div className="col-span-full text-center text-gray-400 py-8">
-                  <div className="animate-pulse">Đang tải danh mục...</div>
-                </div>
-              ) : error ? (
-                <div className="col-span-full text-center text-red-500 py-8">
-                  {error}
-                </div>
-              ) : filteredCategories.length === 0 ? (
-                <div className="col-span-full text-center text-gray-400 py-8">
-                  {searchTerm
-                    ? `Không tìm thấy danh mục nào cho "${searchTerm}"`
-                    : "Không có danh mục nào."}
-                </div>
+              {listedProducts.length === 0 ? (
+                <li className="text-gray-400">Chưa chọn sản phẩm nào.</li>
               ) : (
-                filteredCategories.map((name, index) => (
-                  <div
-                    key={index}
-                    onClick={() => handleCategoryClick(name)}
-                    className="aspect-square bg-white rounded-lg shadow hover:shadow-lg transition-all cursor-pointer flex flex-col items-center justify-center text-center p-4 border hover:border-blue-500"
+                listedProducts.map((product, idx) => (
+                  <li
+                    key={idx}
+                    className="flex items-center justify-between group"
                   >
-                    {/* Hiển thị icon dựa trên tên danh mục */}
-                    {categoryIcons[name] || categoryIcons["default"]}
+                    <span className="flex-1 break-words">
+                      <div className="font-medium text-1xl text-gray-800">
+                        {product.name}
+                      </div>
+                      <div className="text-gray-500 text-1xl">
+                        SL: {product.quantity} × {formatCurrency(product.price)}
+                      </div>
+                      <div className="text-green-600 text-1xl font-medium">
+                        = {formatCurrency(product.price * product.quantity)}
+                      </div>
+                    </span>
 
-                    <h4 className="text-sm font-bold text-gray-800 mt-1">
-                      {name}
-                    </h4>
-                  </div>
+                    <button
+                      onClick={() => handleRemoveProduct(product.id)}
+                      className="ml-2 opacity-0 group-hover:opacity-100 hover:cursor-pointer transition-opacity text-red-500 hover:text-red-700 flex-shrink-0"
+                      title="Xóa sản phẩm"
+                    >
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </li>
                 ))
               )}
-            </div>
-          </main>
+            </ul>
+          </div>
 
-          {/* Sidebar phải - Chỉ có search ở đây */}
-          <aside className="hidden lg:block w-64 bg-white rounded-lg shadow p-4 space-y-4">
-            <h2 className="text-lg font-semibold mb-3">Tìm kiếm & Lọc</h2>
-            {/* Search input với icon clear */}
-            <div className="relative">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={handleSearchChange}
-                placeholder="Tìm theo tên danh mục..."
-                className="w-full border rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:ring focus:ring-blue-200"
-              />
-              {searchTerm && (
-                <button
-                  onClick={handleClearSearch}
-                  className="absolute inset-y-0 right-0 pr-2 flex items-center"
-                >
-                  <svg
-                    className="h-4 w-4 text-gray-400 hover:text-gray-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              )}
-            </div>
-            {/* Hiển thị kết quả search */}
-            {searchTerm && (
-              <div className="text-xs text-gray-600">
-                Tìm thấy {filteredCategories.length} danh mục
+          {listedProducts.length > 0 && (
+            <div className="mt-4 pt-3 border-t">
+              <div className="text-sm text-gray-600">
+                Tổng: {listedProducts.length} sản phẩm
               </div>
-            )}{" "}
-          </aside>
-        </div>
+            </div>
+          )}
+        </aside>
+
+        {/* Nội dung chính */}
+        <main className="flex-1 space-y-6">
+          <div className="bg-blue-100 rounded-lg shadow p-4">
+            <h3 className="text-xl font-bold text-blue-800 mb-2">
+              Tổng chi phí:
+            </h3>
+            <p className="text-3xl font-bold text-blue-900">
+              {formatCurrency(totalPrice)}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {loading ? (
+              <div className="col-span-full text-center text-gray-400 py-8 animate-pulse">
+                Đang tải danh mục...
+              </div>
+            ) : error ? (
+              <div className="col-span-full text-center text-red-500 py-8">
+                {error}
+              </div>
+            ) : filteredCategories.length === 0 ? (
+              <div className="col-span-full text-center text-gray-400 py-8">
+                {searchTerm
+                  ? `Không tìm thấy danh mục nào cho "${searchTerm}"`
+                  : "Không có danh mục nào."}
+              </div>
+            ) : (
+              filteredCategories.map((name, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => handleClick(name)}
+                  className="aspect-square bg-white rounded-lg shadow hover:shadow-lg transition-all cursor-pointer flex flex-col items-center justify-center text-center p-4 border hover:border-blue-500"
+                >
+                  {categoryIcons[name] || categoryIcons.default}
+                  <h4
+                    className="text-sm font-bold text-gray-800 mt-2"
+                    title={name}
+                  >
+                    {name}
+                  </h4>
+                </div>
+              ))
+            )}
+          </div>
+        </main>
+
+        {/* Sidebar phải */}
+        <aside className="hidden lg:block w-64 bg-white rounded-lg shadow p-4 space-y-4">
+          <h2 className="text-lg font-semibold mb-3">Tìm kiếm & Lọc</h2>
+          <div className="relative">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Tìm theo tên danh mục..."
+              className="w-full border rounded px-3 py-2 pr-8 text-sm focus:outline-none focus:ring focus:ring-blue-200"
+            />
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm("")}
+                className="absolute inset-y-0 right-0 pr-2 flex items-center"
+              >
+                <svg
+                  className="h-4 w-4 text-gray-400 hover:text-gray-600"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            )}
+          </div>
+          {searchTerm && (
+            <div className="text-xs text-gray-600">
+              Tìm thấy {filteredCategories.length} danh mục
+            </div>
+          )}
+        </aside>
       </div>
     </div>
   );

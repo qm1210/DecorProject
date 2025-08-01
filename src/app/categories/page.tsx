@@ -2,10 +2,28 @@
 
 import Table from "@/components/Table";
 import CategoriesContainer from "@/components/CategoriesContainer";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchCategoryNames } from "@/services/CategoryData";
+import { ToastContainer, Bounce } from "react-toastify";
 
 const Categories = () => {
   const [tab, setTab] = useState<string>("search");
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchCategoryNames()
+      .then((data) => {
+        setCategories(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Failed to fetch categories");
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
 
   const handleExportPDF = () => {
     console.log("Export PDF clicked");
@@ -20,9 +38,10 @@ const Categories = () => {
           onClick={handleExportPDF}
           className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-5 py-2 text-white font-semibold shadow-md hover:bg-red-700 hover:cursor-pointer transition-all duration-300 ease-in-out"
         >
-          Export PDF
+          Xuất PDF
         </button>
       </div>
+
       <div>
         <ul className="flex space-x-2 mb-6 border border-gray-200 rounded-lg p-1 bg-gray-50 shadow-inner">
           <li
@@ -33,7 +52,7 @@ const Categories = () => {
                 : "text-gray-700 hover:bg-blue-100"
             }`}
           >
-            🔍 Tìm kiếm
+            Danh mục
           </li>
           <li
             onClick={() => setTab("table")}
@@ -43,11 +62,20 @@ const Categories = () => {
                 : "text-gray-700 hover:bg-blue-100"
             }`}
           >
-            📊 Bảng
+            Bảng báo giá
           </li>
         </ul>
       </div>
-      {tab === "search" ? <CategoriesContainer /> : <Table />}
+
+      {tab === "search" ? (
+        <CategoriesContainer
+          categories={categories}
+          loading={loading}
+          error={error}
+        />
+      ) : (
+        <Table />
+      )}
     </div>
   );
 };

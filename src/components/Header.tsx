@@ -73,7 +73,7 @@ export default function Header({ activeTab }: HeaderProps) {
                     router.push("/");
                   }}
                 >
-                  Home
+                  Trang chủ
                 </button>
                 <button
                   className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:text-white hover:cursor-pointer transition-colors duration-300 ease-in-out ${
@@ -83,7 +83,7 @@ export default function Header({ activeTab }: HeaderProps) {
                     router.push("/categories");
                   }}
                 >
-                  Categories
+                  Danh mục
                 </button>{" "}
               </div>
             </div>
