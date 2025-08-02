@@ -74,7 +74,6 @@ export const useExport = () => {
     }
 
     try {
-      // @ts-ignore
       const html2pdf = (await import("html2pdf.js")).default;
 
       const element = document.createElement("div");

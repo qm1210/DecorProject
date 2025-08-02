@@ -11,8 +11,13 @@ export default function Header({ activeTab }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
 
+  const handleNavigation = (path: string) => {
+    router.push(path);
+    setIsMenuOpen(false); // Đóng menu mobile sau khi navigate
+  };
+
   return (
-    <nav className=" bg-blue-600 shadow-md">
+    <nav className="bg-blue-600 shadow-md">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Mobile menu button */}
@@ -20,7 +25,7 @@ export default function Header({ activeTab }: HeaderProps) {
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200"
             >
               <span className="sr-only">Open main menu</span>
               {!isMenuOpen ? (
@@ -69,9 +74,7 @@ export default function Header({ activeTab }: HeaderProps) {
                   className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:text-white hover:cursor-pointer transition-colors duration-300 ease-in-out ${
                     activeTab === "home" ? "bg-blue-900" : ""
                   }`}
-                  onClick={() => {
-                    router.push("/");
-                  }}
+                  onClick={() => handleNavigation("/")}
                 >
                   Trang chủ
                 </button>
@@ -79,12 +82,10 @@ export default function Header({ activeTab }: HeaderProps) {
                   className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:text-white hover:cursor-pointer transition-colors duration-300 ease-in-out ${
                     activeTab === "categories" ? "bg-blue-900" : ""
                   }`}
-                  onClick={() => {
-                    router.push("/categories");
-                  }}
+                  onClick={() => handleNavigation("/categories")}
                 >
                   Danh mục
-                </button>{" "}
+                </button>
               </div>
             </div>
           </div>
@@ -94,7 +95,7 @@ export default function Header({ activeTab }: HeaderProps) {
             {/* Notification button */}
             <button
               type="button"
-              className="relative rounded-full bg-white p-1 text-black hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+              className="relative rounded-full bg-white p-1 text-black hover:bg-gray-100 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition-colors duration-200"
             >
               <span className="sr-only">View notifications</span>
               <svg
@@ -116,7 +117,7 @@ export default function Header({ activeTab }: HeaderProps) {
             <div className="relative ml-3">
               <button
                 type="button"
-                className="relative flex rounded-full bg-gray-800 text-sm hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                className="relative flex rounded-full bg-gray-800 text-sm hover:bg-gray-700 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition-colors duration-200"
               >
                 <span className="sr-only">Open user menu</span>
                 <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center">
@@ -130,33 +131,29 @@ export default function Header({ activeTab }: HeaderProps) {
 
       {/* Mobile menu */}
       <div
-        className={`sm:hidden ${isMenuOpen ? "block" : "hidden"} bg-blue-600`}
+        className={`sm:hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen
+            ? "block opacity-100 transform translate-y-0"
+            : "hidden opacity-0 transform -translate-y-2"
+        } bg-blue-600`}
       >
         <div className="space-y-1 px-2 pb-3 pt-2">
-          <a
-            href="/"
-            className="block rounded-md bg-blue-900 px-3 py-2 text-base font-medium text-white"
+          <button
+            onClick={() => handleNavigation("/")}
+            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200 ${
+              activeTab === "home" ? "bg-blue-900" : ""
+            }`}
           >
-            Home
-          </a>
-          <a
-            href="/products"
-            className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800"
+            Trang chủ
+          </button>
+          <button
+            onClick={() => handleNavigation("/categories")}
+            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200 ${
+              activeTab === "categories" ? "bg-blue-900" : ""
+            }`}
           >
-            Products
-          </a>
-          <a
-            href="/about"
-            className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800"
-          >
-            About
-          </a>
-          <a
-            href="/contact"
-            className="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800"
-          >
-            Contact
-          </a>
+            Danh mục
+          </button>
         </div>
       </div>
     </nav>
