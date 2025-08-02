@@ -717,4 +717,6 @@ const DetailPage = () => {
   );
 };
 
+export const runtime = "edge";
+
 export default DetailPage;
