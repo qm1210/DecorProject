@@ -434,25 +434,6 @@ const Table = forwardRef<TableRef>((props, ref) => {
                 Bạn chưa chọn sản phẩm nào. Hãy quay lại trang danh mục để chọn
                 sản phẩm.
               </p>
-              <button
-                onClick={() => router.push("/")}
-                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                  />
-                </svg>
-                Chọn sản phẩm
-              </button>
             </div>
           ) : (
             <>
