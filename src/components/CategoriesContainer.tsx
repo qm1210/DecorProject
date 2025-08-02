@@ -23,6 +23,13 @@ const toSlug = (str: string): string => {
     .replace(/\s+/g, "-");
 };
 
+// Function để extract danh mục từ tên sản phẩm
+const extractCategory = (productName: string): string => {
+  // Tách phần đầu tiên trước dấu " - " làm danh mục
+  const parts = productName.split(" - ");
+  return parts[0] || "Khác";
+};
+
 // Icon tương ứng với một số danh mục
 const categoryIcons: { [key: string]: React.ReactNode } = {
   "Tủ bếp": (
@@ -114,6 +121,29 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
     loadFromStorage();
   }, [loadFromStorage]);
 
+  // Group products by category và sắp xếp
+  const groupedProducts = useMemo(() => {
+    const groups: { [category: string]: typeof listedProducts } = {};
+
+    listedProducts.forEach((product) => {
+      const category = extractCategory(product.name);
+      if (!groups[category]) {
+        groups[category] = [];
+      }
+      groups[category].push(product);
+    });
+
+    // Sắp xếp các danh mục theo alphabet
+    const sortedCategories = Object.keys(groups).sort();
+
+    // Sắp xếp sản phẩm trong mỗi danh mục theo tên
+    sortedCategories.forEach((category) => {
+      groups[category].sort((a, b) => a.name.localeCompare(b.name));
+    });
+
+    return { groups, sortedCategories };
+  }, [listedProducts]);
+
   const filteredCategories = useMemo(() => {
     if (!searchTerm.trim()) return categories;
     return categories.filter((cat) => toSlug(cat).includes(toSlug(searchTerm)));
@@ -151,13 +181,13 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
     <div className="bg-white min-h-screen py-8 px-2 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto flex gap-6">
         {/* Sidebar trái */}
-        <aside className="hidden md:block w-56 bg-white rounded-lg shadow p-4">
+        <aside className="hidden md:block w-56 bg-white rounded-lg shadow p-4 min-w-[280px]">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold">Sản phẩm đã chọn</h2>
             {listedProducts.length > 0 && (
               <button
                 onClick={handleClearAll}
-                className="text-sm text-red-500 hover:text-red-700 underline hover:cursor-pointer"
+                className="text-sm text-red-500 hover:text-red-700 hover:cursor-pointer underline"
                 title="Xóa tất cả"
               >
                 Xóa tất cả
@@ -166,56 +196,80 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
           </div>
 
           <div className="max-h-96 overflow-y-auto">
-            <ul className="space-y-2 text-sm text-gray-700">
-              {listedProducts.length === 0 ? (
-                <li className="text-gray-400">Chưa chọn sản phẩm nào.</li>
-              ) : (
-                listedProducts.map((product, idx) => (
-                  <li
-                    key={idx}
-                    className="flex items-center justify-between group"
-                  >
-                    <span className="flex-1 break-words">
-                      <div className="font-medium text-1xl text-gray-800">
-                        {product.name}
-                      </div>
-                      <div className="text-gray-500 text-1xl">
-                        SL: {product.quantity} × {formatCurrency(product.price)}
-                      </div>
-                      <div className="text-green-600 text-1xl font-medium">
-                        = {formatCurrency(product.price * product.quantity)}
-                      </div>
-                    </span>
+            {listedProducts.length === 0 ? (
+              <div className="text-gray-400 text-sm">
+                Chưa chọn sản phẩm nào.
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {groupedProducts.sortedCategories.map((categoryName) => (
+                  <div key={categoryName} className="space-y-2">
+                    {/* Category Header */}
+                    <h3 className="text-1xl font-semibold text-blue-700 border-b border-blue-200 pb-1">
+                      {categoryName} (
+                      {groupedProducts.groups[categoryName].length})
+                    </h3>
 
-                    <button
-                      onClick={() => handleRemoveProduct(product.id)}
-                      className="ml-2 opacity-0 group-hover:opacity-100 hover:cursor-pointer transition-opacity text-red-500 hover:text-red-700 flex-shrink-0"
-                      title="Xóa sản phẩm"
-                    >
-                      <svg
-                        className="w-4 h-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </li>
-                ))
-              )}
-            </ul>
+                    {/* Products in this category */}
+                    <ul className="space-y-2">
+                      {groupedProducts.groups[categoryName].map(
+                        (product, idx) => (
+                          <li
+                            key={`${categoryName}-${idx}`}
+                            className="flex items-center justify-between group pl-2"
+                          >
+                            <span className="flex-1 ">
+                              <div className="font-medium text-sm text-gray-800">
+                                {product.name.replace(`${categoryName} - `, "")}
+                              </div>
+                              <div className="text-gray-500 text-sm">
+                                SL: {product.quantity} ×{" "}
+                                {formatCurrency(product.price)}
+                              </div>
+                              <div className="text-green-600 text-sm font-medium">
+                                ={" "}
+                                {formatCurrency(
+                                  product.price * product.quantity
+                                )}
+                              </div>
+                            </span>
+
+                            <button
+                              onClick={() => handleRemoveProduct(product.id)}
+                              className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-red-500 hover:text-red-700 hover:cursor-pointer flex-shrink-0"
+                              title="Xóa sản phẩm"
+                            >
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                  d="M6 18L18 6M6 6l12 12"
+                                />
+                              </svg>
+                            </button>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {listedProducts.length > 0 && (
             <div className="mt-4 pt-3 border-t">
               <div className="text-sm text-gray-600">
                 Tổng: {listedProducts.length} sản phẩm
+              </div>
+              <div className="text-sm text-gray-600">
+                {groupedProducts.sortedCategories.length} danh mục
               </div>
             </div>
           )}

@@ -9,33 +9,30 @@ import formatCurrency from "@/utils/FormatCurrency";
 import useQuoteStore from "@/store/CartStore";
 import type { SelectedProduct } from "@/store/CartStore";
 import { toast } from "react-toastify";
+import removeVietnameseTones from "@/utils/RemoveVietnamese";
 
-// Flattened table row
+// Flattened table row với đầy đủ thông tin
 interface FlattenedRow {
-  id: string;
+  id: string; // Product ID gốc
   "Đầu mục": string;
   "Tên cốt": string;
   "Tên phủ": string;
   "Đơn vị": string;
-  "Đơn giá": number;
+  "Đơn giá": number; // Giá báo khách
   "Ghi chú": string;
   "Số lượng": number;
+  "Đơn giá gốc": number; // Đơn giá gốc
+  "Lợi nhuận (%)": number; // Lợi nhuận
+  "Đơn vị mặc định": string; // Đơn vị mặc định của sản phẩm
+  "Ngày tạo": string; // Ngày tạo sản phẩm
 }
-
-const removeVietnameseTones = (str: string): string => {
-  return str
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/đ/g, "d")
-    .replace(/Đ/g, "D")
-    .toLowerCase();
-};
 
 const DetailPage = () => {
   const params = useParams();
   const router = useRouter();
   const slug = params.slug as string;
 
+  // State
   const [categoryData, setCategoryData] = useState<Category | null>(null);
   const [flattenedData, setFlattenedData] = useState<FlattenedRow[]>([]);
   const [loading, setLoading] = useState(true);
@@ -51,10 +48,42 @@ const DetailPage = () => {
   const [selectedTenPhu, setSelectedTenPhu] = useState<string[]>([]);
 
   // Store
-  const { addProduct, listedProducts } = useQuoteStore();
+  const { addProduct, removeProduct, listedProducts, loadFromStorage } =
+    useQuoteStore();
+
+  // Load Zustand store from localStorage on mount
+  useEffect(() => {
+    loadFromStorage();
+  }, [loadFromStorage]);
+
+  // Flatten product data với đầy đủ thông tin
+  const flattenProductData = (products: Product[]): FlattenedRow[] => {
+    const flattened = products.flatMap((product) =>
+      product["Chất liệu cốt"].flatMap((cot) =>
+        cot["Chất liệu phủ"].map((phu) => ({
+          id: product.id,
+          "Đầu mục": product["Đầu mục"],
+          "Tên cốt": cot["Tên cốt"],
+          "Tên phủ": phu["Tên phủ"],
+          "Đơn vị": phu["Đơn vị"],
+          "Đơn giá": phu["Giá báo khách"],
+          "Ghi chú": phu["Ghi chú"] ?? "",
+          "Số lượng": 0,
+          // Thêm thông tin chi tiết
+          "Đơn giá gốc": phu["Đơn giá gốc"],
+          "Lợi nhuận (%)": phu["Lợi nhuận (%)"],
+          "Đơn vị mặc định": product["Mặc định đơn vị"],
+          "Ngày tạo": product["Ngày tạo"],
+        }))
+      )
+    );
+
+    // Load saved quantities từ localStorage
+    return loadSavedQuantities(flattened);
+  };
 
   // Load saved quantities from localStorage for current category
-  const loadSavedQuantities = (data: FlattenedRow[]) => {
+  const loadSavedQuantities = (data: FlattenedRow[]): FlattenedRow[] => {
     const savedKey = `category-${slug}-quantities`;
     const saved = localStorage.getItem(savedKey);
 
@@ -74,6 +103,25 @@ const DetailPage = () => {
     }
 
     return data;
+  };
+
+  // Save quantities to localStorage for current category
+  const saveQuantitiesToLocal = () => {
+    const savedKey = `category-${slug}-quantities`;
+    const quantities: Record<string, number> = {};
+
+    flattenedData.forEach((item) => {
+      if (item["Số lượng"] > 0) {
+        const itemKey = `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`;
+        quantities[itemKey] = item["Số lượng"];
+      }
+    });
+
+    if (Object.keys(quantities).length > 0) {
+      localStorage.setItem(savedKey, JSON.stringify(quantities));
+    } else {
+      localStorage.removeItem(savedKey);
+    }
   };
 
   // Sync with global store - check if products were removed externally
@@ -100,138 +148,47 @@ const DetailPage = () => {
           return { ...item, "Số lượng": 0 };
         }
 
+        // Sync quantity from store if exists
+        if (existsInStore && item["Số lượng"] !== existsInStore.quantity) {
+          return { ...item, "Số lượng": existsInStore.quantity };
+        }
+
         return item;
       });
     });
 
-    // Also update localStorage quantities
-    const savedKey = `category-${slug}-quantities`;
-    const quantities: Record<string, number> = {};
-
-    existingInStore.forEach((product) => {
-      quantities[product.id] = product.quantity;
-    });
-
-    if (Object.keys(quantities).length > 0) {
-      localStorage.setItem(savedKey, JSON.stringify(quantities));
-    } else {
-      localStorage.removeItem(savedKey);
-    }
+    // Update localStorage quantities
+    saveQuantitiesToLocal();
   };
 
   // Listen for changes in global store
   useEffect(() => {
-    syncWithGlobalStore();
+    if (listedProducts.length > 0 || flattenedData.length > 0) {
+      syncWithGlobalStore();
+    }
   }, [listedProducts, flattenedData.length]);
 
   // Listen for storage changes from other tabs/windows
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "quoteItems" || e.key?.startsWith("category-")) {
-        syncWithGlobalStore();
+      if (e.key === "quoteItems") {
+        loadFromStorage();
+      } else if (e.key?.startsWith("category-")) {
+        // Reload quantities for this category
+        if (flattenedData.length > 0) {
+          const reloaded = loadSavedQuantities(
+            flattenedData.map((item) => ({ ...item, "Số lượng": 0 }))
+          );
+          setFlattenedData(reloaded);
+        }
       }
     };
 
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  }, [flattenedData]);
 
-  // Save quantities to localStorage for current category - CHỈ GỌI KHI THÊM
-  const saveQuantitiesToLocal = () => {
-    const savedKey = `category-${slug}-quantities`;
-    const quantities: Record<string, number> = {};
-
-    flattenedData.forEach((item) => {
-      if (item["Số lượng"] > 0) {
-        const itemKey = `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`;
-        quantities[itemKey] = item["Số lượng"];
-      }
-    });
-
-    localStorage.setItem(savedKey, JSON.stringify(quantities));
-  };
-
-  const handleAdd = () => {
-    const selectedProducts = flattenedData.filter(
-      (item) => item["Số lượng"] > 0
-    );
-
-    if (selectedProducts.length === 0) {
-      toast.warning("Vui lòng chọn ít nhất một sản phẩm");
-      return;
-    }
-
-    const productsToStore: SelectedProduct[] = [];
-
-    selectedProducts.forEach((item) => {
-      const newProduct: SelectedProduct = {
-        id: `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`,
-        name: `${item["Đầu mục"]} - ${item["Tên cốt"]} - ${item["Tên phủ"]}`,
-        unit: item["Đơn vị"],
-        price: item["Đơn giá"],
-        quantity: item["Số lượng"],
-      };
-
-      addProduct(newProduct);
-      productsToStore.push(newProduct);
-    });
-
-    // Save to global quote items
-    if (productsToStore.length > 0) {
-      const existing = localStorage.getItem("quoteItems");
-      const existingItems: SelectedProduct[] = existing
-        ? JSON.parse(existing)
-        : [];
-
-      const mergedItems = [...existingItems];
-
-      for (const newItem of productsToStore) {
-        const index = mergedItems.findIndex((p) => p.id === newItem.id);
-        if (index !== -1) {
-          mergedItems[index].quantity = newItem.quantity; // Update to exact quantity, not add
-        } else {
-          mergedItems.push(newItem);
-        }
-      }
-
-      localStorage.setItem("quoteItems", JSON.stringify(mergedItems));
-    }
-
-    // CHỈ LƯU KHI THÊM SẢN PHẨM
-    saveQuantitiesToLocal();
-
-    toast.success(`Đã thêm ${selectedProducts.length} sản phẩm vào báo giá`);
-  };
-
-  const flattenProductData = (products: Product[]): FlattenedRow[] => {
-    const flattened = products.flatMap((product) =>
-      product["Chất liệu cốt"].flatMap((cot) =>
-        cot["Chất liệu phủ"].map((phu) => ({
-          id: product.id,
-          "Đầu mục": product["Đầu mục"],
-          "Tên cốt": cot["Tên cốt"],
-          "Tên phủ": phu["Tên phủ"],
-          "Đơn vị": phu["Đơn vị"],
-          "Đơn giá": phu["Giá báo khách"],
-          "Ghi chú": phu["Ghi chú"] ?? "",
-          "Số lượng": 0,
-        }))
-      )
-    );
-
-    // Load saved quantities
-    return loadSavedQuantities(flattened);
-  };
-
-  // CHỈ CẬP NHẬT STATE, KHÔNG LƯU LOCALSTORE
-  const updateQuantity = (index: number, quantity: number) => {
-    setFlattenedData((prev) => {
-      const newData = [...prev];
-      newData[index] = { ...newData[index], "Số lượng": quantity };
-      return newData;
-    });
-  };
-
+  // Fetch category data
   useEffect(() => {
     const fetchCategory = async () => {
       try {
@@ -275,6 +232,84 @@ const DetailPage = () => {
     }
   }, [slug]);
 
+  // Update quantity - chỉ cập nhật state local
+  const updateQuantity = (index: number, quantity: number) => {
+    setFlattenedData((prev) => {
+      const newData = [...prev];
+      newData[index] = { ...newData[index], "Số lượng": quantity };
+      return newData;
+    });
+  };
+
+  // Add products to cart/quote
+  const handleAdd = () => {
+    const selectedProducts = flattenedData.filter(
+      (item) => item["Số lượng"] > 0
+    );
+
+    if (selectedProducts.length === 0) {
+      toast.warning("Vui lòng chọn ít nhất một sản phẩm");
+      return;
+    }
+
+    selectedProducts.forEach((item) => {
+      const newProduct: SelectedProduct = {
+        id: `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`,
+        name: `${categoryData?.["Danh mục"]} - ${item["Đầu mục"]} - ${item["Tên cốt"]} - ${item["Tên phủ"]}`,
+        unit: item["Đơn vị"],
+        price: item["Đơn giá"],
+        quantity: item["Số lượng"],
+        // Lưu đầy đủ thông tin chi tiết
+        category: categoryData?.["Danh mục"] || "Khác",
+        subcategory: item["Đầu mục"],
+        core: item["Tên cốt"],
+        cover: item["Tên phủ"],
+        basePrice: item["Đơn giá gốc"],
+        profit: item["Lợi nhuận (%)"],
+        note: item["Ghi chú"],
+        productId: item.id,
+        unit_default: item["Đơn vị mặc định"],
+        created_date: item["Ngày tạo"],
+      };
+
+      // Sử dụng addProduct từ store - nó sẽ tự động handle việc update hoặc add mới
+      addProduct(newProduct);
+    });
+
+    // Lưu quantities cho category hiện tại
+    saveQuantitiesToLocal();
+
+    toast.success(
+      `Đã cập nhật ${selectedProducts.length} sản phẩm vào báo giá`
+    );
+  };
+
+  // Clear all quantities for current category
+  const handleClearQuantities = () => {
+    setFlattenedData((prev) =>
+      prev.map((item) => ({ ...item, "Số lượng": 0 }))
+    );
+
+    // Xóa quantity theo danh mục hiện tại
+    const savedKey = `category-${slug}-quantities`;
+    localStorage.removeItem(savedKey);
+
+    // Xóa khỏi toàn bộ danh sách báo giá
+    const currentIds = flattenedData.map(
+      (item) => `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`
+    );
+
+    // Sử dụng removeProduct từ store
+    currentIds.forEach((id) => {
+      const existingProduct = listedProducts.find((p) => p.id === id);
+      if (existingProduct) {
+        removeProduct(id);
+      }
+    });
+
+    toast.info("Đã xóa tất cả sản phẩm đã chọn");
+  };
+
   // Get unique values for filters
   const uniqueDauMuc = [
     ...new Set(flattenedData.map((item) => item["Đầu mục"])),
@@ -286,6 +321,7 @@ const DetailPage = () => {
     ...new Set(flattenedData.map((item) => item["Tên phủ"])),
   ];
 
+  // Filter data
   const filteredData = flattenedData.filter((row) => {
     const term = removeVietnameseTones(searchTerm.toLowerCase());
 
@@ -320,6 +356,7 @@ const DetailPage = () => {
     );
   });
 
+  // Sort data
   const sortedData = [...filteredData].sort((a, b) => {
     if (!sortColumn) return 0;
 
@@ -345,7 +382,10 @@ const DetailPage = () => {
   };
 
   const calculateTotal = () =>
-    sortedData.reduce((sum, row) => sum + row["Đơn giá"] * row["Số lượng"], 0);
+    flattenedData.reduce(
+      (sum, row) => sum + row["Đơn giá"] * row["Số lượng"],
+      0
+    );
 
   const handleFilterToggle = (
     value: string,
@@ -357,39 +397,6 @@ const DetailPage = () => {
     } else {
       setter([...selected, value]);
     }
-  };
-
-  // Clear all quantities for current category - XÓA CẢ LOCALSTORAGE
-  const handleClearQuantities = () => {
-    setFlattenedData((prev) =>
-      prev.map((item) => ({ ...item, "Số lượng": 0 }))
-    );
-
-    // Xoá quantity theo danh mục hiện tại
-    const savedKey = `category-${slug}-quantities`;
-    localStorage.removeItem(savedKey);
-
-    // Xoá khỏi toàn bộ danh sách báo giá
-    const currentIds = flattenedData.map(
-      (item) => `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`
-    );
-
-    const existing = localStorage.getItem("quoteItems");
-    if (existing) {
-      const existingItems: SelectedProduct[] = JSON.parse(existing);
-      const filtered = existingItems.filter(
-        (item) => !currentIds.includes(item.id)
-      );
-      localStorage.setItem("quoteItems", JSON.stringify(filtered));
-    }
-
-    // Nếu bạn đang dùng Zustand store, xóa trong đó luôn
-    if (typeof window !== "undefined") {
-      const { removeProduct } = useQuoteStore.getState();
-      currentIds.forEach((id) => removeProduct(id));
-    }
-
-    toast.info("Đã xóa tất cả sản phẩm đã chọn");
   };
 
   if (loading) return <div className="p-8 text-center">Đang tải...</div>;
@@ -459,7 +466,9 @@ const DetailPage = () => {
                           key={col}
                           onClick={() => col !== "Số lượng" && handleSort(col)}
                           className={`px-4 py-3 text-left font-medium text-gray-600 ${
-                            col !== "Số lượng" ? "cursor-pointer" : ""
+                            col !== "Số lượng"
+                              ? "cursor-pointer hover:bg-gray-100"
+                              : ""
                           }`}
                         >
                           {col}
@@ -503,7 +512,7 @@ const DetailPage = () => {
                                 );
                                 updateQuantity(originalIndex, quantity);
                               }}
-                              className="w-20 px-2 py-1 border border-gray-300 rounded text-center"
+                              className="w-20 px-2 py-1 border border-gray-300 rounded text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                           </td>
                         </tr>
@@ -514,8 +523,11 @@ const DetailPage = () => {
                           colSpan={7}
                           className="px-4 py-8 text-center text-gray-500"
                         >
-                          {searchTerm
-                            ? `Không tìm thấy kết quả cho "${searchTerm}"`
+                          {searchTerm ||
+                          selectedDauMuc.length ||
+                          selectedTenCot.length ||
+                          selectedTenPhu.length
+                            ? "Không tìm thấy sản phẩm phù hợp với bộ lọc"
                             : "Không có dữ liệu"}
                         </td>
                       </tr>
@@ -559,7 +571,7 @@ const DetailPage = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Tìm kiếm sản phẩm, chất liệu..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
 
@@ -678,6 +690,25 @@ const DetailPage = () => {
                   </label>
                 ))}
               </div>
+            </div>
+
+            {/* Clear Filters */}
+            <div className="bg-white p-4 rounded-lg shadow">
+              <button
+                onClick={() => {
+                  setSearchTerm("");
+                  setPriceRange([
+                    Math.min(...flattenedData.map((item) => item["Đơn giá"])),
+                    Math.max(...flattenedData.map((item) => item["Đơn giá"])),
+                  ]);
+                  setSelectedDauMuc([]);
+                  setSelectedTenCot([]);
+                  setSelectedTenPhu([]);
+                }}
+                className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+              >
+                Xóa tất cả bộ lọc
+              </button>
             </div>
           </div>
         </div>
