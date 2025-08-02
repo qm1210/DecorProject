@@ -143,7 +143,7 @@ const Table = forwardRef<TableRef>((props, ref) => {
     if (!sortColumn) return filteredProducts;
 
     return [...filteredProducts].sort((a, b) => {
-      let valA: any, valB: any;
+      let valA: string | number, valB: string | number;
 
       switch (sortColumn) {
         case "name":
@@ -246,25 +246,6 @@ const Table = forwardRef<TableRef>((props, ref) => {
               </h1>
               <p className="text-gray-600">Danh sách sản phẩm đã chọn</p>
             </div>
-            <button
-              onClick={() => router.back()}
-              className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <svg
-                className="w-4 h-4 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-              Quay lại
-            </button>
           </div>
 
           {/* Summary Cards */}
