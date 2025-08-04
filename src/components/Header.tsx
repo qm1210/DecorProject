@@ -25,35 +25,35 @@ export default function Header({ activeTab }: HeaderProps) {
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition-colors duration-200"
+              className="inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white transition"
+              aria-label="Open main menu"
             >
-              <span className="sr-only">Open main menu</span>
-              {!isMenuOpen ? (
+              {isMenuOpen ? (
                 <svg
-                  className="block h-6 w-6"
+                  className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth="1.5"
                   stroke="currentColor"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
                   />
                 </svg>
               ) : (
                 <svg
-                  className="block h-6 w-6"
+                  className="h-6 w-6"
                   fill="none"
                   viewBox="0 0 24 24"
-                  strokeWidth="1.5"
                   stroke="currentColor"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
               )}
@@ -68,25 +68,23 @@ export default function Header({ activeTab }: HeaderProps) {
             </div>
 
             {/* Desktop navigation */}
-            <div className="hidden sm:ml-6 sm:block">
-              <div className="flex space-x-4">
-                <button
-                  className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:text-white hover:cursor-pointer transition-colors duration-300 ease-in-out ${
-                    activeTab === "home" ? "bg-blue-900" : ""
-                  }`}
-                  onClick={() => handleNavigation("/")}
-                >
-                  Trang chủ
-                </button>
-                <button
-                  className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:text-white hover:cursor-pointer transition-colors duration-300 ease-in-out ${
-                    activeTab === "categories" ? "bg-blue-900" : ""
-                  }`}
-                  onClick={() => handleNavigation("/categories")}
-                >
-                  Danh mục
-                </button>
-              </div>
+            <div className="hidden sm:ml-6 sm:flex sm:space-x-4">
+              <button
+                className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:cursor-pointer hover:text-white transition ${
+                  activeTab === "home" ? "bg-blue-900" : ""
+                }`}
+                onClick={() => handleNavigation("/")}
+              >
+                Trang chủ
+              </button>
+              <button
+                className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:cursor-pointer hover:text-white transition ${
+                  activeTab === "categories" ? "bg-blue-900" : ""
+                }`}
+                onClick={() => handleNavigation("/categories")}
+              >
+                Danh mục
+              </button>
             </div>
           </div>
 
@@ -95,19 +93,19 @@ export default function Header({ activeTab }: HeaderProps) {
             {/* Notification button */}
             <button
               type="button"
-              className="relative rounded-full bg-white p-1 text-black hover:bg-gray-100 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition-colors duration-200"
+              className="rounded-full bg-white p-1 text-black hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition"
+              aria-label="View notifications"
             >
-              <span className="sr-only">View notifications</span>
               <svg
                 className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth="1.5"
                 stroke="currentColor"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  strokeWidth={1.5}
                   d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0"
                 />
               </svg>
@@ -117,9 +115,9 @@ export default function Header({ activeTab }: HeaderProps) {
             <div className="relative ml-3">
               <button
                 type="button"
-                className="relative flex rounded-full bg-gray-800 text-sm hover:bg-gray-700 hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition-colors duration-200"
+                className="flex rounded-full bg-gray-800 text-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition"
+                aria-label="Open user menu"
               >
-                <span className="sr-only">Open user menu</span>
                 <div className="h-8 w-8 rounded-full bg-white flex items-center justify-center">
                   <span className="text-sm font-medium text-black">U</span>
                 </div>
@@ -140,7 +138,7 @@ export default function Header({ activeTab }: HeaderProps) {
         <div className="space-y-1 px-2 pb-3 pt-2">
           <button
             onClick={() => handleNavigation("/")}
-            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200 ${
+            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition ${
               activeTab === "home" ? "bg-blue-900" : ""
             }`}
           >
@@ -148,7 +146,7 @@ export default function Header({ activeTab }: HeaderProps) {
           </button>
           <button
             onClick={() => handleNavigation("/categories")}
-            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition-colors duration-200 ${
+            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition ${
               activeTab === "categories" ? "bg-blue-900" : ""
             }`}
           >

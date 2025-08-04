@@ -124,6 +124,71 @@ const DetailPage = () => {
     }
   };
 
+  useEffect(() => {
+    // Debounce để tránh gọi quá nhiều lần
+    const timeoutId = setTimeout(() => {
+      flattenedData.forEach((item) => {
+        const productId = `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`;
+
+        if (item["Số lượng"] > 0) {
+          // Thêm/cập nhật vào store
+          const newProduct: SelectedProduct = {
+            id: productId,
+            name: `${categoryData?.["Danh mục"]} - ${item["Đầu mục"]} - ${item["Tên cốt"]} - ${item["Tên phủ"]}`,
+            unit: item["Đơn vị"],
+            price: item["Đơn giá"],
+            quantity: item["Số lượng"],
+            category: categoryData?.["Danh mục"] || "Khác",
+            subcategory: item["Đầu mục"],
+            core: item["Tên cốt"],
+            cover: item["Tên phủ"],
+            basePrice: item["Đơn giá gốc"],
+            profit: item["Lợi nhuận (%)"],
+            note: item["Ghi chú"],
+            productId: item.id,
+            unit_default: item["Đơn vị mặc định"],
+            created_date: item["Ngày tạo"],
+          };
+          addProduct(newProduct);
+        } else {
+          // Xóa khỏi store
+          const existingProduct = listedProducts.find(
+            (p) => p.id === productId
+          );
+          if (existingProduct) {
+            removeProduct(productId);
+          }
+        }
+      });
+
+      // Lưu vào localStorage
+      const savedKey = `category-${slug}-quantities`;
+      const quantities: Record<string, number> = {};
+
+      flattenedData.forEach((dataItem) => {
+        if (dataItem["Số lượng"] > 0) {
+          const itemKey = `${dataItem.id}-${dataItem["Tên cốt"]}-${dataItem["Tên phủ"]}`;
+          quantities[itemKey] = dataItem["Số lượng"];
+        }
+      });
+
+      if (Object.keys(quantities).length > 0) {
+        localStorage.setItem(savedKey, JSON.stringify(quantities));
+      } else {
+        localStorage.removeItem(savedKey);
+      }
+    }, 300); // Debounce 300ms
+
+    return () => clearTimeout(timeoutId);
+  }, [
+    flattenedData,
+    categoryData,
+    slug,
+    addProduct,
+    removeProduct,
+    listedProducts,
+  ]);
+
   // Sync with global store - check if products were removed externally
   const syncWithGlobalStore = () => {
     if (flattenedData.length === 0) return;
@@ -239,49 +304,6 @@ const DetailPage = () => {
       newData[index] = { ...newData[index], "Số lượng": quantity };
       return newData;
     });
-  };
-
-  // Add products to cart/quote
-  const handleAdd = () => {
-    const selectedProducts = flattenedData.filter(
-      (item) => item["Số lượng"] > 0
-    );
-
-    if (selectedProducts.length === 0) {
-      toast.warning("Vui lòng chọn ít nhất một sản phẩm");
-      return;
-    }
-
-    selectedProducts.forEach((item) => {
-      const newProduct: SelectedProduct = {
-        id: `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`,
-        name: `${categoryData?.["Danh mục"]} - ${item["Đầu mục"]} - ${item["Tên cốt"]} - ${item["Tên phủ"]}`,
-        unit: item["Đơn vị"],
-        price: item["Đơn giá"],
-        quantity: item["Số lượng"],
-        // Lưu đầy đủ thông tin chi tiết
-        category: categoryData?.["Danh mục"] || "Khác",
-        subcategory: item["Đầu mục"],
-        core: item["Tên cốt"],
-        cover: item["Tên phủ"],
-        basePrice: item["Đơn giá gốc"],
-        profit: item["Lợi nhuận (%)"],
-        note: item["Ghi chú"],
-        productId: item.id,
-        unit_default: item["Đơn vị mặc định"],
-        created_date: item["Ngày tạo"],
-      };
-
-      // Sử dụng addProduct từ store - nó sẽ tự động handle việc update hoặc add mới
-      addProduct(newProduct);
-    });
-
-    // Lưu quantities cho category hiện tại
-    saveQuantitiesToLocal();
-
-    toast.success(
-      `Đã cập nhật ${selectedProducts.length} sản phẩm vào báo giá`
-    );
   };
 
   // Clear all quantities for current category
@@ -483,8 +505,8 @@ const DetailPage = () => {
                       sortedData.map((row, i) => (
                         <tr
                           key={`${row.id}-${i}`}
-                          className={`hover:bg-gray-50 border-b ${
-                            row["Số lượng"] > 0 ? "bg-blue-50" : ""
+                          className={`border-b transition-colors duration-300 ${
+                            row["Số lượng"] > 0 ? "bg-blue-100" : ""
                           }`}
                         >
                           <td className="px-4 py-2">{row["Đầu mục"]}</td>
@@ -498,22 +520,63 @@ const DetailPage = () => {
                             {row["Ghi chú"] || "-"}
                           </td>
                           <td className="px-4 py-2">
-                            <input
-                              type="number"
-                              min="0"
-                              value={row["Số lượng"]}
-                              onChange={(e) => {
-                                const quantity = parseInt(e.target.value) || 0;
-                                const originalIndex = flattenedData.findIndex(
-                                  (item) =>
-                                    item.id === row.id &&
-                                    item["Tên cốt"] === row["Tên cốt"] &&
-                                    item["Tên phủ"] === row["Tên phủ"]
-                                );
-                                updateQuantity(originalIndex, quantity);
-                              }}
-                              className="w-20 px-2 py-1 border border-gray-300 rounded text-center focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
+                            <div className="flex items-center gap-2">
+                              {/* Nút trừ */}
+                              <button
+                                onClick={() => {
+                                  const quantity = Math.max(
+                                    0,
+                                    (row["Số lượng"] || 0) - 1
+                                  );
+                                  const index = flattenedData.findIndex(
+                                    (item) =>
+                                      item.id === row.id &&
+                                      item["Tên cốt"] === row["Tên cốt"] &&
+                                      item["Tên phủ"] === row["Tên phủ"]
+                                  );
+                                  updateQuantity(index, quantity);
+                                }}
+                                className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 text-black text-sm font-bold border border-gray-400"
+                              >
+                                −
+                              </button>
+
+                              {/* Input không có mũi tên */}
+                              <input
+                                type="number"
+                                min="0"
+                                value={row["Số lượng"]}
+                                onChange={(e) => {
+                                  const quantity =
+                                    parseInt(e.target.value) || 0;
+                                  const index = flattenedData.findIndex(
+                                    (item) =>
+                                      item.id === row.id &&
+                                      item["Tên cốt"] === row["Tên cốt"] &&
+                                      item["Tên phủ"] === row["Tên phủ"]
+                                  );
+                                  updateQuantity(index, quantity);
+                                }}
+                                className="no-spinner w-16 text-center px-2 py-1 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              />
+
+                              {/* Nút cộng */}
+                              <button
+                                onClick={() => {
+                                  const quantity = (row["Số lượng"] || 0) + 1;
+                                  const index = flattenedData.findIndex(
+                                    (item) =>
+                                      item.id === row.id &&
+                                      item["Tên cốt"] === row["Tên cốt"] &&
+                                      item["Tên phủ"] === row["Tên phủ"]
+                                  );
+                                  updateQuantity(index, quantity);
+                                }}
+                                className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 text-black text-sm font-bold border border-gray-400"
+                              >
+                                +
+                              </button>
+                            </div>
                           </td>
                         </tr>
                       ))
@@ -538,17 +601,6 @@ const DetailPage = () => {
 
               {/* Action Buttons */}
               <div className="p-4 border-t bg-gray-50 flex gap-2">
-                <button
-                  onClick={handleAdd}
-                  disabled={selectedItemsCount === 0}
-                  className={`px-4 py-2 rounded transition-colors ${
-                    selectedItemsCount > 0
-                      ? "bg-blue-600 text-white hover:bg-blue-700 hover:cursor-pointer"
-                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  }`}
-                >
-                  + Thêm sản phẩm ({selectedItemsCount})
-                </button>
                 {selectedItemsCount > 0 && (
                   <button
                     onClick={handleClearQuantities}
