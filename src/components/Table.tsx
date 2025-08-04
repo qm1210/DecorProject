@@ -579,7 +579,7 @@ const Table = forwardRef<TableRef>((props, ref) => {
                                     (product.quantity || 0) - 1
                                   )
                                 }
-                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 hover:cursor-pointer text-gray-600 transition-colors"
                               >
                                 -
                               </button>
@@ -593,7 +593,7 @@ const Table = forwardRef<TableRef>((props, ref) => {
                                     (product.quantity || 0) + 1
                                   )
                                 }
-                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
+                                className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 hover:cursor-pointer text-gray-600 transition-colors"
                               >
                                 +
                               </button>

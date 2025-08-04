@@ -80,7 +80,8 @@ export const useExport = () => {
       element.innerHTML = `
         <div style="padding: 20px; font-family: Arial, sans-serif;">
           <div style="text-align: center; margin-bottom: 30px;">
-            <h1 style="color: #1f2937; margin-bottom: 10px; font-size: 24px;">BẢNG BÁO GIÁ</h1>
+            <h1 style="color: #1f2937; margin-bottom: 10px; font-size: 24px; font-weight: bold;">NỘI THẤT YOTECH</h1>
+            <h1 style="color: #1f2937; margin-bottom: 10px; font-size: 20px;">BẢNG BÁO GIÁ</h1>
             <p style="color: #6b7280; margin: 0; font-size: 14px;">Ngày xuất: ${new Date().toLocaleDateString("vi-VN")}</p>
             <p style="color: #6b7280; margin: 0; font-size: 14px;">Tổng sản phẩm: ${products.length}</p>
           </div>

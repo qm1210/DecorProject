@@ -10,6 +10,7 @@ import useQuoteStore from "@/store/CartStore";
 import type { SelectedProduct } from "@/store/CartStore";
 import { toast } from "react-toastify";
 import removeVietnameseTones from "@/utils/RemoveVietnamese";
+import ProductSelectionModal from "@/components/ModalAdd";
 
 // Flattened table row với đầy đủ thông tin
 interface FlattenedRow {
@@ -37,15 +38,9 @@ const DetailPage = () => {
   const [flattenedData, setFlattenedData] = useState<FlattenedRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortColumn, setSortColumn] = useState("");
+  const [showModal, setShowModal] = useState(false);
+  const [sortColumn, setSortColumn] = useState<string>("");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-
-  // Filter states
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000000]);
-  const [selectedDauMuc, setSelectedDauMuc] = useState<string[]>([]);
-  const [selectedTenCot, setSelectedTenCot] = useState<string[]>([]);
-  const [selectedTenPhu, setSelectedTenPhu] = useState<string[]>([]);
 
   // Store
   const { addProduct, removeProduct, listedProducts, loadFromStorage } =
@@ -82,6 +77,16 @@ const DetailPage = () => {
     return loadSavedQuantities(flattened);
   };
 
+  // Hàm xử lý sort
+  const handleSort = (col: string) => {
+    if (sortColumn === col) {
+      setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortColumn(col);
+      setSortDirection("asc");
+    }
+  };
+
   // Load saved quantities from localStorage for current category
   const loadSavedQuantities = (data: FlattenedRow[]): FlattenedRow[] => {
     const savedKey = `category-${slug}-quantities`;
@@ -103,25 +108,6 @@ const DetailPage = () => {
     }
 
     return data;
-  };
-
-  // Save quantities to localStorage for current category
-  const saveQuantitiesToLocal = () => {
-    const savedKey = `category-${slug}-quantities`;
-    const quantities: Record<string, number> = {};
-
-    flattenedData.forEach((item) => {
-      if (item["Số lượng"] > 0) {
-        const itemKey = `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`;
-        quantities[itemKey] = item["Số lượng"];
-      }
-    });
-
-    if (Object.keys(quantities).length > 0) {
-      localStorage.setItem(savedKey, JSON.stringify(quantities));
-    } else {
-      localStorage.removeItem(savedKey);
-    }
   };
 
   useEffect(() => {
@@ -221,9 +207,6 @@ const DetailPage = () => {
         return item;
       });
     });
-
-    // Update localStorage quantities
-    saveQuantitiesToLocal();
   };
 
   // Listen for changes in global store
@@ -232,26 +215,6 @@ const DetailPage = () => {
       syncWithGlobalStore();
     }
   }, [listedProducts, flattenedData.length]);
-
-  // Listen for storage changes from other tabs/windows
-  useEffect(() => {
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "quoteItems") {
-        loadFromStorage();
-      } else if (e.key?.startsWith("category-")) {
-        // Reload quantities for this category
-        if (flattenedData.length > 0) {
-          const reloaded = loadSavedQuantities(
-            flattenedData.map((item) => ({ ...item, "Số lượng": 0 }))
-          );
-          setFlattenedData(reloaded);
-        }
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, [flattenedData]);
 
   // Fetch category data
   useEffect(() => {
@@ -278,12 +241,6 @@ const DetailPage = () => {
         setCategoryData(found);
         const flat = flattenProductData(found["Sản phẩm"]);
         setFlattenedData(flat);
-
-        // Set initial price range
-        const prices = flat.map((item) => item["Đơn giá"]);
-        const minPrice = Math.min(...prices);
-        const maxPrice = Math.max(...prices);
-        setPriceRange([minPrice, maxPrice]);
       } catch (err) {
         console.error(err);
         setError("Không thể tải dữ liệu sản phẩm");
@@ -332,101 +289,49 @@ const DetailPage = () => {
     toast.info("Đã xóa tất cả sản phẩm đã chọn");
   };
 
-  // Get unique values for filters
-  const uniqueDauMuc = [
-    ...new Set(flattenedData.map((item) => item["Đầu mục"])),
-  ];
-  const uniqueTenCot = [
-    ...new Set(flattenedData.map((item) => item["Tên cốt"])),
-  ];
-  const uniqueTenPhu = [
-    ...new Set(flattenedData.map((item) => item["Tên phủ"])),
-  ];
-
-  // Filter data
-  const filteredData = flattenedData.filter((row) => {
-    const term = removeVietnameseTones(searchTerm.toLowerCase());
-
-    const match = (value: string) =>
-      removeVietnameseTones(value.toLowerCase()).includes(term);
-
-    const matchesSearch =
-      !term ||
-      match(row["Đầu mục"]) ||
-      match(row["Tên cốt"]) ||
-      match(row["Tên phủ"]) ||
-      match(row["Ghi chú"] ?? "");
-
-    const matchesPrice =
-      row["Đơn giá"] >= priceRange[0] && row["Đơn giá"] <= priceRange[1];
-
-    const matchesDauMuc =
-      selectedDauMuc.length === 0 || selectedDauMuc.includes(row["Đầu mục"]);
-
-    const matchesTenCot =
-      selectedTenCot.length === 0 || selectedTenCot.includes(row["Tên cốt"]);
-
-    const matchesTenPhu =
-      selectedTenPhu.length === 0 || selectedTenPhu.includes(row["Tên phủ"]);
-
-    return (
-      matchesSearch &&
-      matchesPrice &&
-      matchesDauMuc &&
-      matchesTenCot &&
-      matchesTenPhu
+  // Handle product selection from modal
+  const handleSelectProduct = (product: FlattenedRow) => {
+    const index = flattenedData.findIndex(
+      (item) =>
+        item.id === product.id &&
+        item["Tên cốt"] === product["Tên cốt"] &&
+        item["Tên phủ"] === product["Tên phủ"]
     );
-  });
+    if (index !== -1) {
+      updateQuantity(index, 1);
+    }
+    setShowModal(false);
+  };
 
-  // Sort data
-  const sortedData = [...filteredData].sort((a, b) => {
+  // Chỉ lấy sản phẩm đã chọn
+  const selectedData = flattenedData.filter((row) => row["Số lượng"] > 0);
+
+  // Lấy sản phẩm chưa chọn cho modal
+  const availableProducts = flattenedData.filter(
+    (row) => row["Số lượng"] === 0
+  );
+
+  // Sắp xếp selectedData
+  const sortedSelectedData = [...selectedData].sort((a, b) => {
     if (!sortColumn) return 0;
-
     const valA = a[sortColumn as keyof FlattenedRow];
     const valB = b[sortColumn as keyof FlattenedRow];
-
     if (typeof valA === "number" && typeof valB === "number") {
       return sortDirection === "asc" ? valA - valB : valB - valA;
     }
-
     return sortDirection === "asc"
       ? String(valA).localeCompare(String(valB))
       : String(valB).localeCompare(String(valA));
   });
 
-  const handleSort = (col: string) => {
-    if (sortColumn === col) {
-      setSortDirection((prev) => (prev === "asc" ? "desc" : "asc"));
-    } else {
-      setSortColumn(col);
-      setSortDirection("asc");
-    }
-  };
-
   const calculateTotal = () =>
-    flattenedData.reduce(
+    selectedData.reduce(
       (sum, row) => sum + row["Đơn giá"] * row["Số lượng"],
       0
     );
 
-  const handleFilterToggle = (
-    value: string,
-    selected: string[],
-    setter: (values: string[]) => void
-  ) => {
-    if (selected.includes(value)) {
-      setter(selected.filter((item) => item !== value));
-    } else {
-      setter([...selected, value]);
-    }
-  };
-
   if (loading) return <div className="p-8 text-center">Đang tải...</div>;
   if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
-
-  const selectedItemsCount = flattenedData.filter(
-    (item) => item["Số lượng"] > 0
-  ).length;
 
   return (
     <div className="bg-white min-h-screen py-8 px-4 sm:px-6 lg:px-8">
@@ -449,321 +354,185 @@ const DetailPage = () => {
                 {formatCurrency(calculateTotal())}
               </p>
             </div>
-            {selectedItemsCount > 0 && (
+            {selectedData.length > 0 && (
               <div className="bg-green-100 p-4 rounded-lg">
                 <h3 className="text-green-800 text-sm font-medium">Đã chọn</h3>
                 <p className="text-green-900 text-2xl font-bold">
-                  {selectedItemsCount} sản phẩm
+                  {selectedData.length} sản phẩm
                 </p>
               </div>
             )}
           </div>
         </div>
 
-        {/* Main Content */}
-        <div className="flex gap-6">
-          {/* Left Side - Table */}
-          <div className="flex-1">
-            <div className="bg-white rounded-lg shadow">
-              <div className="p-4 border-b">
-                <p className="text-gray-600">
-                  {sortedData.length} sản phẩm được tìm thấy
-                </p>
-              </div>
-
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      {[
-                        "Đầu mục",
-                        "Tên cốt",
-                        "Tên phủ",
-                        "Đơn vị",
-                        "Đơn giá",
-                        "Ghi chú",
-                        "Số lượng",
-                      ].map((col) => (
-                        <th
-                          key={col}
-                          onClick={() => col !== "Số lượng" && handleSort(col)}
-                          className={`px-4 py-3 text-left font-medium text-gray-600 ${
-                            col !== "Số lượng"
-                              ? "cursor-pointer hover:bg-gray-100"
-                              : ""
-                          }`}
-                        >
-                          {col}
-                          {sortColumn === col &&
-                            (sortDirection === "asc" ? " ↑" : " ↓")}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sortedData.length ? (
-                      sortedData.map((row, i) => (
-                        <tr
-                          key={`${row.id}-${i}`}
-                          className={`border-b transition-colors duration-300 ${
-                            row["Số lượng"] > 0 ? "bg-blue-100" : ""
-                          }`}
-                        >
-                          <td className="px-4 py-2">{row["Đầu mục"]}</td>
-                          <td className="px-4 py-2">{row["Tên cốt"]}</td>
-                          <td className="px-4 py-2">{row["Tên phủ"]}</td>
-                          <td className="px-4 py-2">{row["Đơn vị"]}</td>
-                          <td className="px-4 py-2 font-semibold text-green-600">
-                            {formatCurrency(row["Đơn giá"])}
-                          </td>
-                          <td className="px-4 py-2 text-gray-500">
-                            {row["Ghi chú"] || "-"}
-                          </td>
-                          <td className="px-4 py-2">
-                            <div className="flex items-center gap-2">
-                              {/* Nút trừ */}
-                              <button
-                                onClick={() => {
-                                  const quantity = Math.max(
-                                    0,
-                                    (row["Số lượng"] || 0) - 1
-                                  );
-                                  const index = flattenedData.findIndex(
-                                    (item) =>
-                                      item.id === row.id &&
-                                      item["Tên cốt"] === row["Tên cốt"] &&
-                                      item["Tên phủ"] === row["Tên phủ"]
-                                  );
-                                  updateQuantity(index, quantity);
-                                }}
-                                className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 text-black text-sm font-bold border border-gray-400"
-                              >
-                                −
-                              </button>
-
-                              {/* Input không có mũi tên */}
-                              <input
-                                type="number"
-                                min="0"
-                                value={row["Số lượng"]}
-                                onChange={(e) => {
-                                  const quantity =
-                                    parseInt(e.target.value) || 0;
-                                  const index = flattenedData.findIndex(
-                                    (item) =>
-                                      item.id === row.id &&
-                                      item["Tên cốt"] === row["Tên cốt"] &&
-                                      item["Tên phủ"] === row["Tên phủ"]
-                                  );
-                                  updateQuantity(index, quantity);
-                                }}
-                                className="no-spinner w-16 text-center px-2 py-1 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                              />
-
-                              {/* Nút cộng */}
-                              <button
-                                onClick={() => {
-                                  const quantity = (row["Số lượng"] || 0) + 1;
-                                  const index = flattenedData.findIndex(
-                                    (item) =>
-                                      item.id === row.id &&
-                                      item["Tên cốt"] === row["Tên cốt"] &&
-                                      item["Tên phủ"] === row["Tên phủ"]
-                                  );
-                                  updateQuantity(index, quantity);
-                                }}
-                                className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 text-black text-sm font-bold border border-gray-400"
-                              >
-                                +
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td
-                          colSpan={7}
-                          className="px-4 py-8 text-center text-gray-500"
-                        >
-                          {searchTerm ||
-                          selectedDauMuc.length ||
-                          selectedTenCot.length ||
-                          selectedTenPhu.length
-                            ? "Không tìm thấy sản phẩm phù hợp với bộ lọc"
-                            : "Không có dữ liệu"}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="p-4 border-t bg-gray-50 flex gap-2">
-                {selectedItemsCount > 0 && (
-                  <button
-                    onClick={handleClearQuantities}
-                    className="px-4 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors hover:cursor-pointer"
-                  >
-                    Xóa tất cả
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side - Filters */}
-          <div className="w-80 space-y-6">
-            {/* Search */}
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-medium mb-3">Tìm kiếm</h3>
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Tìm kiếm sản phẩm, chất liệu..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
-            {/* Price Range */}
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-medium mb-3">Khoảng giá</h3>
-              <div className="space-y-3">
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600 min-w-7">Từ:</span>
-                  <input
-                    type="range"
-                    min={Math.min(
-                      ...flattenedData.map((item) => item["Đơn giá"])
-                    )}
-                    max={Math.max(
-                      ...flattenedData.map((item) => item["Đơn giá"])
-                    )}
-                    value={priceRange[0]}
-                    onChange={(e) =>
-                      setPriceRange([parseInt(e.target.value), priceRange[1]])
-                    }
-                    className="flex-1"
-                  />
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600 min-w-7">Đến:</span>
-                  <input
-                    type="range"
-                    min={Math.min(
-                      ...flattenedData.map((item) => item["Đơn giá"])
-                    )}
-                    max={Math.max(
-                      ...flattenedData.map((item) => item["Đơn giá"])
-                    )}
-                    value={priceRange[1]}
-                    onChange={(e) =>
-                      setPriceRange([priceRange[0], parseInt(e.target.value)])
-                    }
-                    className="flex-1"
-                  />
-                </div>
-                <div className="text-sm text-gray-600">
-                  {formatCurrency(priceRange[0])} -{" "}
-                  {formatCurrency(priceRange[1])}
-                </div>
-              </div>
-            </div>
-
-            {/* Filter by Đầu mục */}
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-medium mb-3">Đầu mục</h3>
-              <div className="space-y-2 max-h-40 overflow-y-auto">
-                {uniqueDauMuc.map((item) => (
-                  <label key={item} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedDauMuc.includes(item)}
-                      onChange={() =>
-                        handleFilterToggle(
-                          item,
-                          selectedDauMuc,
-                          setSelectedDauMuc
-                        )
-                      }
-                      className="rounded"
-                    />
-                    <span className="text-sm">{item}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Filter by Tên cốt */}
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-medium mb-3">Tên cốt</h3>
-              <div className="space-y-2 max-h-40 overflow-y-auto">
-                {uniqueTenCot.map((item) => (
-                  <label key={item} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedTenCot.includes(item)}
-                      onChange={() =>
-                        handleFilterToggle(
-                          item,
-                          selectedTenCot,
-                          setSelectedTenCot
-                        )
-                      }
-                      className="rounded"
-                    />
-                    <span className="text-sm">{item}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Filter by Tên phủ */}
-            <div className="bg-white p-4 rounded-lg shadow">
-              <h3 className="font-medium mb-3">Tên phủ</h3>
-              <div className="space-y-2 max-h-40 overflow-y-auto">
-                {uniqueTenPhu.map((item) => (
-                  <label key={item} className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      checked={selectedTenPhu.includes(item)}
-                      onChange={() =>
-                        handleFilterToggle(
-                          item,
-                          selectedTenPhu,
-                          setSelectedTenPhu
-                        )
-                      }
-                      className="rounded"
-                    />
-                    <span className="text-sm">{item}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* Clear Filters */}
-            <div className="bg-white p-4 rounded-lg shadow">
+        {/* Main Content - Chỉ hiện sản phẩm đã chọn */}
+        <div className="bg-white rounded-lg shadow">
+          <div className="p-4 border-b flex justify-between items-center">
+            <p className="text-gray-600">
+              {selectedData.length} sản phẩm đã chọn
+            </p>
+            <div className="flex gap-2">
+              {selectedData.length > 0 && (
+                <button
+                  onClick={handleClearQuantities}
+                  className="px-4 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors hover:cursor-pointer"
+                >
+                  Xóa tất cả
+                </button>
+              )}
               <button
-                onClick={() => {
-                  setSearchTerm("");
-                  setPriceRange([
-                    Math.min(...flattenedData.map((item) => item["Đơn giá"])),
-                    Math.max(...flattenedData.map((item) => item["Đơn giá"])),
-                  ]);
-                  setSelectedDauMuc([]);
-                  setSelectedTenCot([]);
-                  setSelectedTenPhu([]);
-                }}
-                className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded hover:bg-gray-200 transition-colors"
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 hover:cursor-pointer"
+                onClick={() => setShowModal(true)}
               >
-                Xóa tất cả bộ lọc
+                Thêm sản phẩm
               </button>
             </div>
           </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  {[
+                    "Đầu mục",
+                    "Tên cốt",
+                    "Tên phủ",
+                    "Đơn vị",
+                    "Đơn giá",
+                    "Ghi chú",
+                    "Số lượng",
+                    "Thao tác",
+                  ].map((col) => (
+                    <th
+                      key={col}
+                      onClick={() => col !== "Thao tác" && handleSort(col)}
+                      className={`px-4 py-3 text-left font-medium text-gray-600 ${
+                        col !== "Thao tác"
+                          ? "cursor-pointer hover:bg-gray-100 select-none"
+                          : ""
+                      }`}
+                    >
+                      {col}
+                      {sortColumn === col &&
+                        (sortDirection === "asc" ? " ↑" : " ↓")}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {sortedSelectedData.length ? (
+                  sortedSelectedData.map((row, i) => (
+                    <tr key={`${row.id}-${i}`} className="border-b bg-blue-50">
+                      <td className="px-4 py-2">{row["Đầu mục"]}</td>
+                      <td className="px-4 py-2">{row["Tên cốt"]}</td>
+                      <td className="px-4 py-2">{row["Tên phủ"]}</td>
+                      <td className="px-4 py-2">{row["Đơn vị"]}</td>
+                      <td className="px-4 py-2 font-semibold text-green-600">
+                        {formatCurrency(row["Đơn giá"])}
+                      </td>
+                      <td className="px-4 py-2 text-gray-500">
+                        {row["Ghi chú"] || "-"}
+                      </td>
+                      <td className="px-4 py-2">
+                        <div className="flex items-center gap-2">
+                          {/* Nút trừ */}
+                          <button
+                            onClick={() => {
+                              const quantity = Math.max(
+                                0,
+                                (row["Số lượng"] || 0) - 1
+                              );
+                              const index = flattenedData.findIndex(
+                                (item) =>
+                                  item.id === row.id &&
+                                  item["Tên cốt"] === row["Tên cốt"] &&
+                                  item["Tên phủ"] === row["Tên phủ"]
+                              );
+                              updateQuantity(index, quantity);
+                            }}
+                            className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 hover:cursor-pointer text-black text-sm font-bold border border-gray-400"
+                          >
+                            −
+                          </button>
+
+                          {/* Input không có mũi tên */}
+                          <input
+                            type="number"
+                            min="0"
+                            value={row["Số lượng"]}
+                            onChange={(e) => {
+                              const quantity = parseInt(e.target.value) || 0;
+                              const index = flattenedData.findIndex(
+                                (item) =>
+                                  item.id === row.id &&
+                                  item["Tên cốt"] === row["Tên cốt"] &&
+                                  item["Tên phủ"] === row["Tên phủ"]
+                              );
+                              updateQuantity(index, quantity);
+                            }}
+                            className="no-spinner w-16 text-center px-2 py-1 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          />
+
+                          {/* Nút cộng */}
+                          <button
+                            onClick={() => {
+                              const quantity = (row["Số lượng"] || 0) + 1;
+                              const index = flattenedData.findIndex(
+                                (item) =>
+                                  item.id === row.id &&
+                                  item["Tên cốt"] === row["Tên cốt"] &&
+                                  item["Tên phủ"] === row["Tên phủ"]
+                              );
+                              updateQuantity(index, quantity);
+                            }}
+                            className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 hover:cursor-pointer text-black text-sm font-bold border border-gray-400"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      {/* Nút xóa sản phẩm */}
+                      <td className="px-4 py-2">
+                        <button
+                          onClick={() => {
+                            const index = flattenedData.findIndex(
+                              (item) =>
+                                item.id === row.id &&
+                                item["Tên cốt"] === row["Tên cốt"] &&
+                                item["Tên phủ"] === row["Tên phủ"]
+                            );
+                            updateQuantity(index, 0);
+                          }}
+                          className="w-10 h-7 rounded px-7 py-4 bg-red-500 hover:cursor-pointer hover:bg-red-600 text-white text-base border border-red-300 flex items-center justify-center transition-colors"
+                          title="Xóa sản phẩm"
+                        >
+                          Xóa
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td
+                      colSpan={8}
+                      className="px-4 py-8 text-center text-gray-500"
+                    >
+                      Chưa chọn sản phẩm nào
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        {/* Product Selection Modal */}
+        <ProductSelectionModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          products={availableProducts}
+          onSelectProduct={handleSelectProduct}
+        />
       </div>
     </div>
   );
