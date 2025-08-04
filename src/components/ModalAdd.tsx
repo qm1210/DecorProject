@@ -25,7 +25,7 @@ interface ProductSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   products: FlattenedRow[];
-  setProducts?: (products: FlattenedRow[]) => void; // optional, for updating quantity
+  setProducts?: (products: FlattenedRow[]) => void;
 }
 
 const ProductSelectionModal = ({
@@ -60,7 +60,6 @@ const ProductSelectionModal = ({
         setPriceRange([Math.min(...prices), Math.max(...prices)]);
       }
     }
-    // eslint-disable-next-line
   }, [isOpen]);
 
   // Get unique values for filters
@@ -71,7 +70,6 @@ const ProductSelectionModal = ({
   // Filter data
   const filteredData = products.filter((row) => {
     const term = removeVietnameseTones(modalSearch.toLowerCase());
-
     const match = (value: string) =>
       removeVietnameseTones(value.toLowerCase()).includes(term);
 
@@ -103,7 +101,7 @@ const ProductSelectionModal = ({
     );
   });
 
-  // Sort toàn bộ products để luôn hiển thị tất cả sản phẩm (không filter theo checkedRows)
+  // Sort products
   const sortedProducts = [...filteredData].sort((a, b) => {
     if (!sortColumn) return 0;
     const valA = a[sortColumn as keyof FlattenedRow];
@@ -116,7 +114,6 @@ const ProductSelectionModal = ({
       : String(valB).localeCompare(String(valA));
   });
 
-  // Chọn tất cả sản phẩm đang hiển thị
   const handleCheckAll = () => {
     if (
       sortedProducts.length > 0 &&
@@ -128,7 +125,6 @@ const ProductSelectionModal = ({
     }
   };
 
-  // Chọn từng sản phẩm, nếu đã chọn thì tăng số lượng lên 1
   const handleCheckRow = (rowKey: string) => {
     if (checkedRows.includes(rowKey)) {
       setCheckedRows((prev) => prev.filter((id) => id !== rowKey));
@@ -137,7 +133,6 @@ const ProductSelectionModal = ({
     }
   };
 
-  // Thêm các sản phẩm đã chọn
   const handleAddSelected = () => {
     if (setProducts) {
       setProducts(
@@ -178,7 +173,7 @@ const ProductSelectionModal = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/30 backdrop-blur-sm transition-opacity pointer-events-auto animate-fadeIn"
@@ -186,153 +181,60 @@ const ProductSelectionModal = ({
         aria-label="Đóng modal"
       />
       {/* Modal */}
-      <div className="relative bg-white rounded-2xl pointer-events-auto shadow-2xl max-w-7xl w-full max-h-[90vh] overflow-hidden border border-gray-200 animate-modalScale flex">
-        {/* Left: Table */}
-        <div className="flex-1 flex flex-col min-w-0">
-          <div className="p-4 border-b flex justify-between items-center bg-white">
-            <h2 className="text-xl font-bold">Chọn sản phẩm</h2>
+      <div className="relative bg-white rounded-xl sm:rounded-2xl pointer-events-auto shadow-2xl w-full max-w-full sm:max-w-4xl lg:max-w-6xl xl:max-w-[1200px] max-h-[95vh] overflow-hidden border border-gray-200 animate-modalScale flex flex-col lg:flex-row">
+        {/* Filter - Trên mobile xuống trên, desktop bên phải */}
+        <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-l bg-gray-50 flex flex-col order-1 lg:order-2 max-h-[40vh] lg:max-h-full">
+          <div className="p-3 sm:p-4 border-b bg-white flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-blue-500">
+                <svg
+                  width={20}
+                  height={20}
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.59L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </span>
+              <h3 className="font-medium text-base sm:text-lg">Bộ lọc</h3>
+            </div>
+            {/* Nút đóng trên mobile */}
             <button
               onClick={onClose}
-              className="text-gray-500 hover:text-black hover:cursor-pointer text-4xl rounded-full w-9 h-9 flex items-center justify-center transition-colors"
+              className="lg:hidden text-gray-500 hover:text-black text-2xl rounded-full w-8 h-8 flex items-center justify-center transition-colors"
               title="Đóng"
             >
               ×
             </button>
           </div>
-          <div className="p-4 border-b bg-gray-50 flex items-center justify-between">
-            <p className="text-gray-600">
-              {sortedProducts.length} sản phẩm có thể chọn
-            </p>
-            <button
-              className={`px-4 py-2 bg-blue-600 text-white rounded transition ${
-                checkedRows.length === 0
-                  ? "opacity-50 cursor-not-allowed bg-blue-300 hover:bg-blue-700"
-                  : "hover:cursor-pointer hover:bg-blue-700"
-              }`}
-              disabled={checkedRows.length === 0}
-              onClick={handleAddSelected}
-            >
-              Thêm sản phẩm đã chọn ({checkedRows.length})
-            </button>
-          </div>
-          <div className="flex-1 overflow-auto bg-white">
-            <table className="w-full text-sm">
-              <thead className="bg-gray-50 sticky top-0 z-10">
-                <tr>
-                  {[
-                    "Đầu mục",
-                    "Tên cốt",
-                    "Tên phủ",
-                    "Đơn vị",
-                    "Đơn giá",
-                    "Ghi chú",
-                  ].map((col) => (
-                    <th
-                      key={col}
-                      onClick={() => handleSort(col)}
-                      className={`px-4 py-3 text-left font-medium text-gray-600 cursor-pointer hover:bg-gray-100 select-none`}
-                    >
-                      {col}
-                      {sortColumn === col &&
-                        (sortDirection === "asc" ? " ↑" : " ↓")}
-                    </th>
-                  ))}
-                  <th className="px-2 py-3 text-center">
-                    <input
-                      type="checkbox"
-                      checked={
-                        sortedProducts.length > 0 &&
-                        sortedProducts.every((row) =>
-                          checkedRows.includes(getRowKey(row))
-                        )
-                      }
-                      onChange={handleCheckAll}
-                      className="w-4 h-4 accent-blue-500"
-                    />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedProducts.length ? (
-                  sortedProducts.map((row, i) => {
-                    const rowKey = getRowKey(row);
-                    return (
-                      <tr
-                        key={rowKey}
-                        className="border-b hover:bg-blue-50 transition"
-                      >
-                        <td className="px-4 py-3">{row["Đầu mục"]}</td>
-                        <td className="px-4 py-3">{row["Tên cốt"]}</td>
-                        <td className="px-4 py-3">{row["Tên phủ"]}</td>
-                        <td className="px-4 py-3">{row["Đơn vị"]}</td>
-                        <td className="px-4 py-3 font-semibold text-green-600">
-                          {formatCurrency(row["Đơn giá"])}
-                        </td>
-                        <td className="px-4 py-3 text-gray-500">
-                          {row["Ghi chú"] || "-"}
-                        </td>
-                        <td className="px-2 py-4 text-center">
-                          <input
-                            type="checkbox"
-                            checked={checkedRows.includes(rowKey)}
-                            onChange={() => handleCheckRow(rowKey)}
-                            className="w-4 h-4 accent-blue-500"
-                          />
-                        </td>
-                      </tr>
-                    );
-                  })
-                ) : (
-                  <tr>
-                    <td
-                      colSpan={8}
-                      className="px-4 py-8 text-center text-gray-500"
-                    >
-                      Không tìm thấy sản phẩm phù hợp với bộ lọc
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-        {/* Right: Filter */}
-        <div className="w-80 border-l bg-gray-50 flex flex-col">
-          <div className="p-4 border-b bg-white flex items-center gap-2">
-            <span className="text-blue-500">
-              <svg
-                width={20}
-                height={20}
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M2.628 1.601C5.028 1.206 7.49 1 10 1s4.973.206 7.372.601a.75.75 0 01.628.74v2.288a2.25 2.25 0 01-.659 1.59l-4.682 4.683a2.25 2.25 0 00-.659 1.59v3.037c0 .684-.31 1.33-.844 1.757l-1.937 1.55A.75.75 0 018 18.25v-5.757a2.25 2.25 0 00-.659-1.59L2.659 6.22A2.25 2.25 0 012 4.629V2.34a.75.75 0 01.628-.74z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </span>
-            <h3 className="font-medium text-lg">Bộ lọc</h3>
-          </div>
-          <div className="flex-1 overflow-auto p-4 space-y-4">
+          <div className="flex-1 overflow-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {/* Search */}
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <p className="font-bold mb-3">Tìm kiếm</p>
+            <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+              <p className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">
+                Tìm kiếm
+              </p>
               <input
                 type="text"
                 value={modalSearch}
                 onChange={(e) => setModalSearch(e.target.value)}
-                placeholder="Tìm kiếm sản phẩm, chất liệu..."
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Tìm kiếm sản phẩm..."
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             {/* Price Range */}
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <p className="font-bold mb-3">Khoảng giá</p>
-              <div className="space-y-3">
+            <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+              <p className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">
+                Khoảng giá
+              </p>
+              <div className="space-y-2 sm:space-y-3">
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600 min-w-7">Từ:</span>
+                  <span className="text-xs sm:text-sm text-gray-600 min-w-6 sm:min-w-7">
+                    Từ:
+                  </span>
                   <input
                     type="range"
                     min={Math.min(...products.map((item) => item["Đơn giá"]))}
@@ -345,7 +247,9 @@ const ProductSelectionModal = ({
                   />
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-600 min-w-7">Đến:</span>
+                  <span className="text-xs sm:text-sm text-gray-600 min-w-6 sm:min-w-7">
+                    Đến:
+                  </span>
                   <input
                     type="range"
                     min={Math.min(...products.map((item) => item["Đơn giá"]))}
@@ -357,16 +261,18 @@ const ProductSelectionModal = ({
                     className="flex-1 accent-blue-500"
                   />
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-xs sm:text-sm text-gray-600">
                   {formatCurrency(priceRange[0])} -{" "}
                   {formatCurrency(priceRange[1])}
                 </div>
               </div>
             </div>
             {/* Filter by Đầu mục */}
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <p className="font-bold mb-3">Đầu mục</p>
-              <div className="space-y-2 max-h-40 overflow-y-auto">
+            <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+              <p className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">
+                Đầu mục
+              </p>
+              <div className="space-y-1 sm:space-y-2 max-h-32 sm:max-h-40 overflow-y-auto">
                 {uniqueDauMuc.map((item) => (
                   <label key={item} className="flex items-center space-x-2">
                     <input
@@ -379,17 +285,19 @@ const ProductSelectionModal = ({
                           setSelectedDauMuc
                         )
                       }
-                      className="rounded accent-blue-500 w-4 h-4"
+                      className="rounded accent-blue-500 w-4 h-4 sm:w-5 sm:h-5"
                     />
-                    <span className="text-1xl">{item}</span>
+                    <span className="text-xs sm:text-base">{item}</span>
                   </label>
                 ))}
               </div>
             </div>
             {/* Filter by Tên cốt */}
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <p className="font-bold mb-3">Tên cốt</p>
-              <div className="space-y-2 max-h-40 overflow-y-auto">
+            <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+              <p className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">
+                Tên cốt
+              </p>
+              <div className="space-y-1 sm:space-y-2 max-h-32 sm:max-h-40 overflow-y-auto">
                 {uniqueTenCot.map((item) => (
                   <label key={item} className="flex items-center space-x-2">
                     <input
@@ -402,17 +310,19 @@ const ProductSelectionModal = ({
                           setSelectedTenCot
                         )
                       }
-                      className="rounded accent-blue-500 w-4 h-4"
+                      className="rounded accent-blue-500 w-4 h-4 sm:w-5 sm:h-5"
                     />
-                    <span className="text-1xl">{item}</span>
+                    <span className="text-xs sm:text-base">{item}</span>
                   </label>
                 ))}
               </div>
             </div>
             {/* Filter by Tên phủ */}
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <p className="font-bold mb-3">Tên phủ</p>
-              <div className="space-y-2 max-h-40 overflow-y-auto">
+            <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
+              <p className="font-bold mb-2 sm:mb-3 text-sm sm:text-base">
+                Tên phủ
+              </p>
+              <div className="space-y-1 sm:space-y-2 max-h-32 sm:max-h-40 overflow-y-auto">
                 {uniqueTenPhu.map((item) => (
                   <label key={item} className="flex items-center space-x-2">
                     <input
@@ -425,15 +335,15 @@ const ProductSelectionModal = ({
                           setSelectedTenPhu
                         )
                       }
-                      className="rounded accent-blue-500 w-4 h-4"
+                      className="rounded accent-blue-500 w-4 h-4 sm:w-5 sm:h-5"
                     />
-                    <span className="text-1xl">{item}</span>
+                    <span className="text-xs sm:text-base">{item}</span>
                   </label>
                 ))}
               </div>
             </div>
             {/* Clear Filters */}
-            <div className="bg-white p-4 rounded-lg shadow-sm">
+            <div className="bg-white p-3 sm:p-4 rounded-lg shadow-sm">
               <button
                 onClick={() => {
                   setModalSearch("");
@@ -443,10 +353,129 @@ const ProductSelectionModal = ({
                   setSelectedTenCot([]);
                   setSelectedTenPhu([]);
                 }}
-                className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded hover:cursor-pointer hover:bg-gray-200 transition-colors"
+                className="w-full px-3 sm:px-4 py-2 bg-gray-100 text-gray-700 rounded hover:cursor-pointer hover:bg-gray-200 transition-colors text-sm sm:text-base"
               >
                 Xóa tất cả bộ lọc
               </button>
+            </div>
+          </div>
+        </div>
+        {/* Table */}
+        <div className="flex-1 flex flex-col min-w-0 order-2 lg:order-1">
+          <div className="p-3 sm:p-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white gap-2">
+            <h2 className="text-lg sm:text-xl font-bold">Chọn sản phẩm</h2>
+            <button
+              onClick={onClose}
+              className="hidden lg:flex text-gray-500 hover:text-black text-3xl sm:text-4xl rounded-full w-9 h-9 items-center justify-center transition-colors"
+              title="Đóng"
+            >
+              ×
+            </button>
+          </div>
+          <div className="p-3 sm:p-4 border-b bg-gray-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <p className="text-gray-600 text-sm sm:text-base">
+              {sortedProducts.length} sản phẩm có thể chọn
+            </p>
+            <button
+              className={`px-3 sm:px-4 py-2 bg-blue-600 text-white rounded transition text-sm sm:text-base ${
+                checkedRows.length === 0
+                  ? "opacity-50 cursor-not-allowed"
+                  : "hover:cursor-pointer hover:bg-blue-700"
+              }`}
+              disabled={checkedRows.length === 0}
+              onClick={handleAddSelected}
+            >
+              Thêm đã chọn ({checkedRows.length})
+            </button>
+          </div>
+          <div className="flex-1 overflow-auto bg-white">
+            <div className="w-full overflow-x-auto">
+              <table className="w-full text-xs sm:text-sm min-w-[600px] sm:min-w-[700px]">
+                <thead className="bg-gray-50 sticky top-0 z-10">
+                  <tr>
+                    {[
+                      "Đầu mục",
+                      "Tên cốt",
+                      "Tên phủ",
+                      "Đơn vị",
+                      "Đơn giá",
+                      "Ghi chú",
+                    ].map((col) => (
+                      <th
+                        key={col}
+                        onClick={() => handleSort(col)}
+                        className="px-2 sm:px-4 py-2 sm:py-3 text-left font-medium text-gray-600 cursor-pointer hover:bg-gray-100 select-none whitespace-nowrap text-xs sm:text-sm"
+                      >
+                        {col}
+                        {sortColumn === col &&
+                          (sortDirection === "asc" ? " ↑" : " ↓")}
+                      </th>
+                    ))}
+                    <th className="px-1 sm:px-2 py-2 sm:py-3 text-center whitespace-nowrap">
+                      <input
+                        type="checkbox"
+                        checked={
+                          sortedProducts.length > 0 &&
+                          sortedProducts.every((row) =>
+                            checkedRows.includes(getRowKey(row))
+                          )
+                        }
+                        onChange={handleCheckAll}
+                        className="w-4 h-4 sm:w-5 sm:h-5 accent-blue-500"
+                      />
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sortedProducts.length ? (
+                    sortedProducts.map((row) => {
+                      const rowKey = getRowKey(row);
+                      return (
+                        <tr
+                          key={rowKey}
+                          className="border-b hover:bg-blue-50 transition"
+                        >
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 break-words text-xs sm:text-sm">
+                            {row["Đầu mục"]}
+                          </td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 break-words text-xs sm:text-sm">
+                            {row["Tên cốt"]}
+                          </td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 break-words text-xs sm:text-sm">
+                            {row["Tên phủ"]}
+                          </td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm">
+                            {row["Đơn vị"]}
+                          </td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 font-semibold text-green-600 text-xs sm:text-sm">
+                            {formatCurrency(row["Đơn giá"])}
+                          </td>
+                          <td className="px-2 sm:px-4 py-2 sm:py-3 text-gray-500 break-words text-xs sm:text-sm">
+                            {row["Ghi chú"] || "-"}
+                          </td>
+                          <td className="px-1 sm:px-2 py-2 sm:py-4 text-center">
+                            <input
+                              type="checkbox"
+                              checked={checkedRows.includes(rowKey)}
+                              onChange={() => handleCheckRow(rowKey)}
+                              className="w-4 h-4 sm:w-5 sm:h-5 accent-blue-500"
+                            />
+                          </td>
+                        </tr>
+                      );
+                    })
+                  ) : (
+                    <tr>
+                      <td
+                        colSpan={7}
+                        className="px-4 py-8 text-center text-gray-500 text-sm"
+                      >
+                        Không tìm thấy sản phẩm phù hợp với bộ lọc
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
