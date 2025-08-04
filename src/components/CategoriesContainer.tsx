@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import formatCurrency from "@/utils/FormatCurrency";
 import useQuoteStore from "@/store/CartStore";
+import Swal from "sweetalert2";
 
 interface CategoriesContainerProps {
   categories: string[];
@@ -162,7 +163,20 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
     localStorage.setItem("quoteItems", JSON.stringify(updatedProducts));
   };
 
-  const handleClearAll = () => {
+  const handleClearAll = async () => {
+    const result = await Swal.fire({
+      title: "Bạn có chắc chắn?",
+      text: "Bạn có chắc chắn muốn xóa tất cả sản phẩm đã chọn?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Xóa",
+      cancelButtonText: "Hủy",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    });
+
+    if (!result.isConfirmed) return;
+
     // Xóa tất cả sản phẩm
     listedProducts.forEach((product) => removeProduct(product.id));
 
@@ -175,6 +189,8 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
         localStorage.removeItem(key);
       }
     });
+
+    Swal.fire("Đã xóa!", "Tất cả sản phẩm đã được xóa.", "success");
   };
 
   return (

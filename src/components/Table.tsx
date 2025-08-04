@@ -231,7 +231,7 @@ const Table = forwardRef<TableRef>((props, ref) => {
   useImperativeHandle(ref, () => ({
     exportToCSV: () => exportToCSV(sortedProducts, filteredTotal),
     exportToPDF: () => exportToPDF(sortedProducts, filteredTotal),
-    exportToImage,
+    exportToImage: () => exportToImage(sortedProducts, filteredTotal),
   }));
 
   return (
@@ -241,10 +241,10 @@ const Table = forwardRef<TableRef>((props, ref) => {
         <div className="mb-8">
           <div className="flex items-center justify-between mb-6">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">
+              {/* <h1 className="text-3xl font-bold text-gray-800 mb-2">
                 Bảng báo giá
-              </h1>
-              <p className="text-gray-600">Danh sách sản phẩm đã chọn</p>
+              </h1> */}
+              <p className="text-2xl font-bold">Danh sách sản phẩm đã chọn</p>
             </div>
           </div>
 

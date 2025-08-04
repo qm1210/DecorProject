@@ -19,3 +19,17 @@
 .no-spinner {
   -moz-appearance: textfield; /* Firefox */
 }
+
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.animate-modalOpen {
+  animation: modalOpen 0.3s ease-out forwards;
+}

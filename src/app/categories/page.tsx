@@ -67,19 +67,10 @@ const Categories = () => {
     }
 
     if (tab === "table") {
-      // Đang ở tab table - chụp trực tiếp
       tableRef.current?.exportToImage();
     } else {
-      // ✅ Tự động chuyển tab, chụp, rồi chuyển lại
-      const originalTab = tab;
-
-      // Chuyển sang tab table
-      setTab("table");
-
-      // Đợi table render xong
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      // Chụp ảnh
-      tableRef.current?.exportToImage();
+      // Không cần chuyển tab, chỉ cần gọi trực tiếp
+      await exportToImage(listedProducts, totalPrice);
     }
   };
 

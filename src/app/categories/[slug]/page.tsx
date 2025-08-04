@@ -11,6 +11,7 @@ import type { SelectedProduct } from "@/store/CartStore";
 import { toast } from "react-toastify";
 import removeVietnameseTones from "@/utils/RemoveVietnamese";
 import ProductSelectionModal from "@/components/ModalAdd";
+import Swal from "sweetalert2";
 
 // Flattened table row với đầy đủ thông tin
 interface FlattenedRow {
@@ -264,21 +265,31 @@ const DetailPage = () => {
   };
 
   // Clear all quantities for current category
-  const handleClearQuantities = () => {
+  const handleClearQuantities = async () => {
+    const result = await Swal.fire({
+      title: "Bạn có chắc chắn?",
+      text: "Bạn có chắc chắn muốn xóa tất cả sản phẩm đã chọn?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Xóa",
+      cancelButtonText: "Hủy",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+    });
+
+    if (!result.isConfirmed) return;
+
     setFlattenedData((prev) =>
       prev.map((item) => ({ ...item, "Số lượng": 0 }))
     );
 
-    // Xóa quantity theo danh mục hiện tại
     const savedKey = `category-${slug}-quantities`;
     localStorage.removeItem(savedKey);
 
-    // Xóa khỏi toàn bộ danh sách báo giá
     const currentIds = flattenedData.map(
       (item) => `${item.id}-${item["Tên cốt"]}-${item["Tên phủ"]}`
     );
 
-    // Sử dụng removeProduct từ store
     currentIds.forEach((id) => {
       const existingProduct = listedProducts.find((p) => p.id === id);
       if (existingProduct) {
@@ -286,7 +297,7 @@ const DetailPage = () => {
       }
     });
 
-    toast.info("Đã xóa tất cả sản phẩm đã chọn");
+    Swal.fire("Đã xóa!", "Tất cả sản phẩm đã được xóa.", "success");
   };
 
   // Handle product selection from modal
@@ -334,40 +345,38 @@ const DetailPage = () => {
   if (error) return <div className="p-8 text-center text-red-500">{error}</div>;
 
   return (
-    <div className="bg-white min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div className="bg-white min-h-screen py-6 px-2 sm:px-4 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-6">
           <button
             onClick={() => router.back()}
-            className="text-blue-600 hover:underline text-1xl mb-2 hover:cursor-pointer"
+            className="text-blue-600 hover:underline text-lg mb-2 hover:cursor-pointer"
           >
             ← Quay lại
           </button>
-          <h1 className="text-3xl font-bold mb-2">
+          <h1 className="text-2xl sm:text-3xl font-bold mb-2 break-words">
             {categoryData?.["Danh mục"]}
           </h1>
-          <div className="flex gap-4 items-center">
-            <div className="bg-blue-100 p-4 rounded-lg min-w-50">
+          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+            <div className="bg-blue-100 p-4 rounded-lg min-w-[140px] flex-1">
               <h3 className="text-blue-800 text-sm font-medium">Tổng tiền</h3>
-              <p className="text-blue-900 text-2xl font-bold">
+              <p className="text-blue-900 text-2xl font-bold break-words">
                 {formatCurrency(calculateTotal())}
               </p>
             </div>
-            {selectedData.length > 0 && (
-              <div className="bg-green-100 p-4 rounded-lg">
-                <h3 className="text-green-800 text-sm font-medium">Đã chọn</h3>
-                <p className="text-green-900 text-2xl font-bold">
-                  {selectedData.length} sản phẩm
-                </p>
-              </div>
-            )}
+            <div className="bg-green-100 p-4 rounded-lg flex-1">
+              <h3 className="text-green-800 text-sm font-medium">Đã chọn</h3>
+              <p className="text-green-900 text-2xl font-bold">
+                {selectedData.length} sản phẩm
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Main Content - Chỉ hiện sản phẩm đã chọn */}
-        <div className="bg-white rounded-lg shadow">
-          <div className="p-4 border-b flex justify-between items-center">
+        {/* Main Content - Responsive Table */}
+        <div className="bg-white rounded-lg shadow overflow-x-auto">
+          <div className="p-4 border-b flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2">
             <p className="text-gray-600">
               {selectedData.length} sản phẩm đã chọn
             </p>
@@ -375,13 +384,13 @@ const DetailPage = () => {
               {selectedData.length > 0 && (
                 <button
                   onClick={handleClearQuantities}
-                  className="px-4 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors hover:cursor-pointer"
+                  className="px-4 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition-colors hover:cursor-pointer text-sm"
                 >
                   Xóa tất cả
                 </button>
               )}
               <button
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 hover:cursor-pointer"
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 hover:cursor-pointer text-sm"
                 onClick={() => setShowModal(true)}
               >
                 Thêm sản phẩm
@@ -390,7 +399,7 @@ const DetailPage = () => {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="w-full text-sm min-w-[700px]">
               <thead className="bg-gray-50">
                 <tr>
                   {[
@@ -423,14 +432,20 @@ const DetailPage = () => {
                 {sortedSelectedData.length ? (
                   sortedSelectedData.map((row, i) => (
                     <tr key={`${row.id}-${i}`} className="border-b bg-blue-50">
-                      <td className="px-4 py-2">{row["Đầu mục"]}</td>
-                      <td className="px-4 py-2">{row["Tên cốt"]}</td>
-                      <td className="px-4 py-2">{row["Tên phủ"]}</td>
+                      <td className="px-4 py-2 break-words">
+                        {row["Đầu mục"]}
+                      </td>
+                      <td className="px-4 py-2 break-words">
+                        {row["Tên cốt"]}
+                      </td>
+                      <td className="px-4 py-2 break-words">
+                        {row["Tên phủ"]}
+                      </td>
                       <td className="px-4 py-2">{row["Đơn vị"]}</td>
                       <td className="px-4 py-2 font-semibold text-green-600">
                         {formatCurrency(row["Đơn giá"])}
                       </td>
-                      <td className="px-4 py-2 text-gray-500">
+                      <td className="px-4 py-2 text-gray-500 break-words">
                         {row["Ghi chú"] || "-"}
                       </td>
                       <td className="px-4 py-2">
@@ -450,11 +465,10 @@ const DetailPage = () => {
                               );
                               updateQuantity(index, quantity);
                             }}
-                            className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 hover:cursor-pointer text-black text-sm font-bold border border-gray-400"
+                            className="w-7 h-7 rounded bg-gray-200 hover:bg-gray-300 hover:cursor-pointer text-black text-base font-bold border border-gray-400"
                           >
                             −
                           </button>
-
                           {/* Input không có mũi tên */}
                           <input
                             type="number"
@@ -472,7 +486,6 @@ const DetailPage = () => {
                             }}
                             className="no-spinner w-16 text-center px-2 py-1 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                           />
-
                           {/* Nút cộng */}
                           <button
                             onClick={() => {
@@ -485,7 +498,7 @@ const DetailPage = () => {
                               );
                               updateQuantity(index, quantity);
                             }}
-                            className="w-6 h-6 rounded bg-gray-200 hover:bg-gray-300 hover:cursor-pointer text-black text-sm font-bold border border-gray-400"
+                            className="w-7 h-7 rounded bg-gray-200 hover:bg-gray-300 hover:cursor-pointer text-black text-base font-bold border border-gray-400"
                           >
                             +
                           </button>
@@ -530,8 +543,8 @@ const DetailPage = () => {
         <ProductSelectionModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
-          products={availableProducts}
-          onSelectProduct={handleSelectProduct}
+          products={flattenedData}
+          setProducts={setFlattenedData}
         />
       </div>
     </div>
