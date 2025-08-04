@@ -181,9 +181,9 @@ const ProductSelectionModal = ({
         aria-label="Đóng modal"
       />
       {/* Modal */}
-      <div className="relative bg-white rounded-xl sm:rounded-2xl pointer-events-auto shadow-2xl w-full max-w-full sm:max-w-4xl lg:max-w-6xl xl:max-w-[1200px] max-h-[95vh] overflow-hidden border border-gray-200 animate-modalScale flex flex-col lg:flex-row">
+      <div className="relative bg-white rounded-xl sm:rounded-2xl pointer-events-auto shadow-2xl w-full max-w-full sm:max-w-4xl lg:max-w-6xl xl:max-w-[1200px] max-h-[95vh] h-[95vh] overflow-hidden border border-gray-200 animate-modalScale flex flex-col lg:flex-row">
         {/* Filter - Trên mobile xuống trên, desktop bên phải */}
-        <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-l bg-gray-50 flex flex-col order-1 lg:order-2 max-h-[40vh] lg:max-h-full">
+        <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-l bg-gray-50 flex flex-col min-h-0 order-1 lg:order-2 max-h-[50vh] lg:max-h-full overflow-auto">
           <div className="p-3 sm:p-4 border-b bg-white flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-blue-500">
@@ -361,7 +361,7 @@ const ProductSelectionModal = ({
           </div>
         </div>
         {/* Table */}
-        <div className="flex-1 flex flex-col min-w-0 order-2 lg:order-1">
+        <div className="flex-1 flex flex-col min-w-0 min-h-0 order-2 lg:order-1 overflow-auto">
           <div className="p-3 sm:p-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white gap-2">
             <h2 className="text-lg sm:text-xl font-bold">Chọn sản phẩm</h2>
             <button
