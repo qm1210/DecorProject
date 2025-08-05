@@ -395,7 +395,7 @@ const ProductSelectionModal = ({
       {/* Modal */}
       <div className="relative bg-white rounded-xl sm:rounded-2xl pointer-events-auto shadow-2xl w-full max-w-full sm:max-w-4xl lg:max-w-6xl xl:max-w-[1200px] max-h-[95vh] h-[95vh] overflow-hidden border border-gray-200 animate-modalScale flex flex-col lg:flex-row">
         {/* Filter Panel */}
-        <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-l bg-gray-50 flex flex-col min-h-0 order-1 lg:order-2 max-h-[50vh] lg:max-h-full overflow-auto">
+        <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-l bg-gray-50 flex flex-col min-h-0 order-1 lg:order-2 max-h-[40vh] lg:max-h-full overflow-auto">
           <div className="p-3 sm:p-4 border-b bg-white flex items-center justify-between">
             <div className="flex items-center gap-2">
               <span className="text-blue-500">
@@ -617,19 +617,19 @@ const ProductSelectionModal = ({
             </button>
           </div>
 
-          <div className="p-3 sm:p-4 border-b bg-gray-50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-            <p className="text-gray-600 text-sm sm:text-base">
+          <div className="p-3 sm:p-4 border-b bg-gray-50 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2">
+            <p className="text-gray-600 text-sm sm:text-base mb-2 sm:mb-0">
               {sortedProducts.length} sản phẩm có thể chọn
             </p>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-row sm:flex-row w-full sm:w-auto gap-2">
               <button
-                className="px-3 sm:px-4 py-2 bg-green-600 text-white rounded transition text-sm sm:text-base hover:cursor-pointer hover:bg-green-700"
+                className="w-full sm:w-auto px-1 sm:px-4 py-2 bg-green-600 text-white rounded transition text-sm sm:text-base hover:cursor-pointer hover:bg-green-700"
                 onClick={handleShowForm}
               >
                 Thêm sản phẩm mới
               </button>
               <button
-                className={`px-3 sm:px-4 py-2 bg-red-600 text-white rounded transition text-sm sm:text-base ${
+                className={`w-full sm:w-auto px-1 sm:px-4 py-2 bg-red-600 text-white rounded transition text-sm sm:text-base ${
                   checkedRows.length === 0
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:cursor-pointer hover:bg-red-700"
@@ -640,7 +640,7 @@ const ProductSelectionModal = ({
                 Xóa đã chọn ({checkedRows.length})
               </button>
               <button
-                className={`px-3 sm:px-4 py-2 bg-blue-600 text-white rounded transition text-sm sm:text-base ${
+                className={`w-full sm:w-auto px-1 sm:px-4 py-2 bg-blue-600 text-white rounded transition text-sm sm:text-base ${
                   checkedRows.length === 0
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:cursor-pointer hover:bg-blue-700"
