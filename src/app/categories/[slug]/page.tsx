@@ -240,7 +240,25 @@ const DetailPage = () => {
         }
 
         setCategoryData(found);
-        const flat = flattenProductData(found["Sản phẩm"]);
+        let flat = flattenProductData(found["Sản phẩm"]);
+
+        // --- Merge sản phẩm nhập tay từ localStorage ---
+        const manualProducts = JSON.parse(
+          localStorage.getItem("manualProducts") || "[]"
+        );
+        // Loại bỏ trùng lặp
+        flat = [
+          ...flat.filter(
+            (p) =>
+              !manualProducts.some(
+                (m: any) =>
+                  m["Tên cốt"] === p["Tên cốt"] &&
+                  m["Tên phủ"] === p["Tên phủ"] &&
+                  m["Đầu mục"] === p["Đầu mục"]
+              )
+          ),
+          ...manualProducts,
+        ];
         setFlattenedData(flat);
       } catch (err) {
         console.error(err);
@@ -316,11 +334,6 @@ const DetailPage = () => {
 
   // Chỉ lấy sản phẩm đã chọn
   const selectedData = flattenedData.filter((row) => row["Số lượng"] > 0);
-
-  // Lấy sản phẩm chưa chọn cho modal
-  const availableProducts = flattenedData.filter(
-    (row) => row["Số lượng"] === 0
-  );
 
   // Sắp xếp selectedData
   const sortedSelectedData = [...selectedData].sort((a, b) => {

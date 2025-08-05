@@ -122,6 +122,48 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
     loadFromStorage();
   }, [loadFromStorage]);
 
+  // Thêm useEffect này để lắng nghe custom event
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (
+        e.key === "quoteItems" ||
+        e.key === "manualProducts" ||
+        e.key?.startsWith("category-")
+      ) {
+        loadFromStorage();
+      }
+    };
+
+    const handleCustomStorageChange = (e: CustomEvent) => {
+      // Lấy lại listedProducts mới nhất bên trong effect
+      const products = useQuoteStore.getState().listedProducts;
+      if (e.detail?.action === "delete" && e.detail?.deletedProducts) {
+        e.detail.deletedProducts.forEach((product: any) => {
+          const productId = `${product.id}-${product["Tên cốt"]}-${product["Tên phủ"]}`;
+          const existingProduct = products.find((p: any) => p.id === productId);
+          if (existingProduct) {
+            removeProduct(productId);
+          }
+        });
+      }
+      loadFromStorage();
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    window.addEventListener(
+      "localStorageChanged",
+      handleCustomStorageChange as EventListener
+    );
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener(
+        "localStorageChanged",
+        handleCustomStorageChange as EventListener
+      );
+    };
+  }, [loadFromStorage, removeProduct]);
+
   // Group products by category và sắp xếp
   const groupedProducts = useMemo(() => {
     const groups: { [category: string]: typeof listedProducts } = {};
