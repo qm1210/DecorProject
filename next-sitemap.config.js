@@ -1,4 +1,4 @@
 module.exports = {
-  siteUrl: "https://yourdomain.com", // Thay domain thật
+  siteUrl: "https://decorproject.pages.dev/", // Thay domain thật
   generateRobotsTxt: true,
 };

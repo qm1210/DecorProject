@@ -8,7 +8,7 @@ export const metadata = {
     title: "Báo giá nội thất - Thiết kế & Thi công chuyên nghiệp",
     description:
       "Báo giá nội thất, thiết kế và thi công nội thất chuyên nghiệp, uy tín, nhanh chóng.",
-    url: "https://yourdomain.com/",
+    url: "https://decorproject.pages.dev/",
     type: "website",
     images: [
       {
@@ -31,7 +31,7 @@ export const metadata = {
     },
   },
   alternates: {
-    canonical: "https://yourdomain.com/",
+    canonical: "https://decorproject.pages.dev/",
   },
 };
 
