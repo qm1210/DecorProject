@@ -188,7 +188,7 @@ const ProductSelectionModal = ({
       );
 
       // Tạo bản sao products hiện tại
-      let updatedProducts = [...products];
+      const updatedProducts = [...products];
 
       selectedRows.forEach((row) => {
         const key = getRowKey(row);
