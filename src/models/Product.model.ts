@@ -20,4 +20,19 @@ interface Product {
   "Ngày tạo": string;
 }
 
-export type { MaterialCover, CoreMaterial, Product };
+interface FlattenedRow {
+  id: string; // Product ID gốc
+  "Đầu mục": string;
+  "Tên cốt": string;
+  "Tên phủ": string;
+  "Đơn vị": string;
+  "Đơn giá": number; // Giá báo khách
+  "Ghi chú": string;
+  "Số lượng": number;
+  "Đơn giá gốc": number; // Đơn giá gốc
+  "Lợi nhuận (%)": number; // Lợi nhuận
+  "Đơn vị mặc định": string; // Đơn vị mặc định của sản phẩm
+  "Ngày tạo": string; // Ngày tạo sản phẩm
+}
+
+export type { MaterialCover, CoreMaterial, Product, FlattenedRow };

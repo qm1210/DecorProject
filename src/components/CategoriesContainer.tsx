@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import formatCurrency from "@/utils/FormatCurrency";
 import useQuoteStore from "@/store/CartStore";
 import Swal from "sweetalert2";
+import type { FlattenedRow } from "@/models/Product.model";
 
 interface CategoriesContainerProps {
   categories: string[];
@@ -138,9 +139,9 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
       // Lấy lại listedProducts mới nhất bên trong effect
       const products = useQuoteStore.getState().listedProducts;
       if (e.detail?.action === "delete" && e.detail?.deletedProducts) {
-        e.detail.deletedProducts.forEach((product: any) => {
+        (e.detail.deletedProducts as FlattenedRow[]).forEach((product) => {
           const productId = `${product.id}-${product["Tên cốt"]}-${product["Tên phủ"]}`;
-          const existingProduct = products.find((p: any) => p.id === productId);
+          const existingProduct = products.find((p) => p.id === productId);
           if (existingProduct) {
             removeProduct(productId);
           }

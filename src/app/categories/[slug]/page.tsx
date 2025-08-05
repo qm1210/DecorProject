@@ -8,26 +8,10 @@ import type { Product } from "@/models/Product.model";
 import formatCurrency from "@/utils/FormatCurrency";
 import useQuoteStore from "@/store/CartStore";
 import type { SelectedProduct } from "@/store/CartStore";
-import { toast } from "react-toastify";
 import removeVietnameseTones from "@/utils/RemoveVietnamese";
 import ProductSelectionModal from "@/components/ModalAdd";
 import Swal from "sweetalert2";
-
-// Flattened table row với đầy đủ thông tin
-interface FlattenedRow {
-  id: string; // Product ID gốc
-  "Đầu mục": string;
-  "Tên cốt": string;
-  "Tên phủ": string;
-  "Đơn vị": string;
-  "Đơn giá": number; // Giá báo khách
-  "Ghi chú": string;
-  "Số lượng": number;
-  "Đơn giá gốc": number; // Đơn giá gốc
-  "Lợi nhuận (%)": number; // Lợi nhuận
-  "Đơn vị mặc định": string; // Đơn vị mặc định của sản phẩm
-  "Ngày tạo": string; // Ngày tạo sản phẩm
-}
+import type { FlattenedRow } from "@/models/Product.model";
 
 const DetailPage = () => {
   const params = useParams();
@@ -251,7 +235,7 @@ const DetailPage = () => {
           ...flat.filter(
             (p) =>
               !manualProducts.some(
-                (m: any) =>
+                (m: FlattenedRow) =>
                   m["Tên cốt"] === p["Tên cốt"] &&
                   m["Tên phủ"] === p["Tên phủ"] &&
                   m["Đầu mục"] === p["Đầu mục"]
