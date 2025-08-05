@@ -366,7 +366,7 @@ const ProductSelectionModal = ({
             <h2 className="text-lg sm:text-xl font-bold">Chọn sản phẩm</h2>
             <button
               onClick={onClose}
-              className="hidden lg:flex text-gray-500 hover:text-black text-3xl sm:text-4xl rounded-full w-9 h-9 items-center justify-center transition-colors"
+              className="hidden lg:flex text-gray-500 hover:cursor-pointer hover:text-black text-3xl sm:text-4xl rounded-full w-9 h-9 items-center justify-center transition-colors"
               title="Đóng"
             >
               ×

@@ -69,7 +69,6 @@ const Categories = () => {
     if (tab === "table") {
       tableRef.current?.exportToImage();
     } else {
-      // Không cần chuyển tab, chỉ cần gọi trực tiếp
       await exportToImage(listedProducts, totalPrice);
     }
   };
