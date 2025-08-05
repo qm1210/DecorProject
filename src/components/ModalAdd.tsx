@@ -62,13 +62,6 @@ const ProductSelectionModal = ({
   // Load manual products từ localStorage và merge với products
   useEffect(() => {
     if (isOpen) {
-      setModalSearch("");
-      setSortColumn("");
-      setSortDirection("asc");
-      setSelectedDauMuc([]);
-      setSelectedTenCot([]);
-      setSelectedTenPhu([]);
-
       // Lấy sản phẩm nhập tay từ localStorage
       const manualProducts: FlattenedRow[] = JSON.parse(
         localStorage.getItem("manualProducts") || "[]"
@@ -102,6 +95,19 @@ const ProductSelectionModal = ({
       }
     }
   }, [isOpen, products]);
+
+  useEffect(() => {
+    if (isOpen) {
+      // Reset checked state when modal opens
+      setCheckedRows([]);
+      setSelectedDauMuc([]);
+      setSelectedTenCot([]);
+      setSelectedTenPhu([]);
+      setModalSearch("");
+      setSortColumn("");
+      setSortDirection("asc");
+    }
+  }, [isOpen]);
 
   // Get unique values for filters từ localProducts
   const uniqueDauMuc = [
