@@ -1,3 +1,4 @@
+import { FlattenedRow } from "@/models/Product.model";
 import React, { useEffect, useState } from "react";
 
 interface AddProductFormProps {
@@ -11,12 +12,14 @@ interface AddProductFormProps {
     "Đơn giá": number;
     "Ghi chú": string;
   }) => void;
+  initialData: FlattenedRow | null;
 }
 
 const AddProductForm: React.FC<AddProductFormProps> = ({
   isOpen,
   onClose,
   onAdd,
+  initialData,
 }) => {
   const [form, setForm] = useState({
     "Đầu mục": "",
@@ -28,15 +31,28 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
   });
 
   useEffect(() => {
-    setForm({
-      "Đầu mục": "",
-      "Tên cốt": "",
-      "Tên phủ": "",
-      "Đơn vị": "",
-      "Đơn giá": 0,
-      "Ghi chú": "",
-    });
-  }, [isOpen]);
+    if (isOpen) {
+      if (initialData) {
+        setForm({
+          "Đầu mục": initialData["Đầu mục"] || "",
+          "Tên cốt": initialData["Tên cốt"] || "",
+          "Tên phủ": initialData["Tên phủ"] || "",
+          "Đơn vị": initialData["Đơn vị"] || "",
+          "Đơn giá": initialData["Đơn giá"] || 0,
+          "Ghi chú": initialData["Ghi chú"] || "",
+        });
+      } else {
+        setForm({
+          "Đầu mục": "",
+          "Tên cốt": "",
+          "Tên phủ": "",
+          "Đơn vị": "",
+          "Đơn giá": 0,
+          "Ghi chú": "",
+        });
+      }
+    }
+  }, [isOpen, initialData]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -81,7 +97,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
           ×
         </button>
         <h2 className="text-xl font-bold mb-4 text-blue-700">
-          Thêm sản phẩm mới
+          {initialData ? "Sửa sản phẩm" : "Thêm sản phẩm mới"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-3">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

@@ -85,6 +85,14 @@ export default function Header({ activeTab }: HeaderProps) {
               >
                 Danh mục
               </button>
+              <button
+                className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:cursor-pointer hover:text-white transition ${
+                  activeTab === "quickquote" ? "bg-blue-900" : ""
+                }`}
+                onClick={() => handleNavigation("/quickquote")}
+              >
+                Báo giá nhanh
+              </button>
             </div>
           </div>
 
@@ -151,6 +159,14 @@ export default function Header({ activeTab }: HeaderProps) {
             }`}
           >
             Danh mục
+          </button>
+          <button
+            onClick={() => handleNavigation("/quickquote")}
+            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition ${
+              activeTab === "quickquote" ? "bg-blue-900" : ""
+            }`}
+          >
+            Báo giá nhanh
           </button>
         </div>
       </div>

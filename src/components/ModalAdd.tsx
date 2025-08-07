@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import formatCurrency from "@/utils/FormatCurrency";
 import removeVietnameseTones from "@/utils/RemoveVietnamese";
 import { toast } from "react-toastify";
 import AddProductForm from "./AddProductForm";
 import useQuoteStore from "@/store/CartStore";
+import MenuPortal from "./MenuPortal";
+import { get } from "http";
 
 // Flattened table row interface
 interface FlattenedRow {
@@ -47,6 +49,66 @@ const ProductSelectionModal = ({
   const [checkedRows, setCheckedRows] = useState<string[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [localProducts, setLocalProducts] = useState<FlattenedRow[]>([]);
+  const [openMenuRow, setOpenMenuRow] = useState<string | null>(null);
+  const menuRef = useRef<HTMLDivElement | null>(null);
+  const [menuPosition, setMenuPosition] = useState<{
+    top: number;
+    left: number;
+  }>({ top: 0, left: 0 });
+  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
+  const [editingProduct, setEditingProduct] = useState<FlattenedRow | null>(
+    null
+  );
+  const [favoriteProducts, setFavoriteProducts] = useState<string[]>([]);
+
+  // Load danh sách yêu thích từ localStorage
+  useEffect(() => {
+    const savedFavorites = JSON.parse(
+      localStorage.getItem("favoriteProducts") || "[]"
+    );
+    setFavoriteProducts(savedFavorites);
+  }, []);
+
+  // Đóng menu khi click ra ngoài
+  useEffect(() => {
+    if (!openMenuRow) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenuRow(null);
+      }
+    };
+
+    const updateMenuPosition = () => {
+      const btn = buttonRefs.current[openMenuRow];
+      if (btn) {
+        const rect = btn.getBoundingClientRect();
+        const top = rect.bottom + window.scrollY + 8;
+        const left = rect.left + window.scrollX;
+        setMenuPosition({ top, left });
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    const handleScroll = () => {
+      setOpenMenuRow(null); // Đóng menu khi scroll
+    };
+
+    // Lắng nghe scroll của bảng và window
+    const scrollable = document.querySelector(".flex-1.overflow-auto.bg-white");
+    window.addEventListener("scroll", handleScroll, true);
+    if (scrollable) scrollable.addEventListener("scroll", handleScroll);
+
+    // Cập nhật ngay khi mount
+    updateMenuPosition();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll, true);
+      if (scrollable) scrollable.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenuRow]);
 
   const handleShowForm = () => {
     setShowForm(true);
@@ -155,7 +217,18 @@ const ProductSelectionModal = ({
   });
 
   // Sort products
+  // Sort products - yêu thích lên đầu
   const sortedProducts = [...filteredData].sort((a, b) => {
+    const aKey = getRowKey(a);
+    const bKey = getRowKey(b);
+    const aIsFavorite = favoriteProducts.includes(aKey);
+    const bIsFavorite = favoriteProducts.includes(bKey);
+
+    // Ưu tiên sản phẩm yêu thích lên đầu
+    if (aIsFavorite && !bIsFavorite) return -1;
+    if (!aIsFavorite && bIsFavorite) return 1;
+
+    // Nếu cùng trạng thái yêu thích, sort theo cột được chọn
     if (!sortColumn) return 0;
     const valA = a[sortColumn as keyof FlattenedRow];
     const valB = b[sortColumn as keyof FlattenedRow];
@@ -220,9 +293,12 @@ const ProductSelectionModal = ({
     toast.success("Thêm sản phẩm thành công");
   };
 
-  const handleDeleteSelected = () => {
+  const handleDeleteSelected = (rowKey?: string) => {
+    // Nếu truyền rowKey thì chỉ xóa sản phẩm đó, không thì xóa theo checkedRows
+    const keysToDelete = rowKey ? [rowKey] : checkedRows;
+
     const selectedLocal = localProducts.filter((p) =>
-      checkedRows.includes(getRowKey(p))
+      keysToDelete.includes(getRowKey(p))
     );
 
     // Chỉ cho xóa sản phẩm nhập tay (có flag isManual = true)
@@ -237,7 +313,7 @@ const ProductSelectionModal = ({
 
     // Lọc ra các sản phẩm còn lại
     const remainingProducts = localProducts.filter(
-      (p) => !checkedRows.includes(getRowKey(p))
+      (p) => !keysToDelete.includes(getRowKey(p))
     );
 
     // Cập nhật localProducts
@@ -252,10 +328,7 @@ const ProductSelectionModal = ({
 
     // Xóa sản phẩm khỏi store nếu đang được chọn
     selectedLocal.forEach((product) => {
-      // Tạo productId giống như trong DetailPage
       const productId = `${product.id}-${product["Tên cốt"]}-${product["Tên phủ"]}`;
-
-      // Xóa khỏi store Zustand
       const { removeProduct } = useQuoteStore.getState();
       removeProduct(productId);
     });
@@ -299,12 +372,12 @@ const ProductSelectionModal = ({
     // Cập nhật products ở cha nếu có
     if (setProducts) {
       const updatedProducts = products.filter(
-        (p) => !checkedRows.includes(getRowKey(p))
+        (p) => !keysToDelete.includes(getRowKey(p))
       );
       setProducts(updatedProducts);
     }
 
-    setCheckedRows([]);
+    setCheckedRows((prev) => prev.filter((key) => !keysToDelete.includes(key)));
     toast.success("Xóa sản phẩm thành công");
   };
 
@@ -329,7 +402,62 @@ const ProductSelectionModal = ({
     }
   };
 
+  // Hàm xử lý click nút thao tác
+  const handleMenuToggle = (
+    rowKey: string,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    const button = event.currentTarget;
+    const rect = button.getBoundingClientRect();
+
+    // Tính số nút thao tác
+    const row = localProducts.find((r) => getRowKey(r) === rowKey);
+    const isManual = row?.isManual;
+    const menuItemCount = isManual ? 3 : 1;
+    const menuHeight = menuItemCount * 48 + 16;
+    const menuWidth = 180;
+
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    // Đặt mặc định menu ngay dưới nút
+    let top = rect.bottom + window.scrollY + 4;
+    let left = rect.left + window.scrollX;
+
+    // Nếu menu tràn phải, căn lại cho vừa màn hình
+    if (left + menuWidth > viewportWidth - 8) {
+      left = viewportWidth - menuWidth - 8;
+    }
+    // Nếu menu tràn trái, căn sát trái
+    if (left < 8) {
+      left = 8;
+    }
+
+    // Nếu menu tràn xuống dưới, hiển thị phía trên nút
+    if (rect.bottom + menuHeight > viewportHeight - 8) {
+      top = rect.top + window.scrollY - menuHeight - 4;
+    }
+    // Nếu menu tràn lên trên, căn sát trên
+    if (top < 8) {
+      top = 8;
+    }
+
+    setMenuPosition({ top, left });
+    setOpenMenuRow(openMenuRow === rowKey ? null : rowKey);
+  };
   if (!isOpen) return null;
+
+  const handleToggleFavorite = (rowKey: string) => {
+    const updatedFavorites = favoriteProducts.includes(rowKey)
+      ? favoriteProducts.filter((key) => key !== rowKey)
+      : [...favoriteProducts, rowKey];
+
+    setFavoriteProducts(updatedFavorites);
+    localStorage.setItem("favoriteProducts", JSON.stringify(updatedFavorites));
+
+    const action = favoriteProducts.includes(rowKey) ? "bỏ" : "thêm vào";
+    toast.success(`Đã ${action} yêu thích!`);
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
@@ -337,53 +465,186 @@ const ProductSelectionModal = ({
         isOpen={showForm}
         onClose={handleCloseForm}
         onAdd={(newProduct) => {
-          // Kiểm tra trùng lặp
-          const isDuplicate = localProducts.some(
-            (item) =>
-              item["Tên cốt"] === newProduct["Tên cốt"] &&
-              item["Tên phủ"] === newProduct["Tên phủ"] &&
-              item["Đầu mục"] === newProduct["Đầu mục"]
-          );
+          if (editingProduct) {
+            // ĐANG SỬA: cập nhật sản phẩm
+            const updated = localProducts.map((item) =>
+              getRowKey(item) === getRowKey(editingProduct)
+                ? { ...item, ...newProduct }
+                : item
+            );
+            setLocalProducts(updated);
+            // Cập nhật localStorage
+            localStorage.setItem(
+              "manualProducts",
+              JSON.stringify(updated.filter((p) => p.isManual))
+            );
+            if (setProducts) {
+              setProducts(
+                products.map((item) =>
+                  getRowKey(item) === getRowKey(editingProduct)
+                    ? { ...item, ...newProduct }
+                    : item
+                )
+              );
+            }
+            toast.success("Cập nhật sản phẩm thành công");
+          } else {
+            // ĐANG THÊM: kiểm tra trùng lặp trước khi thêm mới
 
-          if (isDuplicate) {
-            toast.error("Sản phẩm đã tồn tại!");
-            return;
+            // Kiểm tra trùng lặp
+            const isDuplicate = localProducts.some(
+              (item) =>
+                item["Tên cốt"] === newProduct["Tên cốt"] &&
+                item["Tên phủ"] === newProduct["Tên phủ"] &&
+                item["Đầu mục"] === newProduct["Đầu mục"]
+            );
+
+            if (isDuplicate) {
+              toast.error("Sản phẩm đã tồn tại!");
+              return;
+            }
+
+            // Tạo sản phẩm mới với metadata
+            const productWithMeta: FlattenedRow = {
+              ...newProduct,
+              id: Date.now().toString(),
+              "Số lượng": 1,
+              "Đơn giá gốc": newProduct["Đơn giá"],
+              "Lợi nhuận (%)": 0,
+              "Đơn vị mặc định": newProduct["Đơn vị"],
+              "Ngày tạo": new Date().toISOString(),
+              isManual: true, // Đánh dấu là sản phẩm nhập tay
+            };
+
+            // Cập nhật localStorage
+            const currentManualProducts = JSON.parse(
+              localStorage.getItem("manualProducts") || "[]"
+            );
+            currentManualProducts.push(productWithMeta);
+            localStorage.setItem(
+              "manualProducts",
+              JSON.stringify(currentManualProducts)
+            );
+
+            // Cập nhật localProducts ngay lập tức
+            setLocalProducts((prev) => [...prev, productWithMeta]);
+
+            // Cập nhật products ở cha nếu có
+            if (setProducts) {
+              setProducts([...products, productWithMeta]);
+            }
+
+            handleCloseForm();
+            toast.success("Thêm sản phẩm thành công");
           }
-
-          // Tạo sản phẩm mới với metadata
-          const productWithMeta: FlattenedRow = {
-            ...newProduct,
-            id: Date.now().toString(),
-            "Số lượng": 1,
-            "Đơn giá gốc": newProduct["Đơn giá"],
-            "Lợi nhuận (%)": 0,
-            "Đơn vị mặc định": newProduct["Đơn vị"],
-            "Ngày tạo": new Date().toISOString(),
-            isManual: true, // Đánh dấu là sản phẩm nhập tay
-          };
-
-          // Cập nhật localStorage
-          const currentManualProducts = JSON.parse(
-            localStorage.getItem("manualProducts") || "[]"
-          );
-          currentManualProducts.push(productWithMeta);
-          localStorage.setItem(
-            "manualProducts",
-            JSON.stringify(currentManualProducts)
-          );
-
-          // Cập nhật localProducts ngay lập tức
-          setLocalProducts((prev) => [...prev, productWithMeta]);
-
-          // Cập nhật products ở cha nếu có
-          if (setProducts) {
-            setProducts([...products, productWithMeta]);
-          }
-
-          handleCloseForm();
-          toast.success("Thêm sản phẩm thành công");
         }}
+        initialData={editingProduct}
       />
+
+      {/* Menu thao tác sử dụng Portal - Đặt ra ngoài để không bị cắt */}
+      {openMenuRow && (
+        <MenuPortal>
+          <div
+            ref={menuRef}
+            style={{
+              position: "fixed",
+              top: menuPosition.top,
+              left: menuPosition.left,
+              zIndex: 10000,
+            }}
+            className="bg-white border border-gray-600 rounded-xl shadow-2xl min-w-[180px] text-left animate-fadeIn"
+          >
+            {(() => {
+              const row = localProducts.find(
+                (r) => getRowKey(r) === openMenuRow
+              );
+
+              // Thêm kiểm tra row có tồn tại không
+              if (!row) return null;
+
+              const isManual = row?.isManual;
+              return (
+                <>
+                  {isManual && (
+                    <>
+                      <button
+                        className="flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 hover:cursor-pointer hover:bg-blue-100 hover:text-blue-700 text-left rounded-t-xl transition font-medium"
+                        onClick={() => {
+                          setEditingProduct(row);
+                          setShowForm(true);
+                          setOpenMenuRow(null);
+                        }}
+                      >
+                        <svg
+                          width={18}
+                          height={18}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13z" />
+                        </svg>
+                        Sửa sản phẩm
+                      </button>
+                      <button
+                        className="flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 hover:cursor-pointer hover:bg-red-100 hover:text-red-600 text-left transition font-medium"
+                        onClick={() => {
+                          setOpenMenuRow(null);
+                          handleDeleteSelected(getRowKey(row));
+                        }}
+                      >
+                        <svg
+                          width={18}
+                          height={18}
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M6 19a2 2 0 002 2h8a2 2 0 002-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                        </svg>
+                        Xóa sản phẩm
+                      </button>
+                    </>
+                  )}
+                  <button
+                    className={`flex items-center gap-3 w-full px-4 py-3 text-sm hover:cursor-pointer text-left transition font-medium
+${isManual ? "rounded-b-xl" : "rounded-xl"}
+${
+  favoriteProducts.includes(getRowKey(row))
+    ? "text-red-700 bg-red-100 hover:bg-red-200"
+    : "text-gray-700 hover:bg-yellow-100 hover:text-yellow-700"
+}`}
+                    onClick={() => {
+                      handleToggleFavorite(getRowKey(row));
+                      setOpenMenuRow(null);
+                    }}
+                  >
+                    <svg
+                      width={18}
+                      height={18}
+                      fill={
+                        favoriteProducts.includes(getRowKey(row))
+                          ? "currentColor"
+                          : "none"
+                      }
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                    </svg>
+                    {favoriteProducts.includes(getRowKey(row))
+                      ? "Bỏ yêu thích"
+                      : "Yêu thích"}
+                  </button>
+                </>
+              );
+            })()}
+          </div>
+        </MenuPortal>
+      )}
 
       {/* Overlay */}
       <div
@@ -629,15 +890,12 @@ const ProductSelectionModal = ({
                 Thêm sản phẩm mới
               </button>
               <button
-                className={`w-full sm:w-auto px-1 sm:px-4 py-2 bg-red-600 text-white rounded transition text-sm sm:text-base ${
-                  checkedRows.length === 0
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:cursor-pointer hover:bg-red-700"
-                }`}
-                disabled={checkedRows.length === 0}
-                onClick={handleDeleteSelected}
+                className={`w-full sm:w-auto px-1 sm:px-4 py-2 bg-red-600 text-white rounded transition text-sm sm:text-base hover:cursor-pointer hover:bg-red-700`}
+                onClick={() => {
+                  setCheckedRows([]);
+                }}
               >
-                Xóa đã chọn ({checkedRows.length})
+                Bỏ đã chọn
               </button>
               <button
                 className={`w-full sm:w-auto px-1 sm:px-4 py-2 bg-blue-600 text-white rounded transition text-sm sm:text-base ${
@@ -689,6 +947,9 @@ const ProductSelectionModal = ({
                         className="w-4 h-4 sm:w-5 sm:h-5 accent-blue-500"
                       />
                     </th>
+                    <th className="px-2 sm:px-4 py-2 sm:py-3 text-center font-medium text-gray-600 whitespace-nowrap text-xs sm:text-sm">
+                      Thao tác
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -699,7 +960,11 @@ const ProductSelectionModal = ({
                         <tr
                           key={rowKey}
                           className={`border-b hover:bg-blue-50 transition ${
-                            row.isManual ? "bg-blue-100" : ""
+                            row.isManual
+                              ? "bg-blue-100"
+                              : favoriteProducts.includes(rowKey)
+                              ? "bg-red-100"
+                              : ""
                           }`}
                         >
                           <td className="px-2 sm:px-4 py-2 sm:py-3 break-words text-xs sm:text-sm">
@@ -728,13 +993,31 @@ const ProductSelectionModal = ({
                               className="w-4 h-4 sm:w-5 sm:h-5 accent-blue-500"
                             />
                           </td>
+                          <td className="px-1 sm:px-2 py-2 sm:py-4 text-center">
+                            <button
+                              className="p-1 rounded-full hover:bg-gray-200 hover:cursor-pointer"
+                              onClick={(e) => handleMenuToggle(rowKey, e)}
+                              aria-label="Thao tác"
+                            >
+                              <svg
+                                width={20}
+                                height={20}
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <circle cx="4" cy="10" r="1.5" />
+                                <circle cx="10" cy="10" r="1.5" />
+                                <circle cx="16" cy="10" r="1.5" />
+                              </svg>
+                            </button>
+                          </td>
                         </tr>
                       );
                     })
                   ) : (
                     <tr>
                       <td
-                        colSpan={7}
+                        colSpan={8}
                         className="px-4 py-8 text-center text-gray-500 text-sm"
                       >
                         Không tìm thấy sản phẩm phù hợp với bộ lọc

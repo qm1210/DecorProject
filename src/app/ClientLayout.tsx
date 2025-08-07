@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Header from "@/components/Header";
 import { ToastContainer, Bounce } from "react-toastify";
+import path from "path";
 
 export default function ClientLayout({
   children,
@@ -15,6 +16,7 @@ export default function ClientLayout({
   const getActiveTab = () => {
     if (pathname === "/") return "home";
     if (pathname.startsWith("/categories")) return "categories";
+    if (pathname.startsWith("/quickquote")) return "quickquote";
     return "";
   };
 
