@@ -33,26 +33,26 @@ interface SuggestionData {
 
 interface ProductMaterial {
   "Tên phủ": string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface ProductCore {
   "Tên cốt": string;
   "Chất liệu phủ": ProductMaterial[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface ProductItem {
   "Đầu mục": string;
   "Chất liệu cốt": ProductCore[];
   id?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface ProductCategory {
   "Danh mục": string;
   "Sản phẩm": ProductItem[];
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 const QuickQuote = () => {

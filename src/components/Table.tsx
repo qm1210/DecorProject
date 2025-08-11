@@ -7,7 +7,6 @@ import {
   forwardRef,
   useImperativeHandle,
 } from "react";
-import { useRouter } from "next/navigation";
 import formatCurrency from "@/utils/FormatCurrency";
 import useQuoteStore from "@/store/CartStore";
 import removeVietnameseTones from "@/utils/RemoveVietnamese";
