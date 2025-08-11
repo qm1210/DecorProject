@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "question": "Anh/chị đang có nhu cầu?",
+    "options": [
+      { "label": "Thi công nội thất", "value": "noithat" },
+      { "label": "Cải tạo công trình cũ", "value": "caitao" },
+      { "label": "Xây dựng công trình mới", "value": "xaydung" }
+    ],
+    "next": { "noithat": 2, "caitao": 2, "xaydung": 2 }
+  },
+  {
+    "id": 2,
+    "question": "Loại công trình?",
+    "options": [
+      { "label": "Chung cư", "value": "chungcu" },
+      { "label": "Nhà phố", "value": "nhapho" },
+      { "label": "Biệt thự", "value": "bietthu" },
+      { "label": "Văn phòng", "value": "vanphong" }
+    ],
+    "next": { "chungcu": 3, "nhapho": 3, "bietthu": 3, "vanphong": 3 }
+  },
+  {
+    "id": 3,
+    "question": "Diện tích dự kiến?",
+    "options": [
+      { "label": "Dưới 50m²", "value": "duoi50" },
+      { "label": "50-100m²", "value": "50_100" },
+      { "label": "100-200m²", "value": "100_200" },
+      { "label": "Trên 200m²", "value": "tren200" }
+    ],
+    "next": { "duoi50": 4, "50_100": 4, "100_200": 4, "tren200": 4 }
+  },
+  {
+    "id": 4,
+    "question": "Phong cách mong muốn?",
+    "options": [
+      { "label": "Hiện đại", "value": "hiendai" },
+      { "label": "Tân cổ điển", "value": "tancodien" },
+      { "label": "Cổ điển", "value": "codien" },
+      { "label": "Khác", "value": "khac" }
+    ],
+    "next": { "hiendai": 5, "tancodien": 5, "codien": 5, "khac": 5 }
+  },
+  {
+    "id": 5,
+    "question": "Ngân sách dự kiến?",
+    "options": [
+      { "label": "Dưới 200 triệu", "value": "duoi200" },
+      { "label": "200-500 triệu", "value": "200_500" },
+      { "label": "500 triệu - 1 tỷ", "value": "500_1ty" },
+      { "label": "Trên 1 tỷ", "value": "tren1ty" }
+    ]
+  }
+]
