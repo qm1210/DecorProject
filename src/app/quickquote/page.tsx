@@ -31,12 +31,36 @@ interface SuggestionData {
   suggestion: Suggestion;
 }
 
+interface ProductMaterial {
+  "Tên phủ": string;
+  [key: string]: any;
+}
+
+interface ProductCore {
+  "Tên cốt": string;
+  "Chất liệu phủ": ProductMaterial[];
+  [key: string]: any;
+}
+
+interface ProductItem {
+  "Đầu mục": string;
+  "Chất liệu cốt": ProductCore[];
+  id?: string;
+  [key: string]: any;
+}
+
+interface ProductCategory {
+  "Danh mục": string;
+  "Sản phẩm": ProductItem[];
+  [key: string]: any;
+}
+
 const QuickQuote = () => {
   const { addProduct, listedProducts } = useQuoteStore();
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [suggestions, setSuggestions] = useState<SuggestionData[]>([]);
-  const [productsData, setProductsData] = useState<any[]>([]);
+  const [productsData, setProductsData] = useState<ProductCategory[]>([]);
   const [currentId, setCurrentId] = useState(1);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [showResult, setShowResult] = useState(false);
@@ -96,15 +120,15 @@ const QuickQuote = () => {
     );
     if (!category) return null;
     const product = category["Sản phẩm"]?.find(
-      (p: any) => p["Đầu mục"] === suggestedProduct.dauMuc
+      (p) => p["Đầu mục"] === suggestedProduct.dauMuc
     );
     if (!product) return null;
     const cotMaterial = product["Chất liệu cốt"]?.find(
-      (c: any) => c["Tên cốt"] === suggestedProduct.tenCot
+      (c) => c["Tên cốt"] === suggestedProduct.tenCot
     );
     if (!cotMaterial) return null;
     const phuMaterial = cotMaterial["Chất liệu phủ"]?.find(
-      (p: any) => p["Tên phủ"] === suggestedProduct.tenPhu
+      (p) => p["Tên phủ"] === suggestedProduct.tenPhu
     );
     if (!phuMaterial) return null;
     return { product, phuMaterial };
