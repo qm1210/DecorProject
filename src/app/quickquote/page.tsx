@@ -76,7 +76,7 @@ const QuickQuote = () => {
       try {
         const [questionsRes, suggestionsRes, productsRes] = await Promise.all([
           axios.get("/data/questions.json"),
-          axios.get("/data/suggestions_generated.json"),
+          axios.get("/data/suggestions_all_combinations.json"),
           axios.get("/data/bao_gia_noi_that_grouped_danh_muc_simple.json"),
         ]);
         setQuestions(questionsRes.data);
