@@ -29,7 +29,7 @@ interface QuoteStore {
   loadFromStorage: () => void;
 }
 
-const useQuoteStore = create<QuoteStore>((set, get) => ({
+const useQuoteStore = create<QuoteStore>((set) => ({
   listedProducts: [],
   totalPrice: 0,
 

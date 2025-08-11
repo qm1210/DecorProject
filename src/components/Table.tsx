@@ -20,7 +20,6 @@ export interface TableRef {
 }
 
 const Table = forwardRef<TableRef>((props, ref) => {
-  const router = useRouter();
   const {
     totalPrice,
     listedProducts,

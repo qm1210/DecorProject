@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 import AddProductForm from "./AddProductForm";
 import useQuoteStore from "@/store/CartStore";
 import MenuPortal from "./MenuPortal";
-import { get } from "http";
 
 // Flattened table row interface
 interface FlattenedRow {
