@@ -11,6 +11,7 @@ import MenuPortal from "./MenuPortal";
 // Flattened table row interface
 interface FlattenedRow {
   id: string;
+  danhMuc: string;
   "Đầu mục": string;
   "Tên cốt": string;
   "Tên phủ": string;
@@ -30,6 +31,7 @@ interface ProductSelectionModalProps {
   onClose: () => void;
   products: FlattenedRow[];
   setProducts?: (products: FlattenedRow[]) => void;
+  danhMuc: string;
 }
 
 const ProductSelectionModal = ({
@@ -37,6 +39,7 @@ const ProductSelectionModal = ({
   onClose,
   products,
   setProducts,
+  danhMuc,
 }: ProductSelectionModalProps) => {
   const [modalSearch, setModalSearch] = useState("");
   const [sortColumn, setSortColumn] = useState("");
@@ -124,8 +127,9 @@ const ProductSelectionModal = ({
   useEffect(() => {
     if (isOpen) {
       // Lấy sản phẩm nhập tay từ localStorage
+      const manualKey = `manualProducts-${danhMuc}`;
       const manualProducts: FlattenedRow[] = JSON.parse(
-        localStorage.getItem("manualProducts") || "[]"
+        localStorage.getItem(manualKey) || "[]"
       );
 
       // Merge products gốc với sản phẩm nhập tay
@@ -155,7 +159,7 @@ const ProductSelectionModal = ({
         setPriceRange([Math.min(...prices), Math.max(...prices)]);
       }
     }
-  }, [isOpen, products]);
+  }, [isOpen, products, danhMuc]);
 
   useEffect(() => {
     if (isOpen) {
@@ -181,8 +185,12 @@ const ProductSelectionModal = ({
     ...new Set(localProducts.map((item) => item["Tên phủ"])),
   ];
 
+  const productsInCurrentCategory = localProducts.filter(
+    (row: FlattenedRow) => row.danhMuc === danhMuc
+  );
+
   // Filter data
-  const filteredData = localProducts.filter((row) => {
+  const filteredData = productsInCurrentCategory.filter((row) => {
     const term = removeVietnameseTones(modalSearch.toLowerCase());
     const match = (value: string) =>
       removeVietnameseTones(value.toLowerCase()).includes(term);
@@ -315,13 +323,15 @@ const ProductSelectionModal = ({
       (p) => !keysToDelete.includes(getRowKey(p))
     );
 
+    const manualProductsToSave = remainingProducts.filter((p) => p.isManual);
+
     // Cập nhật localProducts
     setLocalProducts(remainingProducts);
 
     // Cập nhật localStorage (chỉ lưu sản phẩm nhập tay)
-    const manualProductsToSave = remainingProducts.filter((p) => p.isManual);
+    const manualKey = `manualProducts-${danhMuc}`;
     localStorage.setItem(
-      "manualProducts",
+      manualKey, // đổi từ "manualProducts" thành manualKey
       JSON.stringify(manualProductsToSave)
     );
 
@@ -356,11 +366,11 @@ const ProductSelectionModal = ({
       }
     });
 
-    // Dispatch custom event để thông báo cho các component khác
+    // Dispatch custom event với key mới
     window.dispatchEvent(
       new CustomEvent("localStorageChanged", {
         detail: {
-          key: "manualProducts",
+          key: manualKey, // đổi từ "manualProducts" thành manualKey
           action: "delete",
           data: manualProductsToSave,
           deletedProducts: selectedLocal,
@@ -463,7 +473,10 @@ const ProductSelectionModal = ({
       <AddProductForm
         isOpen={showForm}
         onClose={handleCloseForm}
+        // Trong hàm onAdd của AddProductForm:
         onAdd={(newProduct) => {
+          const manualKey = `manualProducts-${danhMuc}`;
+
           if (editingProduct) {
             // ĐANG SỬA: cập nhật sản phẩm
             const updated = localProducts.map((item) =>
@@ -472,11 +485,14 @@ const ProductSelectionModal = ({
                 : item
             );
             setLocalProducts(updated);
-            // Cập nhật localStorage
+
+            // Cập nhật localStorage với key riêng
+            const manualProductsToSave = updated.filter((p) => p.isManual);
             localStorage.setItem(
-              "manualProducts",
-              JSON.stringify(updated.filter((p) => p.isManual))
+              manualKey,
+              JSON.stringify(manualProductsToSave)
             );
+
             if (setProducts) {
               setProducts(
                 products.map((item) =>
@@ -489,8 +505,6 @@ const ProductSelectionModal = ({
             toast.success("Cập nhật sản phẩm thành công");
           } else {
             // ĐANG THÊM: kiểm tra trùng lặp trước khi thêm mới
-
-            // Kiểm tra trùng lặp
             const isDuplicate = localProducts.some(
               (item) =>
                 item["Tên cốt"] === newProduct["Tên cốt"] &&
@@ -506,22 +520,23 @@ const ProductSelectionModal = ({
             // Tạo sản phẩm mới với metadata
             const productWithMeta: FlattenedRow = {
               ...newProduct,
+              danhMuc,
               id: Date.now().toString(),
               "Số lượng": 1,
               "Đơn giá gốc": newProduct["Đơn giá"],
               "Lợi nhuận (%)": 0,
               "Đơn vị mặc định": newProduct["Đơn vị"],
               "Ngày tạo": new Date().toISOString(),
-              isManual: true, // Đánh dấu là sản phẩm nhập tay
+              isManual: true,
             };
 
-            // Cập nhật localStorage
+            // Cập nhật localStorage với key riêng cho từng danh mục
             const currentManualProducts = JSON.parse(
-              localStorage.getItem("manualProducts") || "[]"
+              localStorage.getItem(manualKey) || "[]"
             );
             currentManualProducts.push(productWithMeta);
             localStorage.setItem(
-              "manualProducts",
+              manualKey,
               JSON.stringify(currentManualProducts)
             );
 
@@ -538,6 +553,7 @@ const ProductSelectionModal = ({
           }
         }}
         initialData={editingProduct}
+        danhMuc={danhMuc}
       />
 
       {/* Menu thao tác sử dụng Portal - Đặt ra ngoài để không bị cắt */}

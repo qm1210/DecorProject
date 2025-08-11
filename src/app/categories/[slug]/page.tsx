@@ -227,8 +227,9 @@ const DetailPage = () => {
         let flat = flattenProductData(found["Sản phẩm"]);
 
         // --- Merge sản phẩm nhập tay từ localStorage ---
+        const manualKey = `manualProducts-${found["Danh mục"]}`;
         const manualProducts = JSON.parse(
-          localStorage.getItem("manualProducts") || "[]"
+          localStorage.getItem(manualKey) || "[]"
         );
         // Loại bỏ trùng lặp
         flat = [
@@ -540,8 +541,12 @@ const DetailPage = () => {
         <ProductSelectionModal
           isOpen={showModal}
           onClose={() => setShowModal(false)}
-          products={flattenedData}
+          products={flattenedData.map((p) => ({
+            ...p,
+            danhMuc: categoryData?.["Danh mục"] || "",
+          }))}
           setProducts={setFlattenedData}
+          danhMuc={categoryData?.["Danh mục"] || ""}
         />
       </div>
     </div>

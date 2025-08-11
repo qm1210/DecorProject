@@ -5,6 +5,7 @@ interface AddProductFormProps {
   isOpen: boolean;
   onClose: () => void;
   onAdd: (product: {
+    danhMuc: string;
     "Đầu mục": string;
     "Tên cốt": string;
     "Tên phủ": string;
@@ -13,6 +14,7 @@ interface AddProductFormProps {
     "Ghi chú": string;
   }) => void;
   initialData: FlattenedRow | null;
+  danhMuc: string;
 }
 
 const AddProductForm: React.FC<AddProductFormProps> = ({
@@ -20,6 +22,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
   onClose,
   onAdd,
   initialData,
+  danhMuc,
 }) => {
   const [form, setForm] = useState({
     "Đầu mục": "",
@@ -66,7 +69,10 @@ const AddProductForm: React.FC<AddProductFormProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onAdd(form);
+    onAdd({
+      danhMuc, // truyền danh mục hiện tại
+      ...form,
+    });
     setForm({
       "Đầu mục": "",
       "Tên cốt": "",
