@@ -140,7 +140,7 @@ const QuickQuote = () => {
       return;
     }
     let added = 0;
-    matchedSuggestion.products.forEach((suggestedProduct, idx) => {
+    matchedSuggestion.products.forEach((suggestedProduct) => {
       const foundData = findProductInData(suggestedProduct);
       if (!foundData) return;
       const { product, phuMaterial } = foundData;
@@ -158,7 +158,7 @@ const QuickQuote = () => {
         addProduct({
           id,
           name: `${suggestedProduct.danhMuc} - ${suggestedProduct.dauMuc} - ${suggestedProduct.tenCot} - ${suggestedProduct.tenPhu}`,
-          unit: phuMaterial["Đơn vị"] || "m2",
+          unit: String(phuMaterial["Đơn vị"] || "m2"),
           price: Number(phuMaterial["Giá báo khách"]) || 0,
           quantity: suggestedProduct.soLuong,
           category: suggestedProduct.danhMuc,
@@ -167,9 +167,9 @@ const QuickQuote = () => {
           cover: suggestedProduct.tenPhu,
           basePrice: Number(phuMaterial["Đơn giá gốc"]) || 0,
           profit: Number(phuMaterial["Lợi nhuận (%)"]) || 0,
-          note: phuMaterial["Ghi chú"] || "",
+          note: String(phuMaterial["Ghi chú"] || ""),
           productId: product.id || "",
-          unit_default: product["Mặc định đơn vị"] || "m2",
+          unit_default: String(product["Mặc định đơn vị"] || "m2"),
           created_date: new Date().toISOString(),
         });
       }
