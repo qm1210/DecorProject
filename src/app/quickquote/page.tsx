@@ -182,6 +182,7 @@ const QuickQuote = () => {
     }
     setShowResult(false);
     setStarted(false);
+    setCurrentId(1);
   };
 
   const resetSurvey = () => {
