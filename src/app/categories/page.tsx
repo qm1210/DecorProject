@@ -74,15 +74,15 @@ const Categories = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen py-8 px-2 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+    <div className="bg-white min-h-screen py-4 px-2 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
           Categories
         </h1>
-        <div className="flex gap-2">
+        <div className="flex gap-2 w-full sm:w-auto">
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white font-semibold shadow hover:cursor-pointer hover:bg-green-700 transition-all duration-200"
+            className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-green-700 transition-all duration-200 w-[30%] sm:w-auto"
           >
             <svg
               className="w-4 h-4"
@@ -101,7 +101,7 @@ const Categories = () => {
           </button>
           <button
             onClick={handleExportPDF}
-            className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-white font-semibold shadow hover:cursor-pointer hover:bg-red-700 transition-all duration-200"
+            className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-red-700 transition-all duration-200 w-[30%] sm:w-auto"
           >
             <svg
               className="w-4 h-4"
@@ -120,7 +120,7 @@ const Categories = () => {
           </button>
           <button
             onClick={handleExportImage}
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white font-semibold shadow hover:cursor-pointer hover:bg-blue-700 transition-all duration-200"
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-2 py-1 text-xs sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-blue-700 transition-all duration-200 w-[30%] sm:w-auto"
           >
             <svg
               className="w-4 h-4"
@@ -141,7 +141,7 @@ const Categories = () => {
       </div>
 
       <div>
-        <ul className="flex space-x-2 mb-6 border border-gray-200 rounded-lg p-1 bg-gray-50 shadow-inner">
+        <ul className="flex space-x-2 border border-gray-200 rounded-lg p-1 bg-gray-50 shadow-inner">
           <li
             onClick={() => setTab("search")}
             className={`px-5 py-2 text-sm font-medium rounded-md transition-all duration-200 cursor-pointer ${

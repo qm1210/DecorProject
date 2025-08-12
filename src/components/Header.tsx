@@ -93,6 +93,14 @@ export default function Header({ activeTab }: HeaderProps) {
               >
                 Báo giá nhanh
               </button>
+              <button
+                className={`rounded-md px-3 py-2 text-sm font-medium text-gray-200 hover:bg-blue-800 hover:cursor-pointer hover:text-white transition ${
+                  activeTab === "catalog" ? "bg-blue-900" : ""
+                }`}
+                onClick={() => handleNavigation("/catalog")}
+              >
+                Catalog
+              </button>
             </div>
           </div>
 
@@ -167,6 +175,14 @@ export default function Header({ activeTab }: HeaderProps) {
             }`}
           >
             Báo giá nhanh
+          </button>
+          <button
+            onClick={() => handleNavigation("/catalog")}
+            className={`block w-full text-left rounded-md px-3 py-2 text-base font-medium text-white hover:bg-blue-800 transition ${
+              activeTab === "catalog" ? "bg-blue-900" : ""
+            }`}
+          >
+            Catalog
           </button>
         </div>
       </div>

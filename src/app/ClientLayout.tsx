@@ -17,6 +17,7 @@ export default function ClientLayout({
     if (pathname === "/") return "home";
     if (pathname.startsWith("/categories")) return "categories";
     if (pathname.startsWith("/quickquote")) return "quickquote";
+    if (pathname.startsWith("/catalog")) return "catalog";
     return "";
   };
 
