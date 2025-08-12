@@ -82,7 +82,7 @@ const Categories = () => {
         <div className="flex gap-2 w-full sm:w-auto justify-center">
           <button
             onClick={handleExportCSV}
-            className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-2 py-2 test-s sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-green-700 transition-all duration-200 w-[33%] sm:w-auto"
+            className="inline-flex items-center gap-2 rounded-lg bg-green-600 px-2 py-2 test-s sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-green-700 transition-all duration-200 w-[33%] sm:w-auto justify-center"
           >
             <svg
               className="w-4 h-4"
@@ -101,7 +101,7 @@ const Categories = () => {
           </button>
           <button
             onClick={handleExportPDF}
-            className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-2 py-2 test-s sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-red-700 transition-all duration-200 w-[33%] sm:w-auto"
+            className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-2 py-2 test-s sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-red-700 transition-all duration-200 w-[33%] sm:w-auto justify-center"
           >
             <svg
               className="w-4 h-4"
@@ -120,7 +120,7 @@ const Categories = () => {
           </button>
           <button
             onClick={handleExportImage}
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-2 py-2 test-s sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-blue-700 transition-all duration-200 w-[33%] sm:w-auto"
+            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-2 py-2 test-s sm:px-4 sm:py-2 sm:text-base text-white font-semibold shadow hover:cursor-pointer hover:bg-blue-700 transition-all duration-200 w-[33%] sm:w-auto justify-center"
           >
             <svg
               className="w-4 h-4"
