@@ -199,7 +199,7 @@ const QuickQuote = () => {
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            Báo giá nhanh
+            BÁO GIÁ NHANH
           </h1>
           <p className="text-gray-600">Đang tải dữ liệu...</p>
         </div>
@@ -213,7 +213,7 @@ const QuickQuote = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-            Báo giá nhanh
+            BÁO GIÁ NHANH
           </h1>
           <p className="text-gray-600">
             Nhận báo giá chính xác chỉ trong vài phút

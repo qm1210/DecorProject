@@ -77,7 +77,7 @@ const Categories = () => {
     <div className="bg-white min-h-screen py-4 px-2 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
-          Categories
+          CATEGORIES
         </h1>
         <div className="flex gap-2 w-full sm:w-auto justify-center">
           <button

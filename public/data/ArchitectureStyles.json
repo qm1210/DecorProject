@@ -1,0 +1,817 @@
+[
+  {
+    "name": "Bán Tân Cổ Điển",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/ban_tan_co_dien/btcd1.png",
+          "/images/catalog_image/ban_tan_co_dien/btcd3.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd4.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd5.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd6.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd7.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd8.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd9.jpg"
+        ],
+        "styleDescription": "Thiết kế bán tân cổ là sự kết hợp giữa các yếu tố tinh túy của nghệ thuật cổ điển và hiện đại. Kiểu thiết kế bán tân cổ được ra đời khi nhu cầu về thẩm mỹ của con người ngày càng tăng cao, dành cho những người yêu thích nét thường thượng của hiện đại và mỹ miều, tôn quý của cổ điển.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Không quá phụ thuộc vào diện tích.\n2. Không cần tuân theo nguyên tắc hay khuôn phép cứng nhắc nào.\n3. Màu sắc chủ đạo trắng, vàng kem, xám, xanh rêu......tạo ấn tượng cho không gian\n4. Có thể kết hợp giữa phong cách cổ điển và hiện đại.\n5. Dễ làm các đường nét trang trí, đường gờ làm nổi bật căn phòng.",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/ban_tan_co_dien/btcd1.png",
+          "/images/catalog_image/ban_tan_co_dien/btcd3.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd4.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd5.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd6.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd7.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd8.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd9.jpg"
+        ],
+        "styleDescription": "Thiết kế bán tân cổ là sự kết hợp giữa các yếu tố tinh túy của nghệ thuật cổ điển và hiện đại. Kiểu thiết kế bán tân cổ được ra đời khi nhu cầu về thẩm mỹ của con người ngày càng tăng cao, dành cho những người yêu thích nét thường thượng của hiện đại và mỹ miều, tôn quý của cổ điển.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Không quá phụ thuộc vào diện tích.\n2. Không cần tuân theo nguyên tắc hay khuôn phép cứng nhắc nào.\n3. Màu sắc chủ đạo trắng, vàng kem, xám, xanh rêu......tạo ấn tượng cho không gian\n4. Có thể kết hợp giữa phong cách cổ điển và hiện đại.\n5. Dễ làm các đường nét trang trí, đường gờ làm nổi bật căn phòng.",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/ban_tan_co_dien/btcd1.png",
+          "/images/catalog_image/ban_tan_co_dien/btcd3.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd4.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd5.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd6.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd7.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd8.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd9.jpg"
+        ],
+        "styleDescription": "Thiết kế bán tân cổ là sự kết hợp giữa các yếu tố tinh túy của nghệ thuật cổ điển và hiện đại. Kiểu thiết kế bán tân cổ được ra đời khi nhu cầu về thẩm mỹ của con người ngày càng tăng cao, dành cho những người yêu thích nét thường thượng của hiện đại và mỹ miều, tôn quý của cổ điển.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Không quá phụ thuộc vào diện tích.\n2. Không cần tuân theo nguyên tắc hay khuôn phép cứng nhắc nào.\n3. Màu sắc chủ đạo trắng, vàng kem, xám, xanh rêu......tạo ấn tượng cho không gian\n4. Có thể kết hợp giữa phong cách cổ điển và hiện đại.\n5. Dễ làm các đường nét trang trí, đường gờ làm nổi bật căn phòng.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/ban_tan_co_dien/btcd1.png",
+          "/images/catalog_image/ban_tan_co_dien/btcd3.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd4.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd5.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd6.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd7.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd8.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd9.jpg"
+        ],
+        "styleDescription": "Thiết kế bán tân cổ là sự kết hợp giữa các yếu tố tinh túy của nghệ thuật cổ điển và hiện đại. Kiểu thiết kế bán tân cổ được ra đời khi nhu cầu về thẩm mỹ của con người ngày càng tăng cao, dành cho những người yêu thích nét thường thượng của hiện đại và mỹ miều, tôn quý của cổ điển.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Không quá phụ thuộc vào diện tích.\n2. Không cần tuân theo nguyên tắc hay khuôn phép cứng nhắc nào.\n3. Màu sắc chủ đạo trắng, vàng kem, xám, xanh rêu...tạo ấn tượng cho không gian\n4. Có thể kết hợp giữa phong cách cổ điển và hiện đại.\n5. Dễ làm các đường nét trang trí, đường gờ làm nổi bật căn phòng.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/ban_tan_co_dien/btcd1.png",
+          "/images/catalog_image/ban_tan_co_dien/btcd3.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd4.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd5.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd6.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd7.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd8.jpg",
+          "/images/catalog_image/ban_tan_co_dien/btcd9.jpg"
+        ],
+        "styleDescription": "Thiết kế bán tân cổ là sự kết hợp giữa các yếu tố tinh túy của nghệ thuật cổ điển và hiện đại. Kiểu thiết kế bán tân cổ được ra đời khi nhu cầu về thẩm mỹ của con người ngày càng tăng cao, dành cho những người yêu thích nét thường thượng của hiện đại và mỹ miều, tôn quý của cổ điển.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Không quá phụ thuộc vào diện tích.\n2. Không cần tuân theo nguyên tắc hay khuôn phép cứng nhắc nào.\n3. Màu sắc chủ đạo trắng, vàng kem, xám, xanh rêu......tạo ấn tượng cho không gian\n4. Có thể kết hợp giữa phong cách cổ điển và hiện đại.\n5. Dễ làm các đường nét trang trí, đường gờ làm nổi bật căn phòng.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Colour Block",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/colour_block/cl.png",
+          "/images/catalog_image/colour_block/cl2.png",
+          "/images/catalog_image/colour_block/cl3.png",
+          "/images/catalog_image/colour_block/cl4.png",
+          "/images/catalog_image/colour_block/cl5.png",
+          "/images/catalog_image/colour_block/cl6.png",
+          "/images/catalog_image/colour_block/cl7.png"
+        ],
+        "styleDescription": "Color Block được bắt nguồn từ xu hướng thời trang, như một làn gió mới xuất hiện trên các sàn Catwalk vào năm 2011. Những bộ quần áo có nhiều màu sắc sặc sỡ thể hiện sự trẻ trung, sáng tạo và nhiệt huyết. Con người rất dễ bị thu hút bởi phong cách này sử dụng những màu sắc tương phản có cường độ rất mạnh. Sau đó, phong cách Color Block nhanh chóng trở thành cảm hứng trong nhiều lĩnh vực khác, bao gồm nội thất.",
+        "matchingPoint": 2,
+        "matchingPointExplanation": "1. Mỗi 1 đồ vật, 1 không gian cần phối ít nhất 2 màu sắc tương phản để có cường độ mạnh, vì vậy diện tích quá nhỏ sẽ ko tôn được sự tương phản này.\n2. Phong cách này cần kết hợp giữa nhiều màu sắc nên không gian nhỏ sẽ bị rối màu và tức mắt.",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/colour_block/cl.png",
+          "/images/catalog_image/colour_block/cl2.png",
+          "/images/catalog_image/colour_block/cl3.png",
+          "/images/catalog_image/colour_block/cl4.png",
+          "/images/catalog_image/colour_block/cl5.png",
+          "/images/catalog_image/colour_block/cl6.png",
+          "/images/catalog_image/colour_block/cl7.png"
+        ],
+        "styleDescription": "Color Block được bắt nguồn từ xu hướng thời trang, như một làn gió mới xuất hiện trên các sàn Catwalk vào năm 2011. Những bộ quần áo có nhiều màu sắc sặc sỡ thể hiện sự trẻ trung, sáng tạo và nhiệt huyết. Con người rất dễ bị thu hút bởi phong cách này sử dụng những màu sắc tương phản có cường độ rất mạnh. Sau đó, phong cách Color Block nhanh chóng trở thành cảm hứng trong nhiều lĩnh vực khác, bao gồm nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Là 1 xu hướng mới, phong cách mới, mới lạ và độc đáo.\n2. Màu sắc tương phản cường độ mạnh, phù hợp với người có cá tính mạnh. Mang đến sự trẻ trung và năng động.\n3. Color block ko gò bó theo 1 quy chuẩn nào.\n4. Diện tích rộng nên tôn được vẻ đẹp của nó.\n5. Thỏa sức sáng tạo với từng khu vực, từng đồ vật và từng không gian.\n6. Vật liệu thường là gỗ công nghiệp, bề mặt sơn bệt nên giá thành không quá cao so với mặt bằng chung.",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/colour_block/cl.png",
+          "/images/catalog_image/colour_block/cl2.png",
+          "/images/catalog_image/colour_block/cl3.png",
+          "/images/catalog_image/colour_block/cl4.png",
+          "/images/catalog_image/colour_block/cl5.png",
+          "/images/catalog_image/colour_block/cl6.png",
+          "/images/catalog_image/colour_block/cl7.png"
+        ],
+        "styleDescription": "Color Block được bắt nguồn từ xu hướng thời trang, như một làn gió mới xuất hiện trên các sàn Catwalk vào năm 2011. Những bộ quần áo có nhiều màu sắc sặc sỡ thể hiện sự trẻ trung, sáng tạo và nhiệt huyết. Con người rất dễ bị thu hút bởi phong cách này sử dụng những màu sắc tương phản có cường độ rất mạnh. Sau đó, phong cách Color Block nhanh chóng trở thành cảm hứng trong nhiều lĩnh vực khác, bao gồm nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Là 1 xu hướng mới, phong cách mới, mới lạ và độc đáo.\n2. Màu sắc tương phản cường độ mạnh, phù hợp với người có cá tính mạnh. Mang đến sự trẻ trung và năng động.\n3. Color block ko gò bó theo 1 quy chuẩn nào.\n4. Diện tích rộng nên tôn được vẻ đẹp của nó.\n5. Thỏa sức sáng tạo với từng khu vực, từng đồ vật và từng không gian.\n6. Vật liệu thường là gỗ công nghiệp, bề mặt sơn bệt nên giá thành không quá cao so với mặt bằng chung.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/colour_block/cl.png",
+          "/images/catalog_image/colour_block/cl2.png",
+          "/images/catalog_image/colour_block/cl3.png",
+          "/images/catalog_image/colour_block/cl4.png",
+          "/images/catalog_image/colour_block/cl5.png",
+          "/images/catalog_image/colour_block/cl6.png",
+          "/images/catalog_image/colour_block/cl7.png"
+        ],
+        "styleDescription": "Color Block được bắt nguồn từ xu hướng thời trang, như một làn gió mới xuất hiện trên các sàn Catwalk vào năm 2011. Những bộ quần áo có nhiều màu sắc sặc sỡ thể hiện sự trẻ trung, sáng tạo và nhiệt huyết. Con người rất dễ bị thu hút bởi phong cách này sử dụng những màu sắc tương phản có cường độ rất mạnh. Sau đó, phong cách Color Block nhanh chóng trở thành cảm hứng trong nhiều lĩnh vực khác, bao gồm nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Là 1 xu hướng mới, phong cách mới, mới lạ và độc đáo.\n2. Màu sắc tương phản cường độ mạnh, phù hợp với người có cá tính mạnh. Mang đến sự trẻ trung và năng động.\n3. Color block ko gò bó theo 1 quy chuẩn nào.\n4. Diện tích rộng nên tôn được vẻ đẹp của nó.\n5. Thỏa sức sáng tạo với từng khu vực, từng đồ vật và từng không gian.\n6. Vật liệu thường là gỗ công nghiệp, bề mặt sơn bệt nên giá thành không quá cao so với mặt bằng chung.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/colour_block/cl.png",
+          "/images/catalog_image/colour_block/cl2.png",
+          "/images/catalog_image/colour_block/cl3.png",
+          "/images/catalog_image/colour_block/cl4.png",
+          "/images/catalog_image/colour_block/cl5.png",
+          "/images/catalog_image/colour_block/cl6.png",
+          "/images/catalog_image/colour_block/cl7.png"
+        ],
+        "styleDescription": "Color Block được bắt nguồn từ xu hướng thời trang, như một làn gió mới xuất hiện trên các sàn Catwalk vào năm 2011. Những bộ quần áo có nhiều màu sắc sặc sỡ thể hiện sự trẻ trung, sáng tạo và nhiệt huyết. Con người rất dễ bị thu hút bởi phong cách này sử dụng những màu sắc tương phản có cường độ rất mạnh. Sau đó, phong cách Color Block nhanh chóng trở thành cảm hứng trong nhiều lĩnh vực khác, bao gồm nội thất.",
+        "matchingPoint": 7,
+        "matchingPointExplanation": "1. Là 1 xu hướng mới, phong cách mới, mới lạ và độc đáo.\n2. Màu sắc tương phản cường độ mạnh, phù hợp với người có cá tính mạnh. Mang đến sự trẻ trung và năng động.\n3. Color block ko gò bó theo 1 quy chuẩn nào.\n4. Diện tích rộng nên tôn được vẻ đẹp của nó.\n5. Thỏa sức sáng tạo với từng khu vực, từng đồ vật và từng không gian.\n6. Vật liệu thường là gỗ công nghiệp, bề mặt sơn bệt nên giá thành không quá cao so với mặt bằng chung.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Hiện Đại",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/hien_dai/hiendai1.png",
+          "/images/catalog_image/hien_dai/hiendai2.png",
+          "/images/catalog_image/hien_dai/hiendai3.png",
+          "/images/catalog_image/hien_dai/hiendai4.png",
+          "/images/catalog_image/hien_dai/hiendai5.png",
+          "/images/catalog_image/hien_dai/hiendai6.png",
+          "/images/catalog_image/hien_dai/hiendai7.png"
+        ],
+        "styleDescription": "Nội thất hiện đại là phong cách có sự tương đồng trong bố trí các hình khối đơn giản, tổ chức mặt bằng theo hướng tự do và không cần tuân theo quy tắc đối xứng như một số phong cách khác.",
+        "matchingPoint": 7,
+        "matchingPointExplanation": "1. Nguyên vật liệu đơn giản, dễ kiếm như thủy tinh, kim loại, các loại gỗ ép.....\n2. Vì vật liệu đơn giản nên giá thành sẽ không quá cao.\n3. Phù hợp với sở thích của đại đa số người dân việt nam.\n4. Thường sử dụng 1 tông màu chủ đạo cho 1 không gian nhất định.\n5. Sử dụng gam màu trung tính như ghi, trắng kem mang cảm giác thoải mái khi nhìn.\n6. Phong cách có sự tương đồng trong hình khối không gian đơn giản vì vậy phong cách hiện đại phù hợp với mọi loại diện tích.\n7. Hướng đến sự tự do, ko theo 1 nguyên tắc cụ thể nên có thể thoải mái sáng tạo.",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/hien_dai/hiendai8.png",
+          "/images/catalog_image/hien_dai/hiendai9.png",
+          "/images/catalog_image/hien_dai/hiendai10.png",
+          "/images/catalog_image/hien_dai/hiendai11.png",
+          "/images/catalog_image/hien_dai/hiendai12.png",
+          "/images/catalog_image/hien_dai/hiendai2.png",
+          "/images/catalog_image/hien_dai/hiendai3.png"
+        ],
+        "styleDescription": "Nội thất hiện đại là phong cách có sự tương đồng trong bố trí các hình khối đơn giản, tổ chức mặt bằng theo hướng tự do và không cần tuân theo quy tắc đối xứng như một số phong cách khác.",
+        "matchingPoint": 7,
+        "matchingPointExplanation": "1. Nguyên vật liệu đơn giản, dễ kiếm như thủy tinh, kim loại, các loại gỗ ép.....\n2. Vì vật liệu đơn giản nên giá thành sẽ không quá cao.\n3. Phù hợp với sở thích của đại đa số người dân việt nam.\n4. Thường sử dụng 1 tông màu chủ đạo cho 1 không gian nhất định.\n5. Sử dụng gam màu trung tính như ghi, trắng kem mang cảm giác thoải mái khi nhìn.\n6. Phong cách có sự tương đồng trong hình khối không gian đơn giản vì vậy phong cách hiện đại phù hợp với mọi loại diện tích.\n7. Hướng đến sự tự do, ko theo 1 nguyên tắc cụ thể nên có thể thoải mái sáng tạo.",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/hien_dai/hiendai8.png",
+          "/images/catalog_image/hien_dai/hiendai9.png",
+          "/images/catalog_image/hien_dai/hiendai10.png",
+          "/images/catalog_image/hien_dai/hiendai11.png",
+          "/images/catalog_image/hien_dai/hiendai12.png",
+          "/images/catalog_image/hien_dai/hiendai2.png",
+          "/images/catalog_image/hien_dai/hiendai3.png"
+        ],
+        "styleDescription": "Nội thất hiện đại là phong cách có sự tương đồng trong bố trí các hình khối đơn giản, tổ chức mặt bằng theo hướng tự do và không cần tuân theo quy tắc đối xứng như một số phong cách khác.",
+        "matchingPoint": 7,
+        "matchingPointExplanation": "1. Nguyên vật liệu đơn giản, dễ kiếm như thủy tinh, kim loại, các loại gỗ ép.....\n2. Vì vật liệu đơn giản nên giá thành sẽ không quá cao.\n3. Phù hợp với sở thích của đại đa số người dân việt nam.\n4. Thường sử dụng 1 tông màu chủ đạo cho 1 không gian nhất định.\n5. Sử dụng gam màu trung tính như ghi, trắng kem mang cảm giác thoải mái khi nhìn.\n6. Phong cách có sự tương đồng trong hình khối không gian đơn giản vì vậy phong cách hiện đại phù hợp với mọi loại diện tích.\n7. Hướng đến sự tự do, ko theo 1 nguyên tắc cụ thể nên có thể thoải mái sáng tạo.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/hien_dai/hiendai1.png",
+          "/images/catalog_image/hien_dai/hiendai2.png",
+          "/images/catalog_image/hien_dai/hiendai3.png",
+          "/images/catalog_image/hien_dai/hiendai4.png",
+          "/images/catalog_image/hien_dai/hiendai5.png",
+          "/images/catalog_image/hien_dai/hiendai6.png",
+          "/images/catalog_image/hien_dai/hiendai7.png"
+        ],
+        "styleDescription": "Nội thất hiện đại là phong cách có sự tương đồng trong bố trí các hình khối đơn giản, tổ chức mặt bằng theo hướng tự do và không cần tuân theo quy tắc đối xứng như một số phong cách khác.",
+        "matchingPoint": 7,
+        "matchingPointExplanation": "1. Nguyên vật liệu đơn giản, dễ kiếm như thủy tinh, kim loại, các loại gỗ ép.....\n2. Vì vật liệu đơn giản nên giá thành sẽ không quá cao.\n3. Phù hợp với sở thích của đại đa số người dân việt nam.\n4. Thường sử dụng 1 tông màu chủ đạo cho 1 không gian nhất định.\n5. Sử dụng gam màu trung tính như ghi, trắng kem mang cảm giác thoải mái khi nhìn.\n6. Phong cách có sự tương đồng trong hình khối không gian đơn giản vì vậy phong cách hiện đại phù hợp với mọi loại diện tích.\n7. Hướng đến sự tự do, ko theo 1 nguyên tắc cụ thể nên có thể thoải mái sáng tạo.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/hien_dai/hiendai1.png",
+          "/images/catalog_image/hien_dai/hiendai2.png",
+          "/images/catalog_image/hien_dai/hiendai3.png",
+          "/images/catalog_image/hien_dai/hiendai4.png",
+          "/images/catalog_image/hien_dai/hiendai5.png",
+          "/images/catalog_image/hien_dai/hiendai6.png",
+          "/images/catalog_image/hien_dai/hiendai7.png"
+        ],
+        "styleDescription": "Nội thất hiện đại là phong cách có sự tương đồng trong bố trí các hình khối đơn giản, tổ chức mặt bằng theo hướng tự do và không cần tuân theo quy tắc đối xứng như một số phong cách khác.",
+        "matchingPoint": 7,
+        "matchingPointExplanation": "1. Nguyên vật liệu đơn giản, dễ kiếm như thủy tinh, kim loại, các loại gỗ ép.....\n2. Vì vật liệu đơn giản nên giá thành sẽ không quá cao.\n3. Phù hợp với sở thích của đại đa số người dân việt nam.\n4. Thường sử dụng 1 tông màu chủ đạo cho 1 không gian nhất định.\n5. Sử dụng gam màu trung tính như ghi, trắng kem mang cảm giác thoải mái khi nhìn.\n6. Phong cách có sự tương đồng trong hình khối không gian đơn giản vì vậy phong cách hiện đại phù hợp với mọi loại diện tích.\n7. Hướng đến sự tự do, ko theo 1 nguyên tắc cụ thể nên có thể thoải mái sáng tạo.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Rustic",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/rustic/rus11.jpg",
+          "/images/catalog_image/rustic/rus12.jpg",
+          "/images/catalog_image/rustic/rus13.jpg",
+          "/images/catalog_image/rustic/rus14.jpg",
+          "/images/catalog_image/rustic/rus15.jpg",
+          "/images/catalog_image/rustic/rus16.jpg",
+          "/images/catalog_image/rustic/rus17.jpg",
+          "/images/catalog_image/rustic/rus18.jpg",
+          "/images/catalog_image/rustic/rus19.jpg",
+          "/images/catalog_image/rustic/rus20.jpg"
+        ],
+        "styleDescription": "Phong cách Rustic là một phong cách ở Mỹ, Rustic có nghĩa là mộc mạc , thuật ngữ “Rustic”có nguồn gốc từ tiếng Latinh, nó có nghĩa là nông dân, trái ngược với thành thị. Phong cáchthiết kế Rustic được ứng dụng nhiều ở vùng nông thôn và tư nhân, ảnh hưởng bởi phong cách thủ công Mỹ.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Vật liệu sử dụng cho phong cách này là đá tự nhiên và gỗ tự nhiên xử lý thô hoặc không qua xử lý nên giá thành sẽ rất cao.\n2. Tường trần cũng ốp đá tự nhiên và dầm gỗ tự nhiên nên sẽ ko phù hợp với các căn hộ chung cư.\n3. Rustic phù hợp với diện tích phòng khách rộng, nhà 1 tầng biệt thự và nhà vườn, villa.......\n4. Diện tích chung cư nhỏ và trần thấp nên ko phù hợp",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/rustic/rus11.jpg",
+          "/images/catalog_image/rustic/rus12.jpg",
+          "/images/catalog_image/rustic/rus13.jpg",
+          "/images/catalog_image/rustic/rus14.jpg",
+          "/images/catalog_image/rustic/rus15.jpg",
+          "/images/catalog_image/rustic/rus16.jpg",
+          "/images/catalog_image/rustic/rus17.jpg",
+          "/images/catalog_image/rustic/rus18.jpg",
+          "/images/catalog_image/rustic/rus19.jpg",
+          "/images/catalog_image/rustic/rus20.jpg"
+        ],
+        "styleDescription": "Phong cách Rustic là một phong cách ở Mỹ, Rustic có nghĩa là mộc mạc , thuật ngữ “Rustic”có nguồn gốc từ tiếng Latinh, nó có nghĩa là nông dân, trái ngược với thành thị. Phong cáchthiết kế Rustic được ứng dụng nhiều ở vùng nông thôn và tư nhân, ảnh hưởng bởi phong cách thủ công Mỹ.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách Rustic phù hợp với cư dân giàu có.\n2. Trọng tâm của Rustic là mang không gian tự nhiên vào ngôi nhà nên cần diện tích rộng.\n3. Rustic là mộc mạc nên sẽ không sử dụng những vật liệu hào nhoáng như kim loại, hay sợi tổng hợp.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/rustic/rus21.jpg",
+          "/images/catalog_image/rustic/rus22.jpg",
+          "/images/catalog_image/rustic/rus23.jpg",
+          "/images/catalog_image/rustic/rus24.jpg",
+          "/images/catalog_image/rustic/rus25.jpg",
+          "/images/catalog_image/rustic/rus26.jpg",
+          "/images/catalog_image/rustic/rus27.jpg",
+          "/images/catalog_image/rustic/rus8.jpg",
+          "/images/catalog_image/rustic/rus9.jpg",
+          "/images/catalog_image/rustic/rus10.jpg"
+        ],
+        "styleDescription": "Phong cách Rustic là một phong cách ở Mỹ, Rustic có nghĩa là mộc mạc , thuật ngữ “Rustic”có nguồn gốc từ tiếng Latinh, nó có nghĩa là nông dân, trái ngược với thành thị. Phong cáchthiết kế Rustic được ứng dụng nhiều ở vùng nông thôn và tư nhân, ảnh hưởng bởi phong cách thủ công Mỹ.",
+        "matchingPoint": 3,
+        "matchingPointExplanation": "1. Phong cách Rustic phù hợp với cư dân giàu có.\n2. Trọng tâm của Rustic là mang không gian tự nhiên vào ngôi nhà nên cần diện tích rộng.\n3. Rustic là mộc mạc nên sẽ không sử dụng những vật liệu hào nhoáng như kim loại, hay sợi tổng hợp.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/rustic/rus1.jpg",
+          "/images/catalog_image/rustic/rus2.jpg",
+          "/images/catalog_image/rustic/rus3.jpg",
+          "/images/catalog_image/rustic/rus4.jpg",
+          "/images/catalog_image/rustic/rus5.jpg",
+          "/images/catalog_image/rustic/rus6.jpg",
+          "/images/catalog_image/rustic/rus7.jpg",
+          "/images/catalog_image/rustic/rus8.jpg",
+          "/images/catalog_image/rustic/rus9.jpg",
+          "/images/catalog_image/rustic/rus10.jpg"
+        ],
+        "styleDescription": "Phong cách Rustic là một phong cách ở Mỹ, Rustic có nghĩa là mộc mạc , thuật ngữ “Rustic”có nguồn gốc từ tiếng Latinh, nó có nghĩa là nông dân, trái ngược với thành thị. Phong cáchthiết kế Rustic được ứng dụng nhiều ở vùng nông thôn và tư nhân, ảnh hưởng bởi phong cách thủ công Mỹ.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách Rustic phù hợp với cư dân giàu có.\n2. Trọng tâm của Rustic là mang không gian tự nhiên vào ngôi nhà nên cần diện tích rộng.\n3. Rustic là mộc mạc nên sẽ không sử dụng những vật liệu hào nhoáng như kim loại, hay sợi tổng hợp.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/rustic/rus11.jpg",
+          "/images/catalog_image/rustic/rus12.jpg",
+          "/images/catalog_image/rustic/rus13.jpg",
+          "/images/catalog_image/rustic/rus14.jpg",
+          "/images/catalog_image/rustic/rus15.jpg",
+          "/images/catalog_image/rustic/rus16.jpg",
+          "/images/catalog_image/rustic/rus17.jpg",
+          "/images/catalog_image/rustic/rus18.jpg",
+          "/images/catalog_image/rustic/rus19.jpg",
+          "/images/catalog_image/rustic/rus10.jpg"
+        ],
+        "styleDescription": "Phong cách Rustic là một phong cách ở Mỹ, Rustic có nghĩa là mộc mạc , thuật ngữ “Rustic”có nguồn gốc từ tiếng Latinh, nó có nghĩa là nông dân, trái ngược với thành thị. Phong cáchthiết kế Rustic được ứng dụng nhiều ở vùng nông thôn và tư nhân, ảnh hưởng bởi phong cách thủ công Mỹ.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Vật liệu sử dụng cho phong cách này là đá tự nhiên và gỗ tự nhiên xử lý thô hoặc không qua xử lý nên giá thành sẽ rất cao.\n2. Tường trần cũng ốp đá tự nhiên và dầm gỗ tự nhiên nên sẽ ko phù hợp với các quán cafe \n3. Rustic phù hợp với diện tích  rộng, nhà 1 tầng biệt thự và nhà vườn, villa.......\n4. Giá thành quá cao để có thể thu hồi vốn nếu kinh doanh",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Tối Giản",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/toi_gian/tg1.jpg",
+          "/images/catalog_image/toi_gian/tg2.jpg",
+          "/images/catalog_image/toi_gian/tg3.jpg",
+          "/images/catalog_image/toi_gian/tg4.jpg",
+          "/images/catalog_image/toi_gian/tg5.jpg",
+          "/images/catalog_image/toi_gian/tg7.jpg",
+          "/images/catalog_image/toi_gian/tg8.jpg",
+          "/images/catalog_image/toi_gian/tg9.jpg"
+        ],
+        "styleDescription": "Phong cách tối giản hay còn có tên gọi tiếng anh là Minimalism. Đây là phong cách đa dạng nghệ thuật, đặc biệt là nghệ thuật thị giác và nghệ thuật âm thanh. Yêu cầu của phong cách này là tối giản hết mức có thể, chỉ giữ lại những phần thiết yếu.Minimalism dần phổ biến từ những năm 60, 70 của thế kỷ 20, từ phong trào nghệ thuật của các quốc gia châu âu. Ban đầu, phong cách Minimalism chỉ xuất hiện ở lĩnh vực kiến trúc và nhiếp ảnh, sau này dần lan rộng ra lĩnh vực âm nhạc và các lĩnh vực như thời trang,nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Tối giản hết mức có thể nên tối ưu hóa được chi phí thi công, thiết kế.\n2. Đường nét đơn giản, hài hòa, vuông thẳng phẳng nên phù hợp với tất cá các loại công trình.\n3. Nội thất ko rườm rà, ko cầu kỳ, ko nhiều họa tiết.\n4. Hạn chế được nhiều màu sắc.\n5. Tối giản hết mức có thể, nên tối ưu được không gian\n6. Hạn chế được đồ trang trí nên ánh sáng là yếu tố thẩm mỹ quan trọng nhất",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/toi_gian/tg10.jpg",
+          "/images/catalog_image/toi_gian/tg12.jpg",
+          "/images/catalog_image/toi_gian/tg13.jpg",
+          "/images/catalog_image/toi_gian/tg14.jpg",
+          "/images/catalog_image/toi_gian/tg15.jpg",
+          "/images/catalog_image/toi_gian/tg17.jpg",
+          "/images/catalog_image/toi_gian/tg18.jpg",
+          "/images/catalog_image/toi_gian/tg19.jpg"
+        ],
+        "styleDescription": "Phong cách tối giản hay còn có tên gọi tiếng anh là Minimalism. Đây là phong cách đa dạng nghệ thuật, đặc biệt là nghệ thuật thị giác và nghệ thuật âm thanh. Yêu cầu của phong cách này là tối giản hết mức có thể, chỉ giữ lại những phần thiết yếu. Minimalism dần phổ biến từ những năm 60, 70 của thế kỷ 20, từ phong trào nghệ thuật của các quốc gia châu âu. Ban đầu, phong cách Minimalism chỉ xuất hiện ở lĩnh vực kiến trúc và nhiếp ảnh, sau này dần lan rộng ra lĩnh vực âm nhạc và các lĩnh vực như thời trang,nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Tối giản hết mức có thể nên tối ưu hóa được chi phí thi công, thiết kế.\n2. Đường nét đơn giản, hài hòa, vuông thẳng phẳng nên phù hợp với tất cá các loại công trình.\n3. Nội thất ko rườm rà, ko cầu kỳ, ko nhiều họa tiết.\n4. Hạn chế được nhiều màu sắc.\n5. Tối giản hết mức có thể, nên tối ưu được không gian\n6. Hạn chế được đồ trang trí nên ánh sáng là yếu tố thẩm mỹ quan trọng nhất",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/toi_gian/tg16.jpg",
+          "/images/catalog_image/toi_gian/tg20.jpg",
+          "/images/catalog_image/toi_gian/tg21.jpg",
+          "/images/catalog_image/toi_gian/tg22.jpg",
+          "/images/catalog_image/toi_gian/tg23.jpg",
+          "/images/catalog_image/toi_gian/tg24.jpg",
+          "/images/catalog_image/toi_gian/tg25.jpg",
+          "/images/catalog_image/toi_gian/tg26.jpg"
+        ],
+        "styleDescription": "Phong cách tối giản hay còn có tên gọi tiếng anh là Minimalism. Đây là phong cách đa dạng nghệ thuật, đặc biệt là nghệ thuật thị giác và nghệ thuật âm thanh. Yêu cầu của phong cách này là tối giản hết mức có thể, chỉ giữ lại những phần thiết yếu. Minimalism dần phổ biến từ những năm 60, 70 của thế kỷ 20, từ phong trào nghệ thuật của các quốc gia châu âu. Ban đầu, phong cách Minimalism chỉ xuất hiện ở lĩnh vực kiến trúc và nhiếp ảnh, sau này dần lan rộng ra lĩnh vực âm nhạc và các lĩnh vực như thời trang, nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Tối giản hết mức có thể nên tối ưu hóa được chi phí thi công, thiết kế.\n2. Đường nét đơn giản, hài hòa, vuông thẳng phẳng nên phù hợp với tất cá các loại công trình.\n3. Nội thất ko rườm rà, ko cầu kỳ, ko nhiều họa tiết.\n4. Hạn chế được nhiều màu sắc.\n5. Tối giản hết mức có thể, nên tối ưu được không gian\n6. Hạn chế được đồ trang trí nên ánh sáng là yếu tố thẩm mỹ quan trọng nhất",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/toi_gian/tg1.jpg",
+          "/images/catalog_image/toi_gian/tg2.jpg",
+          "/images/catalog_image/toi_gian/tg3.jpg",
+          "/images/catalog_image/toi_gian/tg4.jpg",
+          "/images/catalog_image/toi_gian/tg5.jpg",
+          "/images/catalog_image/toi_gian/tg7.jpg",
+          "/images/catalog_image/toi_gian/tg8.jpg",
+          "/images/catalog_image/toi_gian/tg9.jpg"
+        ],
+        "styleDescription": "Phong cách tối giản hay còn có tên gọi tiếng anh là Minimalism. Đây là phong cách đa dạng nghệ thuật, đặc biệt là nghệ thuật thị giác và nghệ thuật âm thanh. Yêu cầu của phong cách này là tối giản hết mức có thể, chỉ giữ lại những phần thiết yếu. Minimalism dần phổ biến từ những năm 60, 70 của thế kỷ 20, từ phong trào nghệ thuật của các quốc gia châu âu. Ban đầu, phong cách Minimalism chỉ xuất hiện ở lĩnh vực kiến trúc và nhiếp ảnh, sau này dần lan rộng ra lĩnh vực âm nhạc và các lĩnh vực như thời trang, nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Tối giản hết mức có thể nên tối ưu hóa được chi phí thi công, thiết kế.\n2. Đường nét đơn giản, hài hòa, vuông thẳng phẳng nên phù hợp với tất cá các loại công trình.\n3. Nội thất ko rườm rà, ko cầu kỳ, ko nhiều họa tiết.\n4. Hạn chế được nhiều màu sắc.\n5. Tối giản hết mức có thể, nên tối ưu được không gian\n6. Hạn chế được đồ trang trí nên ánh sáng là yếu tố thẩm mỹ quan trọng nhất",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/toi_gian/tg31.jpg",
+          "/images/catalog_image/toi_gian/tg32.jpg",
+          "/images/catalog_image/toi_gian/tg33.jpg",
+          "/images/catalog_image/toi_gian/tg34.jpg",
+          "/images/catalog_image/toi_gian/tg35.jpg",
+          "/images/catalog_image/toi_gian/tg36.jpg",
+          "/images/catalog_image/toi_gian/tg10.jpg",
+          "/images/catalog_image/toi_gian/tg21.jpg"
+        ],
+        "styleDescription": "Phong cách tối giản hay còn có tên gọi tiếng anh là Minimalism. Đây là phong cách đa dạng nghệ thuật, đặc biệt là nghệ thuật thị giác và nghệ thuật âm thanh. Yêu cầu của phong cách này là tối giản hết mức có thể, chỉ giữ lại những phần thiết yếu. Minimalism dần phổ biến từ những năm 60, 70 của thế kỷ 20, từ phong trào nghệ thuật của các quốc gia châu âu. Ban đầu, phong cách Minimalism chỉ xuất hiện ở lĩnh vực kiến trúc và nhiếp ảnh, sau này dần lan rộng ra lĩnh vực âm nhạc và các lĩnh vực như thời trang, nội thất.",
+        "matchingPoint": 6,
+        "matchingPointExplanation": "1. Tối giản hết mức có thể nên tối ưu hóa được chi phí thi công, thiết kế.\n2. Đường nét đơn giản, hài hòa, vuông thẳng phẳng nên phù hợp với tất cá các loại công trình.\n3. Nội thất ko rườm rà, ko cầu kỳ, ko nhiều họa tiết.\n4. Hạn chế được nhiều màu sắc.\n5. Tối giản hết mức có thể, nên tối ưu được không gian\n6. Hạn chế được đồ trang trí nên ánh sáng là yếu tố thẩm mỹ quan trọng nhất",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Indochine",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/indochine/indo1.jpg",
+          "/images/catalog_image/indochine/indo2.png",
+          "/images/catalog_image/indochine/indo3.png",
+          "/images/catalog_image/indochine/indo4.jpg",
+          "/images/catalog_image/indochine/indo5.png",
+          "/images/catalog_image/indochine/indo6.jpg",
+          "/images/catalog_image/indochine/indo7.jpg",
+          "/images/catalog_image/indochine/indo8.jpg",
+          "/images/catalog_image/indochine/indo9.jpg"
+        ],
+        "styleDescription": "Indochine (hay còn được gọi là Đông Dương) được dùng để chỉ khu vực tại Đông Nam Á, gần Ấn Độ và nằm ở phía nam của Trung Quốc. Phong cách Indochine là nơi là hai nền văn hóa giữa Đông và Tây được hòa quyện. Vẻ đẹp của phong cách Indochine là sự tinh túy, giao thao giữa vẻ đẹp của những lối kiến trúc Tân Cổ Điển nước Pháp kết hợp với những nét đặc trưng trong thiết kế nội thất của nền văn hóa, địa lý tại Việt Nam.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Không như căn hộ chung cư 3 ngủ, nhà mặt đất đã đáp ứng được vấn đề về không gian, chiều cao trần cũng như diện tích căn nhà.\n2. Ánh sáng cho căn hộ cũng được đảm bảo, có thể lấy ánh sáng từ cửa chính căn hộ, và cửa sổ được xây lớn hơn.\n3. Sàn gạch bông cũng có thể được hướng đến ngay từ đầu sẽ ko mất chi phí thay sàn như các căn hộ chung cư.\n4. Vật liệu đậm chất dân gian như tre, gỗ, mây......cũng là những vật liệu dễ kiếm và có sẵn",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/indochine/indo10.jpg",
+          "/images/catalog_image/indochine/indo12.jpg",
+          "/images/catalog_image/indochine/indo13.jpg",
+          "/images/catalog_image/indochine/indo14.jpg",
+          "/images/catalog_image/indochine/indo15.jpg",
+          "/images/catalog_image/indochine/indo16.jpg",
+          "/images/catalog_image/indochine/indo17.jpg",
+          "/images/catalog_image/indochine/indo18.jpg",
+          "/images/catalog_image/indochine/indo19.jpg"
+        ],
+        "styleDescription": "Indochine (hay còn được gọi là Đông Dương) được dùng để chỉ khu vực tại Đông Nam Á, gần Ấn Độ và nằm ở phía nam của Trung Quốc. Phong cách Indochine là nơi là hai nền văn hóa giữa Đông và Tây được hòa quyện. Vẻ đẹp của phong cách Indochine là sự tinh túy, giao thao giữa vẻ đẹp của những lối kiến trúc Tân Cổ Điển nước Pháp kết hợp với những nét đặc trưng trong thiết kế nội thất của nền văn hóa, địa lý tại Việt Nam.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Không như căn hộ chung cư 3 ngủ, nhà mặt đất đã đáp ứng được vấn đề về không gian, chiều cao trần cũng như diện tích căn nhà.\n2. Ánh sáng cho căn hộ cũng được đảm bảo, có thể lấy ánh sáng từ cửa chính căn hộ, và cửa sổ được xây lớn hơn.\n3. Sàn gạch bông cũng có thể được hướng đến ngay từ đầu sẽ ko mất chi phí thay sàn như các căn hộ chung cư.\n4. Vật liệu đậm chất dân gian như tre, gỗ, mây......cũng là những vật liệu dễ kiếm và có sẵn",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/indochine/indo21.jpg",
+          "/images/catalog_image/indochine/indo11.jpg",
+          "/images/catalog_image/indochine/indo3.png",
+          "/images/catalog_image/indochine/indo4.jpg",
+          "/images/catalog_image/indochine/indo5.png",
+          "/images/catalog_image/indochine/indo6.jpg",
+          "/images/catalog_image/indochine/indo7.jpg",
+          "/images/catalog_image/indochine/indo10.jpg",
+          "/images/catalog_image/indochine/indo9.jpg"
+        ],
+        "styleDescription": "Indochine (hay còn được gọi là Đông Dương) được dùng để chỉ khu vực tại Đông Nam Á, gần Ấn Độ và nằm ở phía nam của Trung Quốc. Phong cách Indochine là nơi là hai nền văn hóa giữa Đông và Tây được hòa quyện. Vẻ đẹp của phong cách Indochine là sự tinh túy, giao thao giữa vẻ đẹp của những lối kiến trúc Tân Cổ Điển nước Pháp kết hợp với những nét đặc trưng trong thiết kế nội thất của nền văn hóa, địa lý tại Việt Nam.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Không như căn hộ chung cư 3 ngủ, nhà mặt đất đã đáp ứng được vấn đề về không gian, chiều cao trần cũng như diện tích căn nhà.\n2. Ánh sáng cho căn hộ cũng được đảm bảo, có thể lấy ánh sáng từ cửa chính căn hộ, và cửa sổ được xây lớn hơn.\n3. Sàn gạch bông cũng có thể được hướng đến ngay từ đầu sẽ ko mất chi phí thay sàn như các căn hộ chung cư.\n4. Vật liệu đậm chất dân gian như tre, gỗ, mây......cũng là những vật liệu dễ kiếm và có sẵn",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/indochine/indo1.jpg",
+          "/images/catalog_image/indochine/indo2.png",
+          "/images/catalog_image/indochine/indo3.png",
+          "/images/catalog_image/indochine/indo4.jpg",
+          "/images/catalog_image/indochine/indo5.png",
+          "/images/catalog_image/indochine/indo6.jpg",
+          "/images/catalog_image/indochine/indo7.jpg",
+          "/images/catalog_image/indochine/indo8.jpg",
+          "/images/catalog_image/indochine/indo9.jpg"
+        ],
+        "styleDescription": "Indochine (hay còn được gọi là Đông Dương) được dùng để chỉ khu vực tại Đông Nam Á, gần Ấn Độ và nằm ở phía nam của Trung Quốc. Phong cách Indochine là nơi là hai nền văn hóa giữa Đông và Tây được hòa quyện. Vẻ đẹp của phong cách Indochine là sự tinh túy, giao thao giữa vẻ đẹp của những lối kiến trúc Tân Cổ Điển nước Pháp kết hợp với những nét đặc trưng trong thiết kế nội thất của nền văn hóa, địa lý tại Việt Nam.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Không như căn hộ chung cư 3 ngủ, nhà mặt đất đã đáp ứng được vấn đề về không gian, chiều cao trần cũng như diện tích căn nhà.\n2. Ánh sáng cho căn hộ cũng được đảm bảo, có thể lấy ánh sáng từ cửa chính căn hộ, và cửa sổ được xây lớn hơn.\n3. Sàn gạch bông cũng có thể được hướng đến ngay từ đầu sẽ ko mất chi phí thay sàn như các căn hộ chung cư.\n4. Vật liệu đậm chất dân gian như tre, gỗ, mây......cũng là những vật liệu dễ kiếm và có sẵn",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/indochine/indo21.jpg",
+          "/images/catalog_image/indochine/indo11.jpg",
+          "/images/catalog_image/indochine/indo3.png",
+          "/images/catalog_image/indochine/indo4.jpg",
+          "/images/catalog_image/indochine/indo5.png",
+          "/images/catalog_image/indochine/indo6.jpg",
+          "/images/catalog_image/indochine/indo7.jpg",
+          "/images/catalog_image/indochine/indo10.jpg",
+          "/images/catalog_image/indochine/indo9.jpg"
+        ],
+        "styleDescription": "Indochine (hay còn được gọi là Đông Dương) được dùng để chỉ khu vực tại Đông Nam Á, gần Ấn Độ và nằm ở phía nam của Trung Quốc. Phong cách Indochine là nơi là hai nền văn hóa giữa Đông và Tây được hòa quyện. Vẻ đẹp của phong cách Indochine là sự tinh túy, giao thao giữa vẻ đẹp của những lối kiến trúc Tân Cổ Điển nước Pháp kết hợp với những nét đặc trưng trong thiết kế nội thất của nền văn hóa, địa lý tại Việt Nam.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Không gian, chiều sâu của nhà hàng ăn đảm bảo về diện tích cần thiết cho phong cách Indochine\n2. Chi phí khá cao cũng là 1 điểm trừ của phong cách này khi chủ đầu tư lâu mới thu hồi lại được vốn. Tuy nhiên nếu kinh tế không phải là vấn đề với chủ đầu tư thì phong cách indochine lại là điểm cộng cho nhà hàng vì vẻ đẹp sang trọng uy nghiêm của nó.\n3. Đồ nội thất là hàng sơn, lượng khách hàng ra vào quán quá đông, trong quá trình sử dụng sẽ rất dễ hỏng và xuống cấp.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Scandinavian",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/scandinavian/scandi1.png",
+          "/images/catalog_image/scandinavian/scandi2.png",
+          "/images/catalog_image/scandinavian/scandi3.png",
+          "/images/catalog_image/scandinavian/scandi4.jpg",
+          "/images/catalog_image/scandinavian/scandi5.png",
+          "/images/catalog_image/scandinavian/scandi6.jpg",
+          "/images/catalog_image/scandinavian/scandi7.png"
+        ],
+        "styleDescription": "Phong cách Scandinavian là một phong cách được kết hợp giữa 3 yếu tố là đơn giản – thẩm mỹ – công năng sử dụng. Đây là phong cách thiết kế đặc trưng cho những quốc gia có khí hậu khắc nghiệt ở Bắc Âu như Đan Mạch, Phần Lan, Thụy Điển…. Nó không chỉ phản ánh rõ tập quán sinh hoạt, tư duy thẩm mỹ của người dân vùng đất này. Điểm nổi bật của phong cách nội thất Bắc Âu là cách sử dụng hiệu quả, sáng tạo những nguyên vật liệu sẵn có như gỗ, vải tự nhiên và đá để góp phần tô điểm cho không gian.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách này cần lượng lớn ánh sáng tự nhiên, với căn hộ chung cư 3 ngủ cũng đủ để đáp ứng về vấn đề này.\n2. Chung cư phong cách Scandinavian được biết đến với 3 đặc điểm nổi bật: Đơn giản, thẩm mỹ và công năng sử dụng.\n3. Vật liệu cho phong cách này tương đối phổ biến và đơn giản là gỗ tếch và vải tự nhiên\n4. Màu sắc chủ đạo là màu trắng cũng là màu sắc chủ đạo của phần lớn các căn hộ chung cư.",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/scandinavian/scandi1.png",
+          "/images/catalog_image/scandinavian/scandi2.png",
+          "/images/catalog_image/scandinavian/scandi3.png",
+          "/images/catalog_image/scandinavian/scandi4.jpg",
+          "/images/catalog_image/scandinavian/scandi5.png",
+          "/images/catalog_image/scandinavian/scandi6.jpg",
+          "/images/catalog_image/scandinavian/scandi7.png"
+        ],
+        "styleDescription": "Phong cách Scandinavian là một phong cách được kết hợp giữa 3 yếu tố là đơn giản – thẩm mỹ – công năng sử dụng. Đây là phong cách thiết kế đặc trưng cho những quốc gia có khí hậu khắc nghiệt ở Bắc Âu như Đan Mạch, Phần Lan, Thụy Điển…. Nó không chỉ phản ánh rõ tập quán sinh hoạt, tư duy thẩm mỹ của người dân vùng đất này. Điểm nổi bật của phong cách nội thất Bắc Âu là cách sử dụng hiệu quả, sáng tạo những nguyên vật liệu sẵn có như gỗ, vải tự nhiên và đá để góp phần tô điểm cho không gian.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách này cần lượng lớn ánh sáng tự nhiên, với căn hộ chung cư 3 ngủ cũng đủ để đáp ứng về vấn đề này.\n2. Chung cư phong cách Scandinavian được biết đến với 3 đặc điểm nổi bật: Đơn giản, thẩm mỹ và công năng sử dụng.\n3. Vật liệu cho phong cách này tương đối phổ biến và đơn giản là gỗ tếch và vải tự nhiên\n4. Màu sắc chủ đạo là màu trắng cũng là màu sắc chủ đạo của phần lớn các căn hộ chung cư.",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/scandinavian/scandi1.png",
+          "/images/catalog_image/scandinavian/scandi2.png",
+          "/images/catalog_image/scandinavian/scandi3.png",
+          "/images/catalog_image/scandinavian/scandi4.jpg",
+          "/images/catalog_image/scandinavian/scandi5.png",
+          "/images/catalog_image/scandinavian/scandi6.jpg",
+          "/images/catalog_image/scandinavian/scandi7.png"
+        ],
+        "styleDescription": "Phong cách Scandinavian là một phong cách được kết hợp giữa 3 yếu tố là đơn giản – thẩm mỹ – công năng sử dụng. Đây là phong cách thiết kế đặc trưng cho những quốc gia có khí hậu khắc nghiệt ở Bắc Âu như Đan Mạch, Phần Lan, Thụy Điển…. Nó không chỉ phản ánh rõ tập quán sinh hoạt, tư duy thẩm mỹ của người dân vùng đất này. Điểm nổi bật của phong cách nội thất Bắc Âu là cách sử dụng hiệu quả, sáng tạo những nguyên vật liệu sẵn có như gỗ, vải tự nhiên và đá để góp phần tô điểm cho không gian.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách này cần lượng lớn ánh sáng tự nhiên, với căn hộ chung cư 3 ngủ cũng đủ để đáp ứng về vấn đề này.\n2. Chung cư phong cách Scandinavian được biết đến với 3 đặc điểm nổi bật: Đơn giản, thẩm mỹ và công năng sử dụng.\n3. Vật liệu cho phong cách này tương đối phổ biến và đơn giản là gỗ tếch và vải tự nhiên\n4. Màu sắc chủ đạo là màu trắng cũng là màu sắc chủ đạo của phần lớn các căn hộ chung cư.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/scandinavian/scandi7.png",
+          "/images/catalog_image/scandinavian/scandi8.png",
+          "/images/catalog_image/scandinavian/scandi9.png",
+          "/images/catalog_image/scandinavian/scandi10.png",
+          "/images/catalog_image/scandinavian/scandi11.png",
+          "/images/catalog_image/scandinavian/scandi12.png",
+          "/images/catalog_image/scandinavian/scandi13.png"
+        ],
+        "styleDescription": "Phong cách Scandinavian là một phong cách được kết hợp giữa 3 yếu tố là đơn giản – thẩm mỹ – công năng sử dụng. Đây là phong cách thiết kế đặc trưng cho những quốc gia có khí hậu khắc nghiệt ở Bắc Âu như Đan Mạch, Phần Lan, Thụy Điển…. Nó không chỉ phản ánh rõ tập quán sinh hoạt, tư duy thẩm mỹ của người dân vùng đất này. Điểm nổi bật của phong cách nội thất Bắc Âu là cách sử dụng hiệu quả, sáng tạo những nguyên vật liệu sẵn có như gỗ, vải tự nhiên và đá để góp phần tô điểm cho không gian.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách này cần lượng lớn ánh sáng tự nhiên, với căn hộ chung cư 3 ngủ cũng đủ để đáp ứng về vấn đề này.\n2. Chung cư phong cách Scandinavian được biết đến với 3 đặc điểm nổi bật: Đơn giản, thẩm mỹ và công năng sử dụng.\n3. Vật liệu cho phong cách này tương đối phổ biến và đơn giản là gỗ tếch và vải tự nhiên\n4. Màu sắc chủ đạo là màu trắng cũng là màu sắc chủ đạo của phần lớn các căn hộ chung cư.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/scandinavian/scandi7.png",
+          "/images/catalog_image/scandinavian/scandi8.png",
+          "/images/catalog_image/scandinavian/scandi9.png",
+          "/images/catalog_image/scandinavian/scandi10.png",
+          "/images/catalog_image/scandinavian/scandi11.png",
+          "/images/catalog_image/scandinavian/scandi12.png",
+          "/images/catalog_image/scandinavian/scandi13.png"
+        ],
+        "styleDescription": "Phong cách Scandinavian là một phong cách được kết hợp giữa 3 yếu tố là đơn giản – thẩm mỹ – công năng sử dụng. Đây là phong cách thiết kế đặc trưng cho những quốc gia có khí hậu khắc nghiệt ở Bắc Âu như Đan Mạch, Phần Lan, Thụy Điển…. Nó không chỉ phản ánh rõ tập quán sinh hoạt, tư duy thẩm mỹ của người dân vùng đất này. Điểm nổi bật của phong cách nội thất Bắc Âu là cách sử dụng hiệu quả, sáng tạo những nguyên vật liệu sẵn có như gỗ, vải tự nhiên và đá để góp phần tô điểm cho không gian.",
+        "matchingPoint": 4,
+        "matchingPointExplanation": "1. Phong cách này cần lượng lớn ánh sáng tự nhiên, với căn hộ chung cư 3 ngủ cũng đủ để đáp ứng về vấn đề này.\n2. Chung cư phong cách Scandinavian được biết đến với 3 đặc điểm nổi bật: Đơn giản, thẩm mỹ và công năng sử dụng.\n3. Vật liệu cho phong cách này tương đối phổ biến và đơn giản là gỗ tếch và vải tự nhiên\n4. Màu sắc chủ đạo là màu trắng cũng là màu sắc chủ đạo của phần lớn các căn hộ chung cư.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Wabi Sabi",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/wabi_sabi/wabi1.jpg",
+          "/images/catalog_image/wabi_sabi/wabi2.jpg",
+          "/images/catalog_image/wabi_sabi/wabi3.jpg",
+          "/images/catalog_image/wabi_sabi/wabi4.jpg",
+          "/images/catalog_image/wabi_sabi/wabi5.jpg",
+          "/images/catalog_image/wabi_sabi/wabi6.jpg",
+          "/images/catalog_image/wabi_sabi/wabi7.jpg",
+          "/images/catalog_image/wabi_sabi/wabi9.jpg",
+          "/images/catalog_image/wabi_sabi/wabi8.jpg",
+          "/images/catalog_image/wabi_sabi/wabi10.jpg"
+        ],
+        "styleDescription": "Phong cách Wabi Sabi là triết lý hướng con người đến việc chấp nhận thực tại và trân trọng vẻ đẹp của những thứ không hoàn hảo. Vẻ đẹp bất toàn đó chính là cốt lõi của sự sống. Bên ngoài có thể phai tàn nhưng bên trong vẫn đượm khí chất không gì có thể sánh bằng.",
+        "matchingPoint": 3,
+        "matchingPointExplanation": "1. Wabi Sabi thực chất là thô mộc, nguyên sơ, và mộc mạc nhất, tuy nhiên phong cách này có thể thiết kế theo khơi hướng hiện đại và không thuần mộc để có thể giảm giá thành.\n2. Màu sắc chủ đạo là xám của gạch đá, bê tông và gỗ\n3. Vật liệu có thể thay thế bằng gỗ công nghiệp để giảm giá thành, màu vân gỗ tự nhiên kết hợp với tường sơn hiệu ứng giả bê tông.",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/wabi_sabi/wabi11.jpg",
+          "/images/catalog_image/wabi_sabi/wabi12.jpg",
+          "/images/catalog_image/wabi_sabi/wabi13.jpg",
+          "/images/catalog_image/wabi_sabi/wabi14.jpg",
+          "/images/catalog_image/wabi_sabi/wabi15.jpg",
+          "/images/catalog_image/wabi_sabi/wabi16.jpg",
+          "/images/catalog_image/wabi_sabi/wabi17.jpg",
+          "/images/catalog_image/wabi_sabi/wabi19.jpg",
+          "/images/catalog_image/wabi_sabi/wabi18.jpg",
+          "/images/catalog_image/wabi_sabi/wabi20.jpg"
+        ],
+        "styleDescription": "Phong cách Wabi Sabi là triết lý hướng con người đến việc chấp nhận thực tại và trân trọng vẻ đẹp của những thứ không hoàn hảo. Vẻ đẹp bất toàn đó chính là cốt lõi của sự sống. Bên ngoài có thể phai tàn nhưng bên trong vẫn đượm khí chất không gì có thể sánh bằng.",
+        "matchingPoint": 3,
+        "matchingPointExplanation": "1. Wabi Sabi thực chất là thô mộc, nguyên sơ, và mộc mạc nhất, tuy nhiên phong cách này có thể thiết kế theo khơi hướng hiện đại và không thuần mộc để có thể giảm giá thành.\n2. Màu sắc chủ đạo là xám của gạch đá, bê tông và gỗ\n3. Vật liệu có thể thay thế bằng gỗ công nghiệp để giảm giá thành, màu vân gỗ tự nhiên kết hợp với tường sơn hiệu ứng giả bê tông.",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/wabi_sabi/wabi21.jpg",
+          "/images/catalog_image/wabi_sabi/wabi22.jpg",
+          "/images/catalog_image/wabi_sabi/wabi2.jpg",
+          "/images/catalog_image/wabi_sabi/wabi4.jpg",
+          "/images/catalog_image/wabi_sabi/wabi5.jpg",
+          "/images/catalog_image/wabi_sabi/wabi6.jpg",
+          "/images/catalog_image/wabi_sabi/wabi7.jpg",
+          "/images/catalog_image/wabi_sabi/wabi9.jpg",
+          "/images/catalog_image/wabi_sabi/wabi8.jpg",
+          "/images/catalog_image/wabi_sabi/wabi10.jpg"
+        ],
+        "styleDescription": "Phong cách Wabi Sabi là triết lý hướng con người đến việc chấp nhận thực tại và trân trọng vẻ đẹp của những thứ không hoàn hảo. Vẻ đẹp bất toàn đó chính là cốt lõi của sự sống. Bên ngoài có thể phai tàn nhưng bên trong vẫn đượm khí chất không gì có thể sánh bằng.",
+        "matchingPoint": 3,
+        "matchingPointExplanation": "1. Wabi Sabi thực chất là thô mộc, nguyên sơ, và mộc mạc nhất, tuy nhiên phong cách này có thể thiết kế theo khơi hướng hiện đại và không thuần mộc để có thể giảm giá thành.\n2. Màu sắc chủ đạo là xám của gạch đá, bê tông và gỗ\n3. Vật liệu có thể thay thế bằng gỗ công nghiệp để giảm giá thành, màu vân gỗ tự nhiên kết hợp với tường sơn hiệu ứng giả bê tông.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/wabi_sabi/wabi1.jpg",
+          "/images/catalog_image/wabi_sabi/wabi2.jpg",
+          "/images/catalog_image/wabi_sabi/wabi3.jpg",
+          "/images/catalog_image/wabi_sabi/wabi4.jpg",
+          "/images/catalog_image/wabi_sabi/wabi5.jpg",
+          "/images/catalog_image/wabi_sabi/wabi6.jpg",
+          "/images/catalog_image/wabi_sabi/wabi7.jpg",
+          "/images/catalog_image/wabi_sabi/wabi9.jpg",
+          "/images/catalog_image/wabi_sabi/wabi8.jpg",
+          "/images/catalog_image/wabi_sabi/wabi10.jpg"
+        ],
+        "styleDescription": "Phong cách Wabi Sabi là triết lý hướng con người đến việc chấp nhận thực tại và trân trọng vẻ đẹp của những thứ không hoàn hảo. Vẻ đẹp bất toàn đó chính là cốt lõi của sự sống. Bên ngoài có thể phai tàn nhưng bên trong vẫn đượm khí chất không gì có thể sánh bằng.",
+        "matchingPoint": 3,
+        "matchingPointExplanation": "1. Wabi Sabi thực chất là thô mộc, nguyên sơ, và mộc mạc nhất, tuy nhiên phong cách này có thể thiết kế theo khơi hướng hiện đại và không thuần mộc để có thể giảm giá thành.\n2. Màu sắc chủ đạo là xám của gạch đá, bê tông và gỗ\n3. Vật liệu có thể thay thế bằng gỗ công nghiệp để giảm giá thành, màu vân gỗ tự nhiên kết hợp với tường sơn hiệu ứng giả bê tông.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/wabi_sabi/wabi11.jpg",
+          "/images/catalog_image/wabi_sabi/wabi12.jpg",
+          "/images/catalog_image/wabi_sabi/wabi13.jpg",
+          "/images/catalog_image/wabi_sabi/wabi14.jpg",
+          "/images/catalog_image/wabi_sabi/wabi15.jpg",
+          "/images/catalog_image/wabi_sabi/wabi16.jpg",
+          "/images/catalog_image/wabi_sabi/wabi17.jpg",
+          "/images/catalog_image/wabi_sabi/wabi19.jpg",
+          "/images/catalog_image/wabi_sabi/wabi18.jpg",
+          "/images/catalog_image/wabi_sabi/wabi20.jpg"
+        ],
+        "styleDescription": "Phong cách Wabi Sabi là triết lý hướng con người đến việc chấp nhận thực tại và trân trọng vẻ đẹp của những thứ không hoàn hảo. Vẻ đẹp bất toàn đó chính là cốt lõi của sự sống. Bên ngoài có thể phai tàn nhưng bên trong vẫn đượm khí chất không gì có thể sánh bằng.",
+        "matchingPoint": 3,
+        "matchingPointExplanation": "1. Wabi Sabi thực chất là thô mộc, nguyên sơ, và mộc mạc nhất, tuy nhiên phong cách này có thể thiết kế theo khơi hướng hiện đại và không thuần mộc để có thể giảm giá thành.\n2. Màu sắc chủ đạo là xám của gạch đá, bê tông và gỗ\n3. Vật liệu có thể thay thế bằng gỗ công nghiệp để giảm giá thành, màu vân gỗ tự nhiên kết hợp với tường sơn hiệu ứng giả bê tông.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  },
+  {
+    "name": "Luxury",
+    "listContents": [
+      {
+        "style": "Chung cư",
+        "images": [
+          "/images/catalog_image/luxury/lux1.png",
+          "/images/catalog_image/luxury/lux2.png",
+          "/images/catalog_image/luxury/lux3.png",
+          "/images/catalog_image/luxury/lux4.jpg",
+          "/images/catalog_image/luxury/lux5.jpg",
+          "/images/catalog_image/luxury/lux6.jpg",
+          "/images/catalog_image/luxury/lux7.jpg"
+        ],
+        "styleDescription": "Nhìn vẻ bề ngoài thì phong cách luxury như là phong cách cổ điển vì nó có nhiều điểm tương đồng. Nhưng đó hoàn toàn sai lầm, nó là sự phát triển vượt bậc của phong cách cổ điển, chúng mang màu sắc đặc trưng và hoàn toàn riêng biệt.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Được ưa chuộng vô cùng rộng rãi\n2. Các chi tiêt được làm cầu kỳ tỉ mỉ, cẩn thận nên vô cùng đẹp mắt.\n3. Vật liệu được sử dụng từ các vật liệu xa xỉ: như kim loại mạ vàng, đá cẩm thạch, gỗ tự nhiên.....\n4. Phong cách Luxury được dành cho giới thượng lưu, và giàu có.\n5. Không gian rộng của biệt thự được thể hiện đầy đủ đúng sở thích, tính cách, và phong cách mà gia chủ mong muốn.",
+        "groundsSelectionData": ["1 ngủ", "2 ngủ", "3 ngủ"]
+      },
+      {
+        "style": "Nhà mặt đất",
+        "images": [
+          "/images/catalog_image/luxury/lux1.png",
+          "/images/catalog_image/luxury/lux2.png",
+          "/images/catalog_image/luxury/lux3.png",
+          "/images/catalog_image/luxury/lux4.jpg",
+          "/images/catalog_image/luxury/lux5.jpg",
+          "/images/catalog_image/luxury/lux6.jpg",
+          "/images/catalog_image/luxury/lux7.jpg"
+        ],
+        "styleDescription": "Nhìn vẻ bề ngoài thì phong cách luxury như là phong cách cổ điển vì nó có nhiều điểm tương đồng. Nhưng đó hoàn toàn sai lầm, nó là sự phát triển vượt bậc của phong cách cổ điển, chúng mang màu sắc đặc trưng và hoàn toàn riêng biệt.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Được ưa chuộng vô cùng rộng rãi\n2. Các chi tiêt được làm cầu kỳ tỉ mỉ, cẩn thận nên vô cùng đẹp mắt.\n3. Vật liệu được sử dụng từ các vật liệu xa xỉ: như kim loại mạ vàng, đá cẩm thạch, gỗ tự nhiên.....\n4. Phong cách Luxury được dành cho giới thượng lưu, và giàu có.\n5. Không gian rộng của biệt thự được thể hiện đầy đủ đúng sở thích, tính cách, và phong cách mà gia chủ mong muốn.",
+        "groundsSelectionData": ["100 - 300m2", "300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Biệt thự",
+        "images": [
+          "/images/catalog_image/luxury/lux1.png",
+          "/images/catalog_image/luxury/lux2.png",
+          "/images/catalog_image/luxury/lux3.png",
+          "/images/catalog_image/luxury/lux4.jpg",
+          "/images/catalog_image/luxury/lux5.jpg",
+          "/images/catalog_image/luxury/lux6.jpg",
+          "/images/catalog_image/luxury/lux7.jpg"
+        ],
+        "styleDescription": "Nhìn vẻ bề ngoài thì phong cách luxury như là phong cách cổ điển vì nó có nhiều điểm tương đồng. Nhưng đó hoàn toàn sai lầm, nó là sự phát triển vượt bậc của phong cách cổ điển, chúng mang màu sắc đặc trưng và hoàn toàn riêng biệt.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Được ưa chuộng vô cùng rộng rãi\n2. Các chi tiêt được làm cầu kỳ tỉ mỉ, cẩn thận nên vô cùng đẹp mắt.\n3. Vật liệu được sử dụng từ các vật liệu xa xỉ: như kim loại mạ vàng, đá cẩm thạch, gỗ tự nhiên.....\n4. Phong cách Luxury được dành cho giới thượng lưu, và giàu có.\n5. Không gian rộng của biệt thự được thể hiện đầy đủ đúng sở thích, tính cách, và phong cách mà gia chủ mong muốn.",
+        "groundsSelectionData": ["Liền kề", "Song lập", "Biệt lập"]
+      },
+      {
+        "style": "Villa",
+        "images": [
+          "/images/catalog_image/luxury/lux1.png",
+          "/images/catalog_image/luxury/lux2.png",
+          "/images/catalog_image/luxury/lux3.png",
+          "/images/catalog_image/luxury/lux4.jpg",
+          "/images/catalog_image/luxury/lux5.jpg",
+          "/images/catalog_image/luxury/lux6.jpg",
+          "/images/catalog_image/luxury/lux7.jpg"
+        ],
+        "styleDescription": "Nhìn vẻ bề ngoài thì phong cách luxury như là phong cách cổ điển vì nó có nhiều điểm tương đồng. Nhưng đó hoàn toàn sai lầm, nó là sự phát triển vượt bậc của phong cách cổ điển, chúng mang màu sắc đặc trưng và hoàn toàn riêng biệt.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Được ưa chuộng vô cùng rộng rãi\n2. Các chi tiêt được làm cầu kỳ tỉ mỉ, cẩn thận nên vô cùng đẹp mắt.\n3. Vật liệu được sử dụng từ các vật liệu xa xỉ: như kim loại mạ vàng, đá cẩm thạch, gỗ tự nhiên.....\n4. Phong cách Luxury được dành cho giới thượng lưu, và giàu có.\n5. Không gian rộng của biệt thự được thể hiện đầy đủ đúng sở thích, tính cách, và phong cách mà gia chủ mong muốn.",
+        "groundsSelectionData": ["300 - 500m2", "500 - 1000m2"]
+      },
+      {
+        "style": "Quán xá",
+        "images": [
+          "/images/catalog_image/luxury/lux1.png",
+          "/images/catalog_image/luxury/lux2.png",
+          "/images/catalog_image/luxury/lux3.png",
+          "/images/catalog_image/luxury/lux4.jpg",
+          "/images/catalog_image/luxury/lux5.jpg",
+          "/images/catalog_image/luxury/lux6.jpg",
+          "/images/catalog_image/luxury/lux7.jpg"
+        ],
+        "styleDescription": "Nhìn vẻ bề ngoài thì phong cách luxury như là phong cách cổ điển vì nó có nhiều điểm tương đồng. Nhưng đó hoàn toàn sai lầm, nó là sự phát triển vượt bậc của phong cách cổ điển, chúng mang màu sắc đặc trưng và hoàn toàn riêng biệt.",
+        "matchingPoint": 5,
+        "matchingPointExplanation": "1. Được ưa chuộng vô cùng rộng rãi\n2. Các chi tiêt được làm cầu kỳ tỉ mỉ, cẩn thận nên vô cùng đẹp mắt.\n3. Vật liệu được sử dụng từ các vật liệu xa xỉ: như kim loại mạ vàng, đá cẩm thạch, gỗ tự nhiên.....\n4. Phong cách Luxury được dành cho giới thượng lưu, và giàu có.\n5. Không gian rộng của biệt thự được thể hiện đầy đủ đúng sở thích, tính cách, và phong cách mà gia chủ mong muốn.",
+        "groundsSelectionData": ["Coffee", "Nhà hàng ăn"]
+      }
+    ]
+  }
+]
