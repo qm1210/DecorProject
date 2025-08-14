@@ -5,6 +5,7 @@ import useQuoteStore from "@/store/CartStore";
 import { toast } from "react-toastify";
 import axios from "axios";
 import QuestionSidebar from "@/components/QuestionSidebar";
+import usePresetStore from "@/store/QuickQuoteCatalogStore";
 
 interface Question {
   id: number;
@@ -69,43 +70,13 @@ const QuickQuote = () => {
     null
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [resetTrigger, setResetTrigger] = useState(0);
 
-  // Load dữ liệu từ localStorage khi mount
-  useEffect(() => {
-    const savedCurrentId = localStorage.getItem("quickquote_currentId");
-    const savedAnswers = localStorage.getItem("quickquote_answers");
-    const savedShowResult = localStorage.getItem("quickquote_showResult");
+  const preset = usePresetStore((s) => s.preset);
+  const clearPreset = usePresetStore((s) => s.clearPreset);
 
-    if (savedCurrentId) {
-      setCurrentId(parseInt(savedCurrentId));
-    }
-    if (savedAnswers) {
-      setAnswers(JSON.parse(savedAnswers));
-    }
-  }, []);
-
-  // Lưu tiến trình vào localStorage khi có thay đổi
-  useEffect(() => {
-    if (!showResult) {
-      localStorage.setItem("quickquote_currentId", currentId.toString());
-    }
-  }, [currentId, showResult]);
-
-  useEffect(() => {
-    if (!showResult) {
-      localStorage.setItem("quickquote_answers", JSON.stringify(answers));
-    }
-  }, [answers, showResult]);
-
-  // Xóa localStorage khi hoàn thành
-  useEffect(() => {
-    if (showResult) {
-      localStorage.removeItem("quickquote_currentId");
-      localStorage.removeItem("quickquote_answers");
-      localStorage.removeItem("quickquote_showResult");
-    }
-  }, [showResult]);
-
+  // Load dữ liệu khi component mount
   useEffect(() => {
     const loadData = async () => {
       setIsLoading(true);
@@ -127,6 +98,38 @@ const QuickQuote = () => {
     loadData();
   }, []);
 
+  // Chỉ load preset nếu có, KHÔNG load tiến trình từ localStorage
+  useEffect(() => {
+    if (!questions || questions.length === 0 || isInitialized) return;
+
+    if (preset) {
+      const mapToQuestionValue = (qId: number, display: string) => {
+        const q = questions.find((x) => x.id === qId);
+        let opt = q?.options?.find((o) => o.label === display);
+        if (!opt) opt = q?.options?.find((o) => o.value === display);
+        if (!opt) {
+          opt = q?.options?.find(
+            (o) =>
+              o.label?.toLowerCase() === display?.toLowerCase() ||
+              o.value?.toLowerCase() === display?.toLowerCase()
+          );
+        }
+        return opt?.value ?? display;
+      };
+
+      const mappedAnswers = {
+        1: mapToQuestionValue(1, preset.loaiCongTrinh),
+        2: mapToQuestionValue(2, preset.phongCach),
+      };
+
+      setAnswers(mappedAnswers);
+      setCurrentId(3);
+      clearPreset();
+    }
+    setIsInitialized(true);
+  }, [questions, preset, clearPreset, isInitialized]);
+
+  // Tìm suggestion phù hợp khi hoàn thành
   useEffect(() => {
     if (showResult && suggestions.length > 0) {
       const found = suggestions.find((s) =>
@@ -142,6 +145,7 @@ const QuickQuote = () => {
 
   const handleSelect = (value: string) => {
     setAnswers((prev) => ({ ...prev, [currentId]: value }));
+
     const nextId = current?.next?.[value];
     if (nextId && questions.some((q) => q.id === nextId)) {
       setCurrentId(nextId);
@@ -155,18 +159,22 @@ const QuickQuote = () => {
       (cat) => cat["Danh mục"] === suggestedProduct.danhMuc
     );
     if (!category) return null;
+
     const product = category["Sản phẩm"]?.find(
       (p) => p["Đầu mục"] === suggestedProduct.dauMuc
     );
     if (!product) return null;
+
     const cotMaterial = product["Chất liệu cốt"]?.find(
       (c) => c["Tên cốt"] === suggestedProduct.tenCot
     );
     if (!cotMaterial) return null;
+
     const phuMaterial = cotMaterial["Chất liệu phủ"]?.find(
       (p) => p["Tên phủ"] === suggestedProduct.tenPhu
     );
     if (!phuMaterial) return null;
+
     return { product, phuMaterial };
   };
 
@@ -175,13 +183,16 @@ const QuickQuote = () => {
       alert("Không có sản phẩm gợi ý!");
       return;
     }
+
     let added = 0;
     matchedSuggestion.products.forEach((suggestedProduct) => {
       const foundData = findProductInData(suggestedProduct);
       if (!foundData) return;
+
       const { product, phuMaterial } = foundData;
       const id = `${product.id}-${suggestedProduct.tenCot}-${suggestedProduct.tenPhu}`;
       const existed = listedProducts.find((p) => p.id === id);
+
       if (existed) {
         addProduct({
           ...existed,
@@ -208,6 +219,7 @@ const QuickQuote = () => {
       }
       added++;
     });
+
     if (added > 0) {
       toast.success(`Đã thêm ${added} sản phẩm vào giỏ hàng!`);
     } else {
@@ -217,16 +229,16 @@ const QuickQuote = () => {
   };
 
   const resetSurvey = () => {
+    console.log("🔄 Resetting survey...");
     setShowResult(false);
     setCurrentId(1);
     setAnswers({});
     setMatchedSuggestion(null);
-    // Xóa localStorage
-    localStorage.removeItem("quickquote_currentId");
-    localStorage.removeItem("quickquote_answers");
-    localStorage.removeItem("quickquote_showResult");
+    setIsInitialized(false); // Reset để có thể load lại
+    setResetTrigger((prev) => prev + 1);
   };
 
+  // Loading state
   if (isLoading && questions.length === 0) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
@@ -264,6 +276,7 @@ const QuickQuote = () => {
                 answers={answers}
                 currentId={currentId}
                 setCurrentId={setCurrentId}
+                resetTrigger={resetTrigger}
               />
             </div>
             {/* Nội dung câu hỏi */}

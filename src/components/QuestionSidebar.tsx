@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 interface Props {
   questions: {
     id: number;
@@ -7,6 +9,7 @@ interface Props {
   answers: { [key: number]: string };
   currentId: number;
   setCurrentId: (id: number) => void;
+  resetTrigger?: number;
 }
 
 const QuestionSidebar: React.FC<Props> = ({
@@ -14,11 +17,25 @@ const QuestionSidebar: React.FC<Props> = ({
   answers,
   currentId,
   setCurrentId,
+  resetTrigger = 0,
 }) => {
-  const currentQuestions = questions.slice(
-    0,
-    questions.findIndex((q) => q.id === currentId) + 1
-  );
+  // Khởi tạo maxReachedId là currentId
+  const [maxReachedId, setMaxReachedId] = useState(currentId);
+
+  // Chỉ tăng maxReachedId khi chuyển tới câu lớn hơn
+  useEffect(() => {
+    setMaxReachedId((prev) => (currentId > prev ? currentId : prev));
+  }, [currentId]);
+
+  // Reset maxReachedId khi resetTrigger thay đổi
+  useEffect(() => {
+    if (resetTrigger > 0) {
+      // Chỉ reset khi resetTrigger > 0
+      setMaxReachedId(1);
+    }
+  }, [resetTrigger]);
+
+  const currentQuestions = questions.filter((q) => q.id <= maxReachedId);
 
   return (
     <div className="w-80 bg-gradient-to-br from-white via-blue-50/30 to-indigo-50/40 rounded-2xl shadow-xl border border-blue-100/50 p-4 sticky top-8 backdrop-blur-sm">

@@ -233,6 +233,7 @@ const Catalog = () => {
               item={filteredSubTabs[activeSubTab]}
               activeTab={activeTab}
               activeSubTab={activeSubTab}
+              tabName={catalogData[activeTab].name}
             />
           )}
         </>

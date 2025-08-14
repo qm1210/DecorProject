@@ -3,7 +3,6 @@
 import { usePathname } from "next/navigation";
 import Header from "@/components/Header";
 import { ToastContainer, Bounce } from "react-toastify";
-import path from "path";
 
 export default function ClientLayout({
   children,

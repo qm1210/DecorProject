@@ -3,20 +3,26 @@
 import { useState, useEffect, useRef } from "react";
 import { CatalogItem } from "@/models/Catalog.model";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import usePresetStore from "@/store/QuickQuoteCatalogStore";
 
 interface Props {
   item: CatalogItem;
   activeTab: number;
   activeSubTab: number;
+  tabName: string;
 }
 
 const CatalogContainer: React.FC<Props> = ({
   item,
   activeTab,
   activeSubTab,
+  tabName,
 }) => {
   const [currentImg, setCurrentImg] = useState(0);
   const sliderInterval = useRef<NodeJS.Timeout | null>(null);
+  const router = useRouter();
+  const setPreset = usePresetStore((s) => s.setPreset);
 
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
@@ -73,6 +79,14 @@ const CatalogContainer: React.FC<Props> = ({
     }
   }, [currentImg]);
 
+  const handleQuickQuote = () => {
+    setPreset({
+      loaiCongTrinh: tabName || "",
+      phongCach: item.style || "",
+    });
+    router.push("/quickquote");
+  };
+
   return (
     <div className="mb-4 mt-0.5 p-4 border border-[#dadce0] rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
       <div className="flex justify-between items-center">
@@ -100,7 +114,11 @@ const CatalogContainer: React.FC<Props> = ({
             ))}
           </div>
         </div>
-        <button className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow hover:from-blue-600 hover:to-blue-800 hover:cursor-pointer transition duration-200 hover:scale-105">
+        <button
+          className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow hover:from-blue-600 hover:to-blue-800 hover:cursor-pointer transition duration-200 hover:scale-105"
+          onClick={handleQuickQuote}
+          aria-label="Báo giá nhanh"
+        >
           Báo giá nhanh
         </button>
       </div>
