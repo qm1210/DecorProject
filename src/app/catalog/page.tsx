@@ -10,6 +10,7 @@ const Catalog = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [activeSubTab, setActiveSubTab] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [prevActiveTab, setPrevActiveTab] = useState(0);
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const tabContainerRef = useRef<HTMLDivElement>(null);
@@ -85,10 +86,46 @@ const Catalog = () => {
     }
   }, [activeSubTab, activeTab, catalogData]);
 
+  const handleTabChange = (newTab: number) => {
+    setPrevActiveTab(activeTab);
+    setActiveTab(newTab);
+  };
+
   // Reset subtab khi đổi tab cha
   useEffect(() => {
-    setActiveSubTab(0);
-  }, [activeTab]);
+    if (prevActiveTab !== activeTab) {
+      // Lấy style của subtab đang đứng ở tab cũ
+      const currentSubTabStyle = catalogData[prevActiveTab]?.listContents
+        ?.filter((item) => item.matchingPoint >= 5)
+        ?.sort((a, b) => {
+          if (b.matchingPoint !== a.matchingPoint) {
+            return b.matchingPoint - a.matchingPoint;
+          }
+          return a.style.localeCompare(b.style, "vi", { sensitivity: "base" });
+        })?.[activeSubTab]?.style;
+
+      // Tìm style đó ở tab mới
+      const newFilteredSubTabs =
+        catalogData[activeTab]?.listContents
+          ?.filter((item) => item.matchingPoint >= 5)
+          ?.sort((a, b) => {
+            if (b.matchingPoint !== a.matchingPoint) {
+              return b.matchingPoint - a.matchingPoint;
+            }
+            return a.style.localeCompare(b.style, "vi", {
+              sensitivity: "base",
+            });
+          }) || [];
+
+      const foundIndex = newFilteredSubTabs.findIndex(
+        (item) => item.style === currentSubTabStyle
+      );
+
+      // Nếu tìm thấy thì giữ nguyên, không thì về 0
+      setActiveSubTab(foundIndex >= 0 ? foundIndex : 0);
+      setPrevActiveTab(activeTab);
+    }
+  }, [activeTab, catalogData]);
 
   const filteredSubTabs =
     catalogData[activeTab]?.listContents
@@ -145,7 +182,7 @@ const Catalog = () => {
                   : "bg-transparent text-[#1d3557] hover:bg-[#e0eaff] hover:text-[#1d4ed8]"
               }`}
                 style={{ background: "transparent" }}
-                onClick={() => setActiveTab(idx)}
+                onClick={() => handleTabChange(idx)}
               >
                 {style.name}
               </button>

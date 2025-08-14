@@ -78,9 +78,30 @@ const CatalogContainer: React.FC<Props> = ({
   return (
     <div className="mb-4 mt-0.5 p-4 border border-[#dadce0] rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
       <div className="flex justify-between items-center">
-        <h2 className="font-semibold text-xl mb-2 text-[#22223b]">
-          {tabName} phong cách {item.style.toLowerCase()}
-        </h2>
+        <div>
+          <h2 className="font-semibold text-lg text-[#22223b] mb-1">
+            Điểm phù hợp:
+          </h2>
+          <div className="flex gap-1">
+            {[...Array(10)].map((_, idx) => (
+              <svg
+                key={idx}
+                xmlns="http://www.w3.org/2000/svg"
+                fill={idx < item.matchingPoint ? "#FFD700" : "#E5E7EB"} // vàng cho sao đã chọn, xám cho sao chưa chọn
+                viewBox="0 0 24 24"
+                stroke="#E5E7EB"
+                className="w-10 h-10"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1}
+                  d="M12 17.75l-6.172 3.245 1.179-6.88L2.5 9.755l6.9-1.002L12 2.25l2.6 6.503 6.9 1.002-5.507 4.36 1.179 6.88z"
+                />
+              </svg>
+            ))}
+          </div>
+        </div>
         <button className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow hover:from-blue-600 hover:to-blue-800 hover:cursor-pointer transition duration-200 hover:scale-105">
           Báo giá nhanh
         </button>
@@ -164,30 +185,7 @@ const CatalogContainer: React.FC<Props> = ({
           {item.styleDescription}
         </p>
       </div>
-      <div>
-        <h2 className="font-semibold text-lg mb-1 text-[#22223b]">
-          Điểm phù hợp:
-        </h2>
-        <div className="flex gap-1 mb-6">
-          {[...Array(10)].map((_, idx) => (
-            <svg
-              key={idx}
-              xmlns="http://www.w3.org/2000/svg"
-              fill={idx < item.matchingPoint ? "#FFD700" : "#E5E7EB"} // vàng cho sao đã chọn, xám cho sao chưa chọn
-              viewBox="0 0 24 24"
-              stroke="#E5E7EB"
-              className="w-10 h-10"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M12 17.75l-6.172 3.245 1.179-6.88L2.5 9.755l6.9-1.002L12 2.25l2.6 6.503 6.9 1.002-5.507 4.36 1.179 6.88z"
-              />
-            </svg>
-          ))}
-        </div>
-      </div>
+
       <div>
         <h2 className="font-semibold text-lg mb-2 text-[#22223b]">
           Giải thích điểm phù hợp:
