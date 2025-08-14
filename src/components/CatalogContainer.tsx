@@ -95,13 +95,14 @@ const CatalogContainer: React.FC<Props> = ({
               fill
               className="object-cover rounded-lg"
               sizes="(max-width: 1200px) 100vw, 1200px"
-              priority
+              priority={currentImg === 0}
             />
             {/* Nút trái */}
             <button
               onClick={prevImg}
               className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#22223b]/60 text-white rounded-full p-4 hover:bg-[#2563eb]/80 hover:cursor-pointer transition"
               style={{ zIndex: 2 }}
+              aria-label="Ảnh trước"
             >
               &#8249;
             </button>
@@ -110,6 +111,7 @@ const CatalogContainer: React.FC<Props> = ({
               onClick={nextImg}
               className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#22223b]/60 text-white rounded-full p-4 hover:bg-[#2563eb]/80 hover:cursor-pointer transition"
               style={{ zIndex: 2 }}
+              aria-label="Ảnh tiếp theo"
             >
               &#8250;
             </button>
@@ -147,6 +149,7 @@ const CatalogContainer: React.FC<Props> = ({
                   width={120}
                   height={67}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
               </div>
             ))}
