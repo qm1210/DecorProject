@@ -8,14 +8,12 @@ interface Props {
   item: CatalogItem;
   activeTab: number;
   activeSubTab: number;
-  tabName: string;
 }
 
 const CatalogContainer: React.FC<Props> = ({
   item,
   activeTab,
   activeSubTab,
-  tabName,
 }) => {
   const [currentImg, setCurrentImg] = useState(0);
   const sliderInterval = useRef<NodeJS.Timeout | null>(null);

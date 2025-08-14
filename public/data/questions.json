@@ -1,55 +1,168 @@
 [
   {
     "id": 1,
-    "question": "Anh/chị đang có nhu cầu?",
+    "question": "Loại công trình?",
     "options": [
-      { "label": "Thi công nội thất", "value": "noithat" },
-      { "label": "Cải tạo công trình cũ", "value": "caitao" },
-      { "label": "Xây dựng công trình mới", "value": "xaydung" }
+      {
+        "label": "Chung cư",
+        "value": "chung_cu"
+      },
+      {
+        "label": "Nhà mặt đất",
+        "value": "nha_mat_đat"
+      },
+      {
+        "label": "Biệt thự",
+        "value": "biet_thu"
+      },
+      {
+        "label": "Villa",
+        "value": "villa"
+      },
+      {
+        "label": "Quán xá",
+        "value": "quan_xa"
+      }
     ],
-    "next": { "noithat": 2, "caitao": 2, "xaydung": 2 }
+    "next": {
+      "chung_cu": 2,
+      "nha_mat_đat": 2,
+      "biet_thu": 2,
+      "villa": 2,
+      "quan_xa": 2
+    }
   },
   {
     "id": 2,
-    "question": "Loại công trình?",
+    "question": "Phong cách mong muốn?",
     "options": [
-      { "label": "Chung cư", "value": "chungcu" },
-      { "label": "Nhà phố", "value": "nhapho" },
-      { "label": "Biệt thự", "value": "bietthu" },
-      { "label": "Văn phòng", "value": "vanphong" }
+      {
+        "label": "Bán Tân Cổ Điển",
+        "value": "ban_tan_co_đien"
+      },
+      {
+        "label": "Colour Block",
+        "value": "colour_block"
+      },
+      {
+        "label": "Hiện Đại",
+        "value": "hien_đai"
+      },
+      {
+        "label": "Rustic",
+        "value": "rustic"
+      },
+      {
+        "label": "Tối Giản",
+        "value": "toi_gian"
+      },
+      {
+        "label": "Indochine",
+        "value": "indochine"
+      },
+      {
+        "label": "Scandinavian",
+        "value": "scandinavian"
+      },
+      {
+        "label": "Wabi Sabi",
+        "value": "wabi_sabi"
+      },
+      {
+        "label": "Luxury",
+        "value": "luxury"
+      },
+      {
+        "label": "Địa Trung Hải",
+        "value": "đia_trung_hai"
+      },
+      {
+        "label": "Tân Cổ Điển",
+        "value": "tan_co_đien"
+      },
+      {
+        "label": "Trung Quốc",
+        "value": "trung_quoc"
+      },
+      {
+        "label": "Hàn Quốc",
+        "value": "han_quoc"
+      },
+      {
+        "label": "Đồng Quê",
+        "value": "đong_que"
+      },
+      {
+        "label": "Nhật Bản",
+        "value": "nhat_ban"
+      }
     ],
-    "next": { "chungcu": 3, "nhapho": 3, "bietthu": 3, "vanphong": 3 }
+    "next": {
+      "ban_tan_co_đien": 3,
+      "colour_block": 3,
+      "hien_đai": 3,
+      "rustic": 3,
+      "toi_gian": 3,
+      "indochine": 3,
+      "scandinavian": 3,
+      "wabi_sabi": 3,
+      "luxury": 3,
+      "đia_trung_hai": 3,
+      "tan_co_đien": 3,
+      "trung_quoc": 3,
+      "han_quoc": 3,
+      "đong_que": 3,
+      "nhat_ban": 3
+    }
   },
   {
     "id": 3,
     "question": "Diện tích dự kiến?",
     "options": [
-      { "label": "Dưới 50m²", "value": "duoi50" },
-      { "label": "50-100m²", "value": "50_100" },
-      { "label": "100-200m²", "value": "100_200" },
-      { "label": "Trên 200m²", "value": "tren200" }
+      {
+        "label": "Dưới 50m²",
+        "value": "duoi50"
+      },
+      {
+        "label": "50-100m²",
+        "value": "50_100"
+      },
+      {
+        "label": "100-200m²",
+        "value": "100_200"
+      },
+      {
+        "label": "Trên 200m²",
+        "value": "tren200"
+      }
     ],
-    "next": { "duoi50": 4, "50_100": 4, "100_200": 4, "tren200": 4 }
+    "next": {
+      "duoi50": 4,
+      "50_100": 4,
+      "100_200": 4,
+      "tren200": 4
+    }
   },
   {
     "id": 4,
-    "question": "Phong cách mong muốn?",
-    "options": [
-      { "label": "Hiện đại", "value": "hiendai" },
-      { "label": "Tân cổ điển", "value": "tancodien" },
-      { "label": "Cổ điển", "value": "codien" },
-      { "label": "Khác", "value": "khac" }
-    ],
-    "next": { "hiendai": 5, "tancodien": 5, "codien": 5, "khac": 5 }
-  },
-  {
-    "id": 5,
     "question": "Ngân sách dự kiến?",
     "options": [
-      { "label": "Dưới 200 triệu", "value": "duoi200" },
-      { "label": "200-500 triệu", "value": "200_500" },
-      { "label": "500 triệu - 1 tỷ", "value": "500_1ty" },
-      { "label": "Trên 1 tỷ", "value": "tren1ty" }
+      {
+        "label": "Dưới 200 triệu",
+        "value": "duoi200"
+      },
+      {
+        "label": "200-500 triệu",
+        "value": "200_500"
+      },
+      {
+        "label": "500 triệu - 1 tỷ",
+        "value": "500_1ty"
+      },
+      {
+        "label": "Trên 1 tỷ",
+        "value": "tren1ty"
+      }
     ]
   }
 ]

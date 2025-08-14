@@ -65,11 +65,46 @@ const QuickQuote = () => {
   const [currentId, setCurrentId] = useState(1);
   const [answers, setAnswers] = useState<{ [key: number]: string }>({});
   const [showResult, setShowResult] = useState(false);
-  const [started, setStarted] = useState(false);
   const [matchedSuggestion, setMatchedSuggestion] = useState<Suggestion | null>(
     null
   );
   const [isLoading, setIsLoading] = useState(false);
+
+  // Load dữ liệu từ localStorage khi mount
+  useEffect(() => {
+    const savedCurrentId = localStorage.getItem("quickquote_currentId");
+    const savedAnswers = localStorage.getItem("quickquote_answers");
+    const savedShowResult = localStorage.getItem("quickquote_showResult");
+
+    if (savedCurrentId) {
+      setCurrentId(parseInt(savedCurrentId));
+    }
+    if (savedAnswers) {
+      setAnswers(JSON.parse(savedAnswers));
+    }
+  }, []);
+
+  // Lưu tiến trình vào localStorage khi có thay đổi
+  useEffect(() => {
+    if (!showResult) {
+      localStorage.setItem("quickquote_currentId", currentId.toString());
+    }
+  }, [currentId, showResult]);
+
+  useEffect(() => {
+    if (!showResult) {
+      localStorage.setItem("quickquote_answers", JSON.stringify(answers));
+    }
+  }, [answers, showResult]);
+
+  // Xóa localStorage khi hoàn thành
+  useEffect(() => {
+    if (showResult) {
+      localStorage.removeItem("quickquote_currentId");
+      localStorage.removeItem("quickquote_answers");
+      localStorage.removeItem("quickquote_showResult");
+    }
+  }, [showResult]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -146,16 +181,13 @@ const QuickQuote = () => {
       if (!foundData) return;
       const { product, phuMaterial } = foundData;
       const id = `${product.id}-${suggestedProduct.tenCot}-${suggestedProduct.tenPhu}`;
-      // Kiểm tra đã có trong giỏ chưa
       const existed = listedProducts.find((p) => p.id === id);
       if (existed) {
-        // Nếu đã có, cộng dồn số lượng
         addProduct({
           ...existed,
           quantity: existed.quantity + suggestedProduct.soLuong,
         });
       } else {
-        // Nếu chưa có, thêm mới
         addProduct({
           id,
           name: `${suggestedProduct.danhMuc} - ${suggestedProduct.dauMuc} - ${suggestedProduct.tenCot} - ${suggestedProduct.tenPhu}`,
@@ -181,17 +213,18 @@ const QuickQuote = () => {
     } else {
       toast.error("Không có sản phẩm nào được thêm vào giỏ hàng!");
     }
-    setShowResult(false);
-    setStarted(false);
-    setCurrentId(1);
+    resetSurvey();
   };
 
   const resetSurvey = () => {
-    setStarted(false);
     setShowResult(false);
     setCurrentId(1);
     setAnswers({});
     setMatchedSuggestion(null);
+    // Xóa localStorage
+    localStorage.removeItem("quickquote_currentId");
+    localStorage.removeItem("quickquote_answers");
+    localStorage.removeItem("quickquote_showResult");
   };
 
   if (isLoading && questions.length === 0) {
@@ -221,32 +254,8 @@ const QuickQuote = () => {
           </p>
         </div>
 
-        {/* Start Button */}
-        {!started && (
-          <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-            <div className="mb-6">
-              <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-3xl">📋</span>
-              </div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                Bắt đầu tư vấn báo giá
-              </h2>
-              <p className="text-gray-600">
-                Trả lời một vài câu hỏi để nhận báo giá phù hợp nhất
-              </p>
-            </div>
-            <button
-              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:cursor-pointer hover:from-blue-700 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg"
-              onClick={() => setStarted(true)}
-              disabled={isLoading}
-            >
-              {isLoading ? "Đang tải..." : "Bắt đầu ngay"}
-            </button>
-          </div>
-        )}
-
         {/* Questions */}
-        {started && !showResult && current && (
+        {!showResult && current && (
           <div className="flex flex-col md:flex-row gap-8 bg-white rounded-2xl shadow-lg p-6 md:p-8">
             {/* Sidebar câu hỏi */}
             <div className="md:w-64 w-full mb-6 md:mb-0">
@@ -300,11 +309,11 @@ const QuickQuote = () => {
                 <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 leading-relaxed">
                   {current.question}
                 </h2>
-                <div className="grid gap-3">
+                <div className="grid gap-3 max-h-[360px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                   {current.options.map((opt) => (
                     <button
                       key={opt.value}
-                      className={`group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left transform hover:scale-[1.02]
+                      className={`group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left flex-shrink-0
                 ${
                   answers[currentId] === opt.value
                     ? "border-blue-500 bg-blue-50"
@@ -345,7 +354,7 @@ const QuickQuote = () => {
         )}
 
         {/* Results */}
-        {started && showResult && (
+        {showResult && (
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
               {matchedSuggestion ? (
