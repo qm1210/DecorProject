@@ -17,16 +17,11 @@ const CatalogContainer: React.FC<Props> = ({
   activeSubTab,
   tabName,
 }) => {
-  const [activeGround, setActiveGround] = useState(0);
   const [currentImg, setCurrentImg] = useState(0);
   const sliderInterval = useRef<NodeJS.Timeout | null>(null);
 
   const thumbnailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const thumbnailContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setActiveGround(0);
-  }, [activeTab, activeSubTab]);
 
   useEffect(() => {
     setCurrentImg(0);
@@ -82,51 +77,13 @@ const CatalogContainer: React.FC<Props> = ({
 
   return (
     <div className="mb-4 mt-0.5 p-4 border border-[#dadce0] rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
-      <h2 className="font-semibold text-lg mb-2 text-[#22223b]">Diện tích</h2>
-      <div className="flex gap-3 mb-6">
-        {item.groundsSelectionData.map((ground, idx) => (
-          <button
-            key={ground}
-            onClick={() => setActiveGround(idx)}
-            className={`px-4 py-1 rounded-full font-medium transition-all duration-200 outline-none hover:cursor-pointer
-              ${
-                activeGround === idx
-                  ? "bg-[#2563eb] text-white border border-[#2563eb] shadow-md"
-                  : "bg-[#e6edfa] text-[#22223b] border border-transparent hover:border-[#2563eb] hover:bg-[#e0eaff]"
-              }`}
-            style={{
-              minWidth: "120px",
-              boxShadow:
-                activeGround === idx
-                  ? "0 2px 8px rgba(37,99,235,0.08)"
-                  : undefined,
-            }}
-          >
-            {ground}
-          </button>
-        ))}
-      </div>
-      <div>
-        <h2 className="font-semibold text-lg mb-2 text-[#22223b]">
-          {item.style} phong cách {tabName.toLowerCase()}
+      <div className="flex justify-between items-center">
+        <h2 className="font-semibold text-xl mb-2 text-[#22223b]">
+          {tabName} phong cách {item.style.toLowerCase()}
         </h2>
-      </div>
-      <div className="flex gap-2 ml-4 items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="size-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
-          />
-        </svg>
-        <h3>{item.groundsSelectionData[activeGround]}</h3>
+        <button className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow hover:from-blue-600 hover:to-blue-800 hover:cursor-pointer transition duration-200 hover:scale-105">
+          Báo giá nhanh
+        </button>
       </div>
       {/* Slider ảnh */}
       {item.images && item.images.length > 0 && (

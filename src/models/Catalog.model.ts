@@ -1,6 +1,7 @@
 interface CatalogStyle {
   name: string;
   listContents: CatalogItem[];
+  groundsSelectionData: string[];
 }
 
 interface CatalogItem {
@@ -9,7 +10,6 @@ interface CatalogItem {
   styleDescription: string;
   matchingPoint: number;
   matchingPointExplanation: string;
-  groundsSelectionData: string[];
 }
 
 export type { CatalogStyle, CatalogItem };

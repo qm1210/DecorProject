@@ -25,10 +25,12 @@ const Catalog = () => {
   useEffect(() => {
     const fetchCatalogData = async () => {
       try {
-        const response = await axios.get("/data/ArchitectureStyles.json");
+        const response = await axios.get("/data/ArchitectureCatalog.json");
         setCatalogData(response.data);
       } catch (error) {
         console.error("Error fetching catalog data:", error);
+      } finally {
+        setLoading(false);
       }
     };
     fetchCatalogData();
@@ -88,19 +90,15 @@ const Catalog = () => {
     setActiveSubTab(0);
   }, [activeTab]);
 
-  useEffect(() => {
-    const fetchCatalogData = async () => {
-      try {
-        const response = await axios.get("/data/ArchitectureStyles.json");
-        setCatalogData(response.data);
-      } catch (error) {
-        console.error("Error fetching catalog data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCatalogData();
-  }, []);
+  const filteredSubTabs =
+    catalogData[activeTab]?.listContents
+      ?.filter((item) => item.matchingPoint >= 5)
+      ?.sort((a, b) => {
+        if (b.matchingPoint !== a.matchingPoint) {
+          return b.matchingPoint - a.matchingPoint;
+        }
+        return a.style.localeCompare(b.style, "vi", { sensitivity: "base" });
+      }) || [];
 
   return (
     <div className="max-w-7xl mx-auto py-4">
@@ -168,23 +166,23 @@ const Catalog = () => {
                 style={{
                   left: subIndicatorStyle.left,
                   width: subIndicatorStyle.width,
-                  background: "#2563eb", // xanh dương đậm
+                  background: "#2563eb",
                   borderRadius: "9999px",
                   zIndex: 0,
                 }}
               />
-              {catalogData[activeTab].listContents.map((item, idx) => (
+              {filteredSubTabs.map((item, idx) => (
                 <button
                   key={item.style}
                   ref={(el) => {
                     subTabRefs.current[idx] = el;
                   }}
                   className={`relative px-5 py-2 font-medium rounded-none bg-transparent z-10 transition-all duration-200 hover:cursor-pointer
-                ${
-                  activeSubTab === idx
-                    ? "text-[#2563eb]"
-                    : "text-[#1d3557] hover:text-[#2563eb] hover:bg-[#e0eaff]"
-                }`}
+          ${
+            activeSubTab === idx
+              ? "text-[#2563eb]"
+              : "text-[#1d3557] hover:text-[#2563eb] hover:bg-[#e0eaff]"
+          }`}
                   onClick={() => setActiveSubTab(idx)}
                 >
                   {item.style}
@@ -192,16 +190,15 @@ const Catalog = () => {
               ))}
             </div>
           )}
-          {/* Nội dung tab con */}
-          {catalogData[activeTab] &&
-            catalogData[activeTab].listContents[activeSubTab] && (
-              <CatalogContainer
-                item={catalogData[activeTab].listContents[activeSubTab]}
-                activeTab={activeTab}
-                activeSubTab={activeSubTab}
-                tabName={catalogData[activeTab].name}
-              />
-            )}
+          {/* Content */}
+          {filteredSubTabs[activeSubTab] && (
+            <CatalogContainer
+              item={filteredSubTabs[activeSubTab]}
+              activeTab={activeTab}
+              activeSubTab={activeSubTab}
+              tabName={catalogData[activeTab].name}
+            />
+          )}
         </>
       )}
     </div>
