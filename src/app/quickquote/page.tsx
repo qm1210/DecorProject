@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useQuoteStore from "@/store/CartStore";
 import { toast } from "react-toastify";
 import axios from "axios";
+import QuestionSidebar from "@/components/QuestionSidebar";
 
 interface Question {
   id: number;
@@ -209,7 +210,7 @@ const QuickQuote = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 py-8 max-w-6xl">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
@@ -246,63 +247,98 @@ const QuickQuote = () => {
 
         {/* Questions */}
         {started && !showResult && current && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-            {/* Progress */}
-            <div className="mb-8">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-sm font-medium text-gray-600">
-                  Câu hỏi {currentId} / {questions.length}
-                </span>
-                <button
-                  onClick={resetSurvey}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold text-sm shadow-sm hover:cursor-pointer hover:bg-blue-700 transition-all duration-150"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
-                    />
-                  </svg>
-                  Làm lại
-                </button>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-3">
-                <div
-                  className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full transition-all duration-500 ease-out"
-                  style={{ width: `${(currentId / questions.length) * 100}%` }}
-                ></div>
-              </div>
+          <div className="flex flex-col md:flex-row gap-8 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+            {/* Sidebar câu hỏi */}
+            <div className="md:w-64 w-full mb-6 md:mb-0">
+              <QuestionSidebar
+                questions={questions}
+                answers={answers}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
+              />
             </div>
-
-            {/* Question */}
-            <div className="mb-8">
-              <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 leading-relaxed">
-                {current.question}
-              </h2>
-
-              <div className="grid gap-3">
-                {current.options.map((opt) => (
+            {/* Nội dung câu hỏi */}
+            <div className="flex-1 max-w-xl xl:max-w-2xl w-full mx-auto">
+              {/* Progress */}
+              <div className="mb-8">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="text-sm font-medium text-gray-600">
+                    Câu hỏi {currentId} / {questions.length}
+                  </span>
                   <button
-                    key={opt.value}
-                    className="group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left transform hover:scale-[1.02]"
-                    onClick={() => handleSelect(opt.value)}
+                    onClick={resetSurvey}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold text-sm shadow-sm hover:cursor-pointer hover:bg-blue-700 transition-all duration-150"
                   >
-                    <div className="flex items-center">
-                      <div className="w-4 h-4 border-2 border-gray-300 rounded-full mr-4 group-hover:border-blue-500 transition-colors"></div>
-                      <span className="font-medium text-gray-700 group-hover:text-blue-700">
-                        {opt.label}
-                      </span>
-                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-5 h-5"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+                      />
+                    </svg>
+                    Làm lại
                   </button>
-                ))}
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-3">
+                  <div
+                    className="bg-gradient-to-r from-blue-500 to-indigo-500 h-3 rounded-full transition-all duration-500 ease-out"
+                    style={{
+                      width: `${(currentId / questions.length) * 100}%`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+              {/* Question */}
+              <div className="mb-8">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-6 leading-relaxed">
+                  {current.question}
+                </h2>
+                <div className="grid gap-3">
+                  {current.options.map((opt) => (
+                    <button
+                      key={opt.value}
+                      className={`group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left transform hover:scale-[1.02]
+                ${
+                  answers[currentId] === opt.value
+                    ? "border-blue-500 bg-blue-50"
+                    : ""
+                }
+              `}
+                      onClick={() => handleSelect(opt.value)}
+                    >
+                      <div className="flex items-center">
+                        <div
+                          className={`w-4 h-4 border-2 rounded-full mr-4 transition-colors
+                  ${
+                    answers[currentId] === opt.value
+                      ? "border-blue-500 bg-blue-500"
+                      : "border-gray-300"
+                  }
+                `}
+                        ></div>
+                        <span
+                          className={`font-medium
+                  ${
+                    answers[currentId] === opt.value
+                      ? "text-blue-700"
+                      : "text-gray-700"
+                  }
+                  group-hover:text-blue-700
+                `}
+                        >
+                          {opt.label}
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
