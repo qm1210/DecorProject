@@ -806,7 +806,7 @@ const ProductSelectionModal = ({
                                 );
 
                                 let top = rect.bottom + window.scrollY;
-                                let left = rect.left + window.scrollX;
+                                const left = rect.left + window.scrollX;
 
                                 // Nếu menu tràn xuống dưới thì hiển thị phía trên nút
                                 if (
