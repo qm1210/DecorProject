@@ -21,18 +21,20 @@ interface Product {
 }
 
 interface FlattenedRow {
-  id: string; // Product ID gốc
+  id: string;
   "Đầu mục": string;
   "Tên cốt": string;
   "Tên phủ": string;
   "Đơn vị": string;
-  "Đơn giá": number; // Giá báo khách
+  "Đơn giá": number;
   "Ghi chú": string;
   "Số lượng": number;
-  "Đơn giá gốc": number; // Đơn giá gốc
-  "Lợi nhuận (%)": number; // Lợi nhuận
-  "Đơn vị mặc định": string; // Đơn vị mặc định của sản phẩm
-  "Ngày tạo": string; // Ngày tạo sản phẩm
+  "Đơn giá gốc": number;
+  "Lợi nhuận (%)": number;
+  "Đơn vị mặc định": string;
+  "Ngày tạo": string;
+  "Danh mục": string;
+  isManual?: boolean; // Thêm property này
 }
 
 export type { MaterialCover, CoreMaterial, Product, FlattenedRow };

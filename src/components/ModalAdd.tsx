@@ -6,31 +6,13 @@ import removeVietnameseTones from "@/utils/RemoveVietnamese";
 import { toast } from "react-toastify";
 import AddProductForm from "./AddProductForm";
 import useQuoteStore from "@/store/CartStore";
-import MenuPortal from "./MenuPortal";
-
-// Flattened table row interface
-interface FlattenedRow {
-  id: string;
-  danhMuc: string;
-  "Đầu mục": string;
-  "Tên cốt": string;
-  "Tên phủ": string;
-  "Đơn vị": string;
-  "Đơn giá": number;
-  "Ghi chú": string;
-  "Số lượng": number;
-  "Đơn giá gốc": number;
-  "Lợi nhuận (%)": number;
-  "Đơn vị mặc định": string;
-  "Ngày tạo": string;
-  isManual?: boolean; // Flag để đánh dấu sản phẩm nhập tay
-}
+import type { FlattenedRow } from "@/models/Product.model";
+import { createPortal } from "react-dom";
 
 interface ProductSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   products: FlattenedRow[];
-  setProducts?: (products: FlattenedRow[]) => void;
   danhMuc: string;
 }
 
@@ -38,7 +20,6 @@ const ProductSelectionModal = ({
   isOpen,
   onClose,
   products,
-  setProducts,
   danhMuc,
 }: ProductSelectionModalProps) => {
   const [modalSearch, setModalSearch] = useState("");
@@ -53,15 +34,14 @@ const ProductSelectionModal = ({
   const [localProducts, setLocalProducts] = useState<FlattenedRow[]>([]);
   const [openMenuRow, setOpenMenuRow] = useState<string | null>(null);
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const [menuPosition, setMenuPosition] = useState<{
-    top: number;
-    left: number;
-  }>({ top: 0, left: 0 });
-  const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [editingProduct, setEditingProduct] = useState<FlattenedRow | null>(
     null
   );
   const [favoriteProducts, setFavoriteProducts] = useState<string[]>([]);
+  const [menuPosition, setMenuPosition] = useState<{
+    top: number;
+    left: number;
+  }>({ top: 0, left: 0 });
 
   // Load danh sách yêu thích từ localStorage
   useEffect(() => {
@@ -71,99 +51,20 @@ const ProductSelectionModal = ({
     setFavoriteProducts(savedFavorites);
   }, []);
 
-  // Đóng menu khi click ra ngoài
-  useEffect(() => {
-    if (!openMenuRow) return;
-
-    const handleClickOutside = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setOpenMenuRow(null);
-      }
-    };
-
-    const updateMenuPosition = () => {
-      const btn = buttonRefs.current[openMenuRow];
-      if (btn) {
-        const rect = btn.getBoundingClientRect();
-        const top = rect.bottom + window.scrollY + 8;
-        const left = rect.left + window.scrollX;
-        setMenuPosition({ top, left });
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    const handleScroll = () => {
-      setOpenMenuRow(null); // Đóng menu khi scroll
-    };
-
-    // Lắng nghe scroll của bảng và window
-    const scrollable = document.querySelector(".flex-1.overflow-auto.bg-white");
-    window.addEventListener("scroll", handleScroll, true);
-    if (scrollable) scrollable.addEventListener("scroll", handleScroll);
-
-    // Cập nhật ngay khi mount
-    updateMenuPosition();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll, true);
-      if (scrollable) scrollable.removeEventListener("scroll", handleScroll);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [openMenuRow]);
-
-  const handleShowForm = () => {
-    setShowForm(true);
-  };
-
-  const handleCloseForm = () => {
-    setShowForm(false);
-  };
-
-  const getRowKey = (row: FlattenedRow) =>
-    `${row.id}-${row["Tên cốt"]}-${row["Tên phủ"]}`;
-
-  // Load manual products từ localStorage và merge với products
+  // Load và merge dữ liệu khi modal mở
   useEffect(() => {
     if (isOpen) {
-      // Lấy sản phẩm nhập tay từ localStorage
       const manualKey = `manualProducts-${danhMuc}`;
       const manualProducts: FlattenedRow[] = JSON.parse(
         localStorage.getItem(manualKey) || "[]"
       );
-
-      // Merge products gốc với sản phẩm nhập tay
       const originalProducts = products.map((p) => ({ ...p, isManual: false }));
       const manualWithFlag = manualProducts.map((p) => ({
         ...p,
         isManual: true,
       }));
-
-      // Loại bỏ trùng lặp nếu có
-      const filteredOriginal = originalProducts.filter(
-        (p) =>
-          !manualWithFlag.some(
-            (m) =>
-              m["Tên cốt"] === p["Tên cốt"] &&
-              m["Tên phủ"] === p["Tên phủ"] &&
-              m["Đầu mục"] === p["Đầu mục"]
-          )
-      );
-
-      const all = [...filteredOriginal, ...manualWithFlag];
-      setLocalProducts(all);
-
-      // Cập nhật khoảng giá
-      if (all.length > 0) {
-        const prices = all.map((item) => item["Đơn giá"]);
-        setPriceRange([Math.min(...prices), Math.max(...prices)]);
-      }
-    }
-  }, [isOpen, products, danhMuc]);
-
-  useEffect(() => {
-    if (isOpen) {
-      // Reset checked state when modal opens
+      const allProducts = [...originalProducts, ...manualWithFlag];
+      setLocalProducts(allProducts);
       setCheckedRows([]);
       setSelectedDauMuc([]);
       setSelectedTenCot([]);
@@ -172,24 +73,55 @@ const ProductSelectionModal = ({
       setSortColumn("");
       setSortDirection("asc");
     }
-  }, [isOpen]);
+  }, [isOpen, products, danhMuc]);
 
-  // Get unique values for filters từ localProducts
-  const uniqueDauMuc = [
-    ...new Set(localProducts.map((item) => item["Đầu mục"])),
-  ];
-  const uniqueTenCot = [
-    ...new Set(localProducts.map((item) => item["Tên cốt"])),
-  ];
-  const uniqueTenPhu = [
-    ...new Set(localProducts.map((item) => item["Tên phủ"])),
-  ];
+  // Đóng menu khi click ra ngoài
+  useEffect(() => {
+    if (!openMenuRow) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpenMenuRow(null);
+      }
+    };
+    const handleScroll = () => setOpenMenuRow(null);
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, true);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, [openMenuRow]);
+
+  const getRowKey = (row: FlattenedRow) =>
+    `${row.id}-${row["Tên cốt"]}-${row["Tên phủ"]}`;
 
   const productsInCurrentCategory = localProducts.filter(
-    (row: FlattenedRow) => row.danhMuc === danhMuc
+    (row: FlattenedRow) => row["Danh mục"] === danhMuc
   );
 
-  // Filter data
+  const uniqueDauMuc = [
+    ...new Set(productsInCurrentCategory.map((item) => item["Đầu mục"])),
+  ];
+  const uniqueTenCot = [
+    ...new Set(productsInCurrentCategory.map((item) => item["Tên cốt"])),
+  ];
+  const uniqueTenPhu = [
+    ...new Set(productsInCurrentCategory.map((item) => item["Tên phủ"])),
+  ];
+
+  useEffect(() => {
+    if (isOpen) {
+      const prices = localProducts
+        .filter((row) => row["Danh mục"] === danhMuc)
+        .map((item) => item["Đơn giá"]);
+      if (prices.length > 0) {
+        setPriceRange([Math.min(...prices), Math.max(...prices)]);
+      } else {
+        setPriceRange([0, 10000000]);
+      }
+    }
+  }, [isOpen, localProducts, danhMuc]);
+
   const filteredData = productsInCurrentCategory.filter((row) => {
     const term = removeVietnameseTones(modalSearch.toLowerCase());
     const match = (value: string) =>
@@ -223,19 +155,13 @@ const ProductSelectionModal = ({
     );
   });
 
-  // Sort products
-  // Sort products - yêu thích lên đầu
   const sortedProducts = [...filteredData].sort((a, b) => {
     const aKey = getRowKey(a);
     const bKey = getRowKey(b);
     const aIsFavorite = favoriteProducts.includes(aKey);
     const bIsFavorite = favoriteProducts.includes(bKey);
-
-    // Ưu tiên sản phẩm yêu thích lên đầu
     if (aIsFavorite && !bIsFavorite) return -1;
     if (!aIsFavorite && bIsFavorite) return 1;
-
-    // Nếu cùng trạng thái yêu thích, sort theo cột được chọn
     if (!sortColumn) return 0;
     const valA = a[sortColumn as keyof FlattenedRow];
     const valB = b[sortColumn as keyof FlattenedRow];
@@ -267,125 +193,76 @@ const ProductSelectionModal = ({
   };
 
   const handleAddSelected = () => {
-    if (setProducts) {
-      // Lấy tất cả sản phẩm đã chọn
-      const selectedRows = localProducts.filter((p) =>
-        checkedRows.includes(getRowKey(p))
-      );
-
-      // Tạo bản sao products hiện tại
-      const updatedProducts = [...products];
-
-      selectedRows.forEach((row) => {
-        const key = getRowKey(row);
-        const existedIndex = updatedProducts.findIndex(
-          (p) => getRowKey(p) === key
-        );
-        if (existedIndex !== -1) {
-          // Nếu đã có, tăng số lượng
-          updatedProducts[existedIndex] = {
-            ...updatedProducts[existedIndex],
-            ["Số lượng"]: (updatedProducts[existedIndex]["Số lượng"] || 0) + 1,
-          };
-        } else {
-          // Nếu chưa có (sản phẩm nhập tay), thêm mới vào
-          updatedProducts.push({ ...row, ["Số lượng"]: 1 });
-        }
-      });
-
-      setProducts(updatedProducts);
-    }
+    const { addProduct, updateQuantity, listedProducts } =
+      useQuoteStore.getState();
+    const selectedRows = localProducts.filter((p) =>
+      checkedRows.includes(getRowKey(p))
+    );
+    let addedCount = 0;
+    let updatedCount = 0;
+    selectedRows.forEach((row) => {
+      const productId = `${row.id}-${row["Tên cốt"]}-${row["Tên phủ"]}`;
+      const existingProduct = listedProducts.find((p) => p.id === productId);
+      if (existingProduct) {
+        updateQuantity(productId, existingProduct.quantity + 1);
+        updatedCount++;
+      } else {
+        const productForStore = {
+          id: productId,
+          name: `${row["Danh mục"]} - ${row["Đầu mục"]} - ${row["Tên cốt"]} - ${row["Tên phủ"]}`,
+          unit: row["Đơn vị"],
+          price: row["Đơn giá"],
+          quantity: 1,
+          category: row["Danh mục"],
+          subcategory: row["Đầu mục"],
+          core: row["Tên cốt"],
+          cover: row["Tên phủ"],
+          basePrice: row["Đơn giá gốc"],
+          profit: row["Lợi nhuận (%)"],
+          note: row["Ghi chú"],
+          productId: row.id,
+          unit_default: row["Đơn vị mặc định"],
+          created_date: row["Ngày tạo"],
+        };
+        addProduct(productForStore);
+        addedCount++;
+      }
+    });
     setCheckedRows([]);
     onClose();
-    toast.success("Thêm sản phẩm thành công");
+    if (addedCount > 0 && updatedCount > 0) {
+      toast.success(
+        `Thêm ${addedCount} sản phẩm mới và tăng số lượng ${updatedCount} sản phẩm có sẵn`
+      );
+    } else if (addedCount > 0) {
+      toast.success(`Thêm ${addedCount} sản phẩm thành công`);
+    } else if (updatedCount > 0) {
+      toast.success(`Tăng số lượng ${updatedCount} sản phẩm thành công`);
+    }
   };
 
   const handleDeleteSelected = (rowKey?: string) => {
-    // Nếu truyền rowKey thì chỉ xóa sản phẩm đó, không thì xóa theo checkedRows
     const keysToDelete = rowKey ? [rowKey] : checkedRows;
-
     const selectedLocal = localProducts.filter((p) =>
       keysToDelete.includes(getRowKey(p))
     );
-
-    // Chỉ cho xóa sản phẩm nhập tay (có flag isManual = true)
     const canDeleteAll = selectedLocal.every((item) => item.isManual);
-
     if (!canDeleteAll) {
-      toast.error(
-        "Chỉ được xóa sản phẩm nhập tay, không thể xóa sản phẩm gốc!"
-      );
+      toast.error("Chỉ được xóa sản phẩm nhập tay!");
       return;
     }
-
-    // Lọc ra các sản phẩm còn lại
     const remainingProducts = localProducts.filter(
       (p) => !keysToDelete.includes(getRowKey(p))
     );
-
     const manualProductsToSave = remainingProducts.filter((p) => p.isManual);
-
-    // Cập nhật localProducts
     setLocalProducts(remainingProducts);
-
-    // Cập nhật localStorage (chỉ lưu sản phẩm nhập tay)
     const manualKey = `manualProducts-${danhMuc}`;
-    localStorage.setItem(
-      manualKey, // đổi từ "manualProducts" thành manualKey
-      JSON.stringify(manualProductsToSave)
-    );
-
-    // Xóa sản phẩm khỏi store nếu đang được chọn
+    localStorage.setItem(manualKey, JSON.stringify(manualProductsToSave));
+    const { removeProduct } = useQuoteStore.getState();
     selectedLocal.forEach((product) => {
       const productId = `${product.id}-${product["Tên cốt"]}-${product["Tên phủ"]}`;
-      const { removeProduct } = useQuoteStore.getState();
       removeProduct(productId);
     });
-
-    // Xóa localStorage của category quantities nếu có
-    Object.keys(localStorage).forEach((key) => {
-      if (key.startsWith("category-") && key.endsWith("-quantities")) {
-        const savedQuantities = JSON.parse(localStorage.getItem(key) || "{}");
-        let hasChanges = false;
-
-        selectedLocal.forEach((product) => {
-          const itemKey = `${product.id}-${product["Tên cốt"]}-${product["Tên phủ"]}`;
-          if (savedQuantities[itemKey]) {
-            delete savedQuantities[itemKey];
-            hasChanges = true;
-          }
-        });
-
-        if (hasChanges) {
-          if (Object.keys(savedQuantities).length > 0) {
-            localStorage.setItem(key, JSON.stringify(savedQuantities));
-          } else {
-            localStorage.removeItem(key);
-          }
-        }
-      }
-    });
-
-    // Dispatch custom event với key mới
-    window.dispatchEvent(
-      new CustomEvent("localStorageChanged", {
-        detail: {
-          key: manualKey, // đổi từ "manualProducts" thành manualKey
-          action: "delete",
-          data: manualProductsToSave,
-          deletedProducts: selectedLocal,
-        },
-      })
-    );
-
-    // Cập nhật products ở cha nếu có
-    if (setProducts) {
-      const updatedProducts = products.filter(
-        (p) => !keysToDelete.includes(getRowKey(p))
-      );
-      setProducts(updatedProducts);
-    }
-
     setCheckedRows((prev) => prev.filter((key) => !keysToDelete.includes(key)));
     toast.success("Xóa sản phẩm thành công");
   };
@@ -411,74 +288,42 @@ const ProductSelectionModal = ({
     }
   };
 
-  // Hàm xử lý click nút thao tác
-  const handleMenuToggle = (
-    rowKey: string,
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    const button = event.currentTarget;
-    const rect = button.getBoundingClientRect();
-
-    // Tính số nút thao tác
-    const row = localProducts.find((r) => getRowKey(r) === rowKey);
-    const isManual = row?.isManual;
-    const menuItemCount = isManual ? 3 : 1;
-    const menuHeight = menuItemCount * 48 + 16;
-    const menuWidth = 180;
-
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-
-    // Đặt mặc định menu ngay dưới nút
-    let top = rect.bottom + window.scrollY + 4;
-    let left = rect.left + window.scrollX;
-
-    // Nếu menu tràn phải, căn lại cho vừa màn hình
-    if (left + menuWidth > viewportWidth - 8) {
-      left = viewportWidth - menuWidth - 8;
-    }
-    // Nếu menu tràn trái, căn sát trái
-    if (left < 8) {
-      left = 8;
-    }
-
-    // Nếu menu tràn xuống dưới, hiển thị phía trên nút
-    if (rect.bottom + menuHeight > viewportHeight - 8) {
-      top = rect.top + window.scrollY - menuHeight - 4;
-    }
-    // Nếu menu tràn lên trên, căn sát trên
-    if (top < 8) {
-      top = 8;
-    }
-
-    setMenuPosition({ top, left });
-    setOpenMenuRow(openMenuRow === rowKey ? null : rowKey);
-  };
-  if (!isOpen) return null;
-
   const handleToggleFavorite = (rowKey: string) => {
     const updatedFavorites = favoriteProducts.includes(rowKey)
       ? favoriteProducts.filter((key) => key !== rowKey)
       : [...favoriteProducts, rowKey];
-
     setFavoriteProducts(updatedFavorites);
     localStorage.setItem("favoriteProducts", JSON.stringify(updatedFavorites));
-
     const action = favoriteProducts.includes(rowKey) ? "bỏ" : "thêm vào";
     toast.success(`Đã ${action} yêu thích!`);
   };
+
+  const handleShowForm = () => {
+    setEditingProduct(null);
+    setShowForm(true);
+  };
+
+  const handleCloseForm = () => {
+    setShowForm(false);
+    setEditingProduct(null);
+  };
+
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
       <AddProductForm
         isOpen={showForm}
         onClose={handleCloseForm}
-        // Trong hàm onAdd của AddProductForm:
         onAdd={(newProduct) => {
           const manualKey = `manualProducts-${danhMuc}`;
 
           if (editingProduct) {
-            // ĐANG SỬA: cập nhật sản phẩm
+            // Cập nhật sản phẩm đã có
+            const oldProductId = `${editingProduct.id}-${editingProduct["Tên cốt"]}-${editingProduct["Tên phủ"]}`;
+            const newProductId = `${editingProduct.id}-${newProduct["Tên cốt"]}-${newProduct["Tên phủ"]}`;
+
+            // Cập nhật trong localProducts
             const updated = localProducts.map((item) =>
               getRowKey(item) === getRowKey(editingProduct)
                 ? { ...item, ...newProduct }
@@ -486,25 +331,48 @@ const ProductSelectionModal = ({
             );
             setLocalProducts(updated);
 
-            // Cập nhật localStorage với key riêng
+            // Cập nhật localStorage
             const manualProductsToSave = updated.filter((p) => p.isManual);
             localStorage.setItem(
               manualKey,
               JSON.stringify(manualProductsToSave)
             );
 
-            if (setProducts) {
-              setProducts(
-                products.map((item) =>
-                  getRowKey(item) === getRowKey(editingProduct)
-                    ? { ...item, ...newProduct }
-                    : item
-                )
-              );
+            // Cập nhật trong giỏ hàng nếu sản phẩm đang có trong giỏ
+            const { listedProducts, removeProduct, addProduct } =
+              useQuoteStore.getState();
+            const existingCartProduct = listedProducts.find(
+              (p) => p.id === oldProductId
+            );
+
+            if (existingCartProduct) {
+              // Xóa sản phẩm cũ khỏi giỏ hàng
+              removeProduct(oldProductId);
+
+              // Thêm sản phẩm mới với thông tin đã cập nhật
+              const updatedProductForCart = {
+                id: newProductId,
+                name: `${danhMuc} - ${newProduct["Đầu mục"]} - ${newProduct["Tên cốt"]} - ${newProduct["Tên phủ"]}`,
+                unit: newProduct["Đơn vị"],
+                price: newProduct["Đơn giá"],
+                quantity: existingCartProduct.quantity, // Giữ nguyên số lượng
+                category: danhMuc,
+                subcategory: newProduct["Đầu mục"],
+                core: newProduct["Tên cốt"],
+                cover: newProduct["Tên phủ"],
+                basePrice: newProduct["Đơn giá"],
+                profit: 0,
+                note: newProduct["Ghi chú"],
+                productId: editingProduct.id,
+                unit_default: newProduct["Đơn vị"],
+                created_date: editingProduct["Ngày tạo"],
+              };
+
+              addProduct(updatedProductForCart);
+              toast.success("Cập nhật sản phẩm thành công");
             }
-            toast.success("Cập nhật sản phẩm thành công");
           } else {
-            // ĐANG THÊM: kiểm tra trùng lặp trước khi thêm mới
+            // Thêm sản phẩm mới
             const isDuplicate = localProducts.some(
               (item) =>
                 item["Tên cốt"] === newProduct["Tên cốt"] &&
@@ -517,10 +385,9 @@ const ProductSelectionModal = ({
               return;
             }
 
-            // Tạo sản phẩm mới với metadata
             const productWithMeta: FlattenedRow = {
               ...newProduct,
-              danhMuc,
+              "Danh mục": danhMuc,
               id: Date.now().toString(),
               "Số lượng": 1,
               "Đơn giá gốc": newProduct["Đơn giá"],
@@ -530,7 +397,7 @@ const ProductSelectionModal = ({
               isManual: true,
             };
 
-            // Cập nhật localStorage với key riêng cho từng danh mục
+            // Cập nhật localStorage
             const currentManualProducts = JSON.parse(
               localStorage.getItem(manualKey) || "[]"
             );
@@ -540,126 +407,16 @@ const ProductSelectionModal = ({
               JSON.stringify(currentManualProducts)
             );
 
-            // Cập nhật localProducts ngay lập tức
+            // Cập nhật state ngay lập tức
             setLocalProducts((prev) => [...prev, productWithMeta]);
 
-            // Cập nhật products ở cha nếu có
-            if (setProducts) {
-              setProducts([...products, productWithMeta]);
-            }
-
-            handleCloseForm();
             toast.success("Thêm sản phẩm thành công");
           }
+          handleCloseForm();
         }}
         initialData={editingProduct}
         danhMuc={danhMuc}
       />
-
-      {/* Menu thao tác sử dụng Portal - Đặt ra ngoài để không bị cắt */}
-      {openMenuRow && (
-        <MenuPortal>
-          <div
-            ref={menuRef}
-            style={{
-              position: "fixed",
-              top: menuPosition.top,
-              left: menuPosition.left,
-              zIndex: 10000,
-            }}
-            className="bg-white border border-gray-600 rounded-xl shadow-2xl min-w-[180px] text-left animate-fadeIn"
-          >
-            {(() => {
-              const row = localProducts.find(
-                (r) => getRowKey(r) === openMenuRow
-              );
-
-              // Thêm kiểm tra row có tồn tại không
-              if (!row) return null;
-
-              const isManual = row?.isManual;
-              return (
-                <>
-                  {isManual && (
-                    <>
-                      <button
-                        className="flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 hover:cursor-pointer hover:bg-blue-100 hover:text-blue-700 text-left rounded-t-xl transition font-medium"
-                        onClick={() => {
-                          setEditingProduct(row);
-                          setShowForm(true);
-                          setOpenMenuRow(null);
-                        }}
-                      >
-                        <svg
-                          width={18}
-                          height={18}
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13z" />
-                        </svg>
-                        Sửa sản phẩm
-                      </button>
-                      <button
-                        className="flex items-center gap-3 w-full px-4 py-3 text-sm text-gray-700 hover:cursor-pointer hover:bg-red-100 hover:text-red-600 text-left transition font-medium"
-                        onClick={() => {
-                          setOpenMenuRow(null);
-                          handleDeleteSelected(getRowKey(row));
-                        }}
-                      >
-                        <svg
-                          width={18}
-                          height={18}
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth={2}
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M6 19a2 2 0 002 2h8a2 2 0 002-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
-                        </svg>
-                        Xóa sản phẩm
-                      </button>
-                    </>
-                  )}
-                  <button
-                    className={`flex items-center gap-3 w-full px-4 py-3 text-sm hover:cursor-pointer text-left transition font-medium
-${isManual ? "rounded-b-xl" : "rounded-xl"}
-${
-  favoriteProducts.includes(getRowKey(row))
-    ? "text-red-700 bg-red-100 hover:bg-red-200"
-    : "text-gray-700 hover:bg-yellow-100 hover:text-yellow-700"
-}`}
-                    onClick={() => {
-                      handleToggleFavorite(getRowKey(row));
-                      setOpenMenuRow(null);
-                    }}
-                  >
-                    <svg
-                      width={18}
-                      height={18}
-                      fill={
-                        favoriteProducts.includes(getRowKey(row))
-                          ? "currentColor"
-                          : "none"
-                      }
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                    </svg>
-                    {favoriteProducts.includes(getRowKey(row))
-                      ? "Bỏ yêu thích"
-                      : "Yêu thích"}
-                  </button>
-                </>
-              );
-            })()}
-          </div>
-        </MenuPortal>
-      )}
 
       {/* Overlay */}
       <div
@@ -669,7 +426,10 @@ ${
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-xl sm:rounded-2xl pointer-events-auto shadow-2xl w-full max-w-full sm:max-w-4xl lg:max-w-6xl xl:max-w-[1200px] max-h-[95vh] h-[95vh] overflow-hidden border border-gray-200 animate-modalScale flex flex-col lg:flex-row">
+      <div
+        className="relative bg-white rounded-xl sm:rounded-2xl pointer-events-auto shadow-2xl w-full max-w-full sm:max-w-4xl lg:max-w-6xl xl:max-w-[1200px] max-h-[95vh] h-[95vh] overflow-hidden border border-gray-200 flex flex-col lg:flex-row
+    animate-modalOpen"
+      >
         {/* Filter Panel */}
         <div className="w-full lg:w-80 border-b lg:border-b-0 lg:border-l bg-gray-50 flex flex-col min-h-0 order-1 lg:order-2 max-h-[40vh] lg:max-h-full overflow-auto">
           <div className="p-3 sm:p-4 border-b bg-white flex items-center justify-between">
@@ -727,16 +487,20 @@ ${
                   <input
                     type="range"
                     min={
-                      localProducts.length > 0
+                      productsInCurrentCategory.length > 0
                         ? Math.min(
-                            ...localProducts.map((item) => item["Đơn giá"])
+                            ...productsInCurrentCategory.map(
+                              (item) => item["Đơn giá"]
+                            )
                           )
                         : 0
                     }
                     max={
-                      localProducts.length > 0
+                      productsInCurrentCategory.length > 0
                         ? Math.max(
-                            ...localProducts.map((item) => item["Đơn giá"])
+                            ...productsInCurrentCategory.map(
+                              (item) => item["Đơn giá"]
+                            )
                           )
                         : 10000000
                     }
@@ -754,16 +518,20 @@ ${
                   <input
                     type="range"
                     min={
-                      localProducts.length > 0
+                      productsInCurrentCategory.length > 0
                         ? Math.min(
-                            ...localProducts.map((item) => item["Đơn giá"])
+                            ...productsInCurrentCategory.map(
+                              (item) => item["Đơn giá"]
+                            )
                           )
                         : 0
                     }
                     max={
-                      localProducts.length > 0
+                      productsInCurrentCategory.length > 0
                         ? Math.max(
-                            ...localProducts.map((item) => item["Đơn giá"])
+                            ...productsInCurrentCategory.map(
+                              (item) => item["Đơn giá"]
+                            )
                           )
                         : 10000000
                     }
@@ -864,8 +632,10 @@ ${
               <button
                 onClick={() => {
                   setModalSearch("");
-                  if (localProducts.length > 0) {
-                    const prices = localProducts.map((item) => item["Đơn giá"]);
+                  if (productsInCurrentCategory.length > 0) {
+                    const prices = productsInCurrentCategory.map(
+                      (item) => item["Đơn giá"]
+                    );
                     setPriceRange([Math.min(...prices), Math.max(...prices)]);
                   }
                   setSelectedDauMuc([]);
@@ -883,7 +653,9 @@ ${
         {/* Table */}
         <div className="flex-1 flex flex-col min-w-0 min-h-0 order-2 lg:order-1 overflow-auto">
           <div className="p-3 sm:p-4 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white gap-2">
-            <h2 className="text-lg sm:text-xl font-bold">Chọn sản phẩm</h2>
+            <h2 className="text-lg sm:text-xl font-bold">
+              Chọn sản phẩm - {danhMuc}
+            </h2>
             <button
               onClick={onClose}
               className="hidden lg:flex text-gray-500 hover:cursor-pointer hover:text-black text-3xl sm:text-4xl rounded-full w-9 h-9 items-center justify-center transition-colors"
@@ -1008,10 +780,53 @@ ${
                               className="w-4 h-4 sm:w-5 sm:h-5 accent-blue-500"
                             />
                           </td>
-                          <td className="px-1 sm:px-2 py-2 sm:py-4 text-center">
+                          <td className="px-1 sm:px-2 py-2 sm:py-4 text-center relative">
                             <button
                               className="p-1 rounded-full hover:bg-gray-200 hover:cursor-pointer"
-                              onClick={(e) => handleMenuToggle(rowKey, e)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                const rect =
+                                  e.currentTarget.getBoundingClientRect();
+
+                                // Tính số nút trong menu
+                                const row = localProducts.find(
+                                  (r) => getRowKey(r) === rowKey
+                                );
+                                let menuItemCount = 1; // luôn có nút yêu thích
+                                if (row?.isManual) menuItemCount += 2; // có thêm nút sửa và xóa
+
+                                const menuHeight = menuItemCount * 48 + 16; // 48px mỗi nút, 16px padding
+                                const windowHeight = window.innerHeight;
+
+                                console.log(
+                                  "DEBUG menuHeight:",
+                                  menuHeight,
+                                  "menuItemCount:",
+                                  menuItemCount
+                                );
+
+                                let top = rect.bottom + window.scrollY;
+                                let left = rect.left + window.scrollX;
+
+                                // Nếu menu tràn xuống dưới thì hiển thị phía trên nút
+                                if (
+                                  top + menuHeight >
+                                  windowHeight + window.scrollY
+                                ) {
+                                  top =
+                                    rect.top +
+                                    window.scrollY -
+                                    0.75 * menuHeight;
+                                }
+
+                                setMenuPosition({
+                                  top,
+                                  left,
+                                });
+                                setOpenMenuRow(
+                                  openMenuRow === rowKey ? null : rowKey
+                                );
+                              }}
                               aria-label="Thao tác"
                             >
                               <svg
@@ -1025,6 +840,122 @@ ${
                                 <circle cx="16" cy="10" r="1.5" />
                               </svg>
                             </button>
+
+                            {/* Menu ngay trong cell */}
+                            {openMenuRow === rowKey &&
+                              createPortal(
+                                <div
+                                  ref={menuRef}
+                                  style={{
+                                    position: "absolute",
+                                    top: menuPosition.top,
+                                    left: menuPosition.left,
+                                    zIndex: 9999,
+                                    minWidth: 160,
+                                  }}
+                                  className="bg-white border border-gray-300 rounded-lg shadow-xl text-left animate-fadeIn"
+                                >
+                                  {(() => {
+                                    const row = localProducts.find(
+                                      (r) => getRowKey(r) === openMenuRow
+                                    );
+                                    if (!row) return null;
+
+                                    const isManual = row?.isManual;
+                                    return (
+                                      <>
+                                        {isManual && (
+                                          <>
+                                            <button
+                                              className="flex items-center gap-3 w-full px-3 py-2 text-sm text-gray-700 hover:cursor-pointer hover:bg-blue-50 hover:text-blue-700 text-left rounded-t-lg transition font-medium"
+                                              onClick={() => {
+                                                setEditingProduct(row);
+                                                setShowForm(true);
+                                                setOpenMenuRow(null);
+                                              }}
+                                            >
+                                              <svg
+                                                width={16}
+                                                height={16}
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth={2}
+                                                viewBox="0 0 24 24"
+                                              >
+                                                <path d="M15.232 5.232l3.536 3.536M9 13l6.586-6.586a2 2 0 112.828 2.828L11.828 15.828a2 2 0 01-2.828 0L9 13z" />
+                                              </svg>
+                                              Sửa
+                                            </button>
+                                            <button
+                                              className="flex items-center gap-3 w-full px-3 py-2 text-sm text-gray-700 hover:cursor-pointer hover:bg-red-50 hover:text-red-700 text-left transition font-medium"
+                                              onClick={() => {
+                                                setOpenMenuRow(null);
+                                                handleDeleteSelected(
+                                                  getRowKey(row)
+                                                );
+                                              }}
+                                            >
+                                              <svg
+                                                width={16}
+                                                height={16}
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth={2}
+                                                viewBox="0 0 24 24"
+                                              >
+                                                <path d="M6 19a2 2 0 002 2h8a2 2 0 002-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                              </svg>
+                                              Xóa
+                                            </button>
+                                          </>
+                                        )}
+                                        <button
+                                          className={`flex items-center gap-3 w-full px-3 py-2 text-sm hover:cursor-pointer text-left transition font-medium ${
+                                            isManual
+                                              ? "rounded-b-lg"
+                                              : "rounded-lg"
+                                          } ${
+                                            favoriteProducts.includes(
+                                              getRowKey(row)
+                                            )
+                                              ? "text-red-700 bg-red-50 hover:bg-red-100"
+                                              : "text-gray-700 hover:bg-yellow-50 hover:text-yellow-700"
+                                          }`}
+                                          onClick={() => {
+                                            handleToggleFavorite(
+                                              getRowKey(row)
+                                            );
+                                            setOpenMenuRow(null);
+                                          }}
+                                        >
+                                          <svg
+                                            width={16}
+                                            height={16}
+                                            fill={
+                                              favoriteProducts.includes(
+                                                getRowKey(row)
+                                              )
+                                                ? "currentColor"
+                                                : "none"
+                                            }
+                                            stroke="currentColor"
+                                            strokeWidth={2}
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+                                          </svg>
+                                          {favoriteProducts.includes(
+                                            getRowKey(row)
+                                          )
+                                            ? "Bỏ yêu thích"
+                                            : "Yêu thích"}
+                                        </button>
+                                      </>
+                                    );
+                                  })()}
+                                </div>,
+                                document.body
+                              )}
                           </td>
                         </tr>
                       );
@@ -1045,34 +976,6 @@ ${
           </div>
         </div>
       </div>
-
-      {/* Animations */}
-      <style jsx global>{`
-        @keyframes modalScaleIn {
-          0% {
-            opacity: 0;
-            transform: scale(0.95) translateY(30px);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-        .animate-modalScale {
-          animation: modalScaleIn 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.3s;
-        }
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
   );
 };
