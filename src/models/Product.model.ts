@@ -34,7 +34,7 @@ interface FlattenedRow {
   "Đơn vị mặc định": string;
   "Ngày tạo": string;
   "Danh mục": string;
-  isManual?: boolean; // Thêm property này
+  isManual?: boolean; 
 }
 
 export type { MaterialCover, CoreMaterial, Product, FlattenedRow };

@@ -5,7 +5,13 @@ import formatCurrency from "@/utils/FormatCurrency";
 import useQuoteStore from "@/store/CartStore";
 import Swal from "sweetalert2";
 import ProductSelectionModal from "./ModalAdd";
-import type { FlattenedRow } from "@/models/Product.model";
+import type {
+  FlattenedRow,
+  Product,
+  MaterialCover,
+  CoreMaterial,
+} from "@/models/Product.model";
+import type { Category } from "@/models/Category.model";
 
 interface CategoriesContainerProps {
   categories: string[];
@@ -20,35 +26,34 @@ const extractCategory = (productName: string): string => {
 };
 
 // Function để flatten dữ liệu JSON thành FlattenedRow[]
-const flattenProductData = (data: any[]): FlattenedRow[] => {
+const flattenProductData = (data: Category[]): FlattenedRow[] => {
   const flattened: FlattenedRow[] = [];
 
-  data.forEach((category) => {
+  data.forEach((category: Category) => {
     const categoryName = category["Danh mục"];
     if (!category["Sản phẩm"]) return;
 
-    category["Sản phẩm"].forEach((product: any) => {
+    category["Sản phẩm"].forEach((product: Product) => {
       if (!product["Chất liệu cốt"]) return;
 
-      product["Chất liệu cốt"].forEach((cotMaterial: any) => {
+      product["Chất liệu cốt"].forEach((cotMaterial: CoreMaterial) => {
         if (!cotMaterial["Chất liệu phủ"]) return;
 
-        cotMaterial["Chất liệu phủ"].forEach((phuMaterial: any) => {
+        cotMaterial["Chất liệu phủ"].forEach((phuMaterial: MaterialCover) => {
           flattened.push({
-            id: `${product.id || Date.now()}-${Math.random()}`,
+            id: `${product.id}-${cotMaterial["Tên cốt"]}-${phuMaterial["Tên phủ"]}`,
             "Danh mục": categoryName,
-            "Đầu mục": product["Đầu mục"] || "",
-            "Tên cốt": cotMaterial["Tên cốt"] || "",
-            "Tên phủ": phuMaterial["Tên phủ"] || "",
-            "Đơn vị":
-              phuMaterial["Đơn vị"] || product["Mặc định đơn vị"] || "m2",
-            "Đơn giá": Number(phuMaterial["Giá báo khách"]) || 0,
+            "Đầu mục": product["Đầu mục"],
+            "Tên cốt": cotMaterial["Tên cốt"],
+            "Tên phủ": phuMaterial["Tên phủ"],
+            "Đơn vị": phuMaterial["Đơn vị"],
+            "Đơn giá": phuMaterial["Giá báo khách"],
             "Ghi chú": phuMaterial["Ghi chú"] || "",
             "Số lượng": 1,
-            "Đơn giá gốc": Number(phuMaterial["Đơn giá gốc"]) || 0,
-            "Lợi nhuận (%)": Number(phuMaterial["Lợi nhuận (%)"]) || 0,
-            "Đơn vị mặc định": product["Mặc định đơn vị"] || "m2",
-            "Ngày tạo": product["Ngày tạo"] || new Date().toISOString(),
+            "Đơn giá gốc": phuMaterial["Đơn giá gốc"],
+            "Lợi nhuận (%)": phuMaterial["Lợi nhuận (%)"],
+            "Đơn vị mặc định": product["Mặc định đơn vị"],
+            "Ngày tạo": product["Ngày tạo"],
             isManual: false,
           });
         });
