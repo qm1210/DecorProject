@@ -12,6 +12,7 @@ import type {
   CoreMaterial,
 } from "@/models/Product.model";
 import type { Category } from "@/models/Category.model";
+import removeVietnameseTones from "@/utils/RemoveVietnamese";
 
 interface CategoriesContainerProps {
   categories: string[];
@@ -71,6 +72,8 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
 }) => {
   const [modalCategory, setModalCategory] = useState<string | null>(null);
   const [allProducts, setAllProducts] = useState<FlattenedRow[]>([]);
+  const [searchCategory, setSearchCategory] = useState<string>("");
+
   const {
     totalPrice,
     listedProducts,
@@ -96,9 +99,6 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
         // Flatten dữ liệu JSON thành FlattenedRow[]
         const flattenedData = flattenProductData(data);
         setAllProducts(flattenedData);
-
-        console.log("Loaded products:", flattenedData.length);
-        console.log("Sample product:", flattenedData[0]);
       } catch (error) {
         console.error("Error loading products:", error);
       }
@@ -127,24 +127,23 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
     return groups;
   }, [listedProducts]);
 
-  // Sắp xếp danh mục: có sản phẩm lên trên, sau đó theo tên
   const sortedCategories = useMemo(() => {
-    return [...categories].sort((a, b) => {
+    const filtered = categories.filter((cat) =>
+      removeVietnameseTones(cat.toLowerCase()).includes(
+        removeVietnameseTones(searchCategory.toLowerCase())
+      )
+    );
+    return [...filtered].sort((a, b) => {
       const aHasProducts = (groupedProducts[a] || []).length > 0;
       const bHasProducts = (groupedProducts[b] || []).length > 0;
-
-      // Ưu tiên danh mục có sản phẩm
       if (aHasProducts && !bHasProducts) return -1;
       if (!aHasProducts && bHasProducts) return 1;
-
-      // Nếu cùng trạng thái, sắp xếp theo tên
       return a.localeCompare(b);
     });
-  }, [categories, groupedProducts]);
+  }, [categories, groupedProducts, searchCategory]);
 
   // Mở modal khi click vào danh mục
   const handleOpenModal = (category: string) => {
-    console.log("Opening modal for category:", category);
     setModalCategory(category);
   };
 
@@ -211,27 +210,47 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header với tổng chi phí */}
-        <div className="bg-white rounded-lg shadow p-4 mb-6">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-800">
-              Xây dựng báo giá
-            </h1>
-            <div className="text-right">
-              <p className="text-lg font-semibold text-gray-600">
-                Tổng chi phí:
-              </p>
-              <p className="text-2xl font-bold text-blue-600">
-                {formatCurrency(totalPrice)}
-              </p>
-              {listedProducts.length > 0 && (
-                <button
-                  onClick={handleClearAll}
-                  className="text-red-500 hover:text-red-700 hover:cursor-pointer font-medium text-sm underline mt-2"
+        <div className="bg-white rounded-lg shadow p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          {/* Ô search đẹp */}
+          <div className="w-full sm:w-80">
+            <div className="relative">
+              <input
+                type="text"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-300 shadow focus:outline-none focus:ring-2 focus:ring-blue-300 transition"
+                placeholder="Tìm kiếm danh mục..."
+                value={searchCategory}
+                onChange={(e) => setSearchCategory(e.target.value)}
+              />
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
+                <svg
+                  width="20"
+                  height="20"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
                 >
-                  Xóa tất cả sản phẩm
-                </button>
-              )}
+                  <circle cx="11" cy="11" r="8" />
+                  <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                </svg>
+              </span>
             </div>
+          </div>
+          <div>
+            <p className="text-lg font-semibold text-gray-600 mt-2">
+              Tổng chi phí:{" "}
+              <span className="text-blue-600 font-bold">
+                {formatCurrency(totalPrice)}
+              </span>
+            </p>
+            {listedProducts.length > 0 && (
+              <button
+                onClick={handleClearAll}
+                className="text-red-500 hover:text-red-700 hover:cursor-pointer font-medium text-sm underline mt-2"
+              >
+                Xóa tất cả sản phẩm
+              </button>
+            )}
           </div>
         </div>
 
@@ -422,30 +441,14 @@ const CategoriesContainer: React.FC<CategoriesContainerProps> = ({
 
           {/* Nếu không có danh mục nào */}
           {sortedCategories.length === 0 && (
-            <tbody>
-              <tr>
-                <td
-                  colSpan={2}
-                  className="px-6 py-12 text-center text-gray-500"
-                >
-                  <div className="text-center">
-                    <svg
-                      className="w-16 h-16 mx-auto mb-4 text-gray-300"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={1}
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10" />
-                    </svg>
-                    <p className="text-lg">Không có danh mục sản phẩm</p>
-                    <p className="text-sm text-gray-400 mt-1">
-                      Vui lòng kiểm tra lại dữ liệu
-                    </p>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
+            <div className="bg-white rounded-lg shadow p-12 text-center text-gray-500">
+              <p className="text-lg font-semibold">
+                Không tìm thấy danh mục sản phẩm phù hợp
+              </p>
+              <p className="text-sm text-gray-400 mt-1">
+                Vui lòng thử lại với từ khóa khác
+              </p>
+            </div>
           )}
         </div>
       </div>

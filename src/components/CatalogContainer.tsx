@@ -67,7 +67,6 @@ const CatalogContainer: React.FC<Props> = ({
     const el = thumbnailRefs.current[currentImg];
     const container = thumbnailContainerRef.current;
     if (el && container) {
-      // Tính vị trí cần scroll để thumbnail active vào giữa
       const elLeft = el.offsetLeft;
       const elWidth = el.offsetWidth;
       const containerWidth = container.offsetWidth;
@@ -88,21 +87,22 @@ const CatalogContainer: React.FC<Props> = ({
   };
 
   return (
-    <div className="mb-4 mt-0.5 p-4 border border-[#dadce0] rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
-      <div className="flex justify-between items-center">
-        <div>
-          <h2 className="font-semibold text-lg text-[#22223b] mb-1">
+    <div className="mb-4 mt-0.5 p-3 sm:p-4 lg:p-6 border border-[#dadce0] rounded-xl sm:rounded-2xl bg-white shadow-md hover:shadow-lg transition-shadow">
+      {/* Header section */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+        <div className="w-full sm:w-auto">
+          <h2 className="font-semibold text-base sm:text-lg text-[#22223b] mb-2">
             Điểm phù hợp:
           </h2>
-          <div className="flex gap-1">
+          <div className="flex gap-0.5 sm:gap-1 flex-wrap">
             {[...Array(10)].map((_, idx) => (
               <svg
                 key={idx}
                 xmlns="http://www.w3.org/2000/svg"
-                fill={idx < item.matchingPoint ? "#FFD700" : "#E5E7EB"} // vàng cho sao đã chọn, xám cho sao chưa chọn
+                fill={idx < item.matchingPoint ? "#FFD700" : "#E5E7EB"}
                 viewBox="0 0 24 24"
                 stroke="#E5E7EB"
-                className="w-10 h-10"
+                className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10"
               >
                 <path
                   strokeLinecap="round"
@@ -115,48 +115,49 @@ const CatalogContainer: React.FC<Props> = ({
           </div>
         </div>
         <button
-          className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow hover:from-blue-600 hover:to-blue-800 hover:cursor-pointer transition duration-200 hover:scale-105"
+          className="w-full sm:w-auto px-4 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg shadow hover:from-blue-600 hover:to-blue-800 hover:cursor-pointer transition duration-200 hover:scale-105 text-sm sm:text-base"
           onClick={handleQuickQuote}
           aria-label="Báo giá nhanh"
         >
           Báo giá nhanh
         </button>
       </div>
+
       {/* Slider ảnh */}
       {item.images && item.images.length > 0 && (
-        <div className="mt-6 mx-20">
-          <div className="relative w-full h-[500px] rounded-lg overflow-hidden mb-3 flex justify-center items-center">
+        <div className="mt-4 sm:mt-6">
+          <div className="relative w-full h-[250px] sm:h-[350px] lg:h-[500px] rounded-lg overflow-hidden mb-3 flex justify-center items-center">
             <Image
               src={item.images[currentImg]}
               alt={`Ảnh ${currentImg + 1}`}
               fill
               className="object-cover rounded-lg"
-              sizes="(max-width: 1200px) 100vw, 1200px"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1200px"
               priority={currentImg === 0}
             />
-            {/* Nút trái */}
+            {/* Nút điều hướng - chỉ hiện trên desktop */}
             <button
               onClick={prevImg}
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#22223b]/60 text-white rounded-full p-4 hover:bg-[#2563eb]/80 hover:cursor-pointer transition"
+              className="hidden sm:block absolute left-2 top-1/2 -translate-y-1/2 bg-[#22223b]/60 text-white rounded-full p-2 lg:p-4 hover:bg-[#2563eb]/80 hover:cursor-pointer transition"
               style={{ zIndex: 2 }}
               aria-label="Ảnh trước"
             >
-              &#8249;
+              <span className="text-lg lg:text-xl">&#8249;</span>
             </button>
-            {/* Nút phải */}
             <button
               onClick={nextImg}
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#22223b]/60 text-white rounded-full p-4 hover:bg-[#2563eb]/80 hover:cursor-pointer transition"
+              className="hidden sm:block absolute right-2 top-1/2 -translate-y-1/2 bg-[#22223b]/60 text-white rounded-full p-2 lg:p-4 hover:bg-[#2563eb]/80 hover:cursor-pointer transition"
               style={{ zIndex: 2 }}
               aria-label="Ảnh tiếp theo"
             >
-              &#8250;
+              <span className="text-lg lg:text-xl">&#8250;</span>
             </button>
           </div>
-          {/* Thumbnail */}
+
+          {/* Thumbnail - hiện ở tất cả các breakpoint */}
           <div
             ref={thumbnailContainerRef}
-            className="flex gap-4 justify-start overflow-x-auto py-2 thumbnail-scroll"
+            className="flex gap-2 lg:gap-4 justify-start overflow-x-auto py-2 thumbnail-scroll"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -168,23 +169,19 @@ const CatalogContainer: React.FC<Props> = ({
                 ref={(el) => {
                   thumbnailRefs.current[idx] = el;
                 }}
-                className={`w-28 aspect-video rounded-lg overflow-hidden cursor-pointer border transition
+                className={`w-16 sm:w-20 lg:w-24 aspect-video rounded-lg overflow-hidden cursor-pointer border transition flex-shrink-0
                   ${
                     currentImg === idx
                       ? "border-[#2563eb] shadow"
                       : "border-transparent opacity-70 hover:opacity-100"
                   }`}
                 onClick={() => goToImg(idx)}
-                style={{
-                  minWidth: "120px",
-                  height: "auto",
-                }}
               >
                 <Image
                   src={img}
                   alt={`Thumb ${idx + 1}`}
-                  width={120}
-                  height={67}
+                  width={96}
+                  height={54}
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -193,22 +190,24 @@ const CatalogContainer: React.FC<Props> = ({
           </div>
         </div>
       )}
-      <div>
-        <h2 className="font-semibold text-lg mb-1 text-[#22223b]">
+
+      {/* Content sections */}
+      <div className="mt-4 sm:mt-6">
+        <h2 className="font-semibold text-base sm:text-lg mb-2 text-[#22223b]">
           Mô tả phong cách:
         </h2>
-        <p className="text-justify mb-6 text-gray-800">
+        <p className="text-justify mb-4 sm:mb-6 text-gray-800 text-sm sm:text-base leading-relaxed">
           {item.styleDescription}
         </p>
       </div>
 
       <div>
-        <h2 className="font-semibold text-lg mb-2 text-[#22223b]">
+        <h2 className="font-semibold text-base sm:text-lg mb-2 text-[#22223b]">
           Giải thích điểm phù hợp:
         </h2>
-        <ul className="text-gray-800">
+        <ul className="text-gray-800 text-sm sm:text-base leading-relaxed">
           {item.matchingPointExplanation.split("\n").map((text, idx) => (
-            <li key={idx} className="mb-1">
+            <li key={idx} className="mb-1 sm:mb-2">
               {text}
             </li>
           ))}

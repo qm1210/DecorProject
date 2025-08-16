@@ -138,14 +138,20 @@ const Catalog = () => {
       }) || [];
 
   return (
-    <div className="max-w-7xl mx-auto py-4">
-      <h1 className="text-3xl font-bold mb-4 text-gray-800">CATALOG</h1>
+    <div className="max-w-7xl mx-auto py-2 sm:py-4 px-2 sm:px-4 lg:px-6">
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4 text-gray-800">
+        CATALOG
+      </h1>
       {loading ? (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
+        <div className="min-h-[60vh] sm:min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-2 sm:px-4">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">Catalog</h1>
-            <p className="text-gray-600">Đang tải dữ liệu...</p>
+            <div className="animate-spin rounded-full h-8 w-8 sm:h-10 sm:w-10 lg:h-12 lg:w-12 border-b-2 border-blue-600 mx-auto mb-2 sm:mb-4"></div>
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-800 mb-1 sm:mb-2">
+              Catalog
+            </h1>
+            <p className="text-sm sm:text-base text-gray-600">
+              Đang tải dữ liệu...
+            </p>
           </div>
         </div>
       ) : (
@@ -153,7 +159,7 @@ const Catalog = () => {
           {/* Tab cha */}
           <div
             ref={tabContainerRef}
-            className="relative flex overflow-x-auto whitespace-nowrap gap-2 mb-2 bg-[#f4f8ff] px-2 rounded-lg"
+            className="relative flex overflow-x-auto whitespace-nowrap gap-1 sm:gap-2 mb-1 sm:mb-2 bg-[#f4f8ff] px-1 sm:px-2 rounded-lg scrollbar-hide"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",
@@ -175,31 +181,36 @@ const Catalog = () => {
                 ref={(el) => {
                   tabRefs.current[idx] = el;
                 }}
-                className={`relative px-6 py-2 rounded-full font-semibold transition-all duration-200 z-10 cursor-pointer
-              ${
-                activeTab === idx
-                  ? "text-white"
-                  : "bg-transparent text-[#1d3557] hover:bg-[#e0eaff] hover:text-[#1d4ed8]"
-              }`}
-                style={{ background: "transparent" }}
+                className={`relative px-3 sm:px-4 lg:px-6 py-1.5 sm:py-2 rounded-full font-medium sm:font-semibold transition-all duration-200 z-10 cursor-pointer text-xs sm:text-sm lg:text-base
+            ${
+              activeTab === idx
+                ? "text-white"
+                : "bg-transparent text-[#1d3557] hover:bg-[#e0eaff] hover:text-[#1d4ed8]"
+            }`}
+                style={{
+                  background: "transparent",
+                  minWidth: "fit-content",
+                  whiteSpace: "nowrap",
+                }}
                 onClick={() => handleTabChange(idx)}
               >
                 {style.name}
               </button>
             ))}
           </div>
+
           {/* Tab con */}
           {catalogData[activeTab] && (
             <div
               ref={subTabContainerRef}
-              className="relative flex overflow-x-auto whitespace-nowrap gap-2 bg-[#f4f8ff] px-2 rounded-lg"
+              className="relative flex overflow-x-auto whitespace-nowrap gap-1 sm:gap-2 bg-[#f4f8ff] px-1 sm:px-2 rounded-lg mb-2 sm:mb-4 scrollbar-hide"
               style={{
                 scrollbarWidth: "none",
                 msOverflowStyle: "none",
               }}
             >
               <div
-                className="absolute bottom-0 left-0 h-1 transition-all duration-300 pointer-events-none"
+                className="absolute bottom-0 left-0 h-0.5 sm:h-1 transition-all duration-300 pointer-events-none"
                 style={{
                   left: subIndicatorStyle.left,
                   width: subIndicatorStyle.width,
@@ -214,12 +225,16 @@ const Catalog = () => {
                   ref={(el) => {
                     subTabRefs.current[idx] = el;
                   }}
-                  className={`relative px-5 py-2 font-medium rounded-none bg-transparent z-10 transition-all duration-200 hover:cursor-pointer
-          ${
-            activeSubTab === idx
-              ? "text-[#2563eb]"
-              : "text-[#1d3557] hover:text-[#2563eb] hover:bg-[#e0eaff]"
-          }`}
+                  className={`relative px-2 sm:px-3 lg:px-5 py-1.5 sm:py-2 font-medium rounded-none bg-transparent z-10 transition-all duration-200 hover:cursor-pointer text-xs sm:text-sm lg:text-base
+        ${
+          activeSubTab === idx
+            ? "text-[#2563eb]"
+            : "text-[#1d3557] hover:text-[#2563eb] hover:bg-[#e0eaff]"
+        }`}
+                  style={{
+                    minWidth: "fit-content",
+                    whiteSpace: "nowrap",
+                  }}
                   onClick={() => setActiveSubTab(idx)}
                 >
                   {item.style}
@@ -227,14 +242,17 @@ const Catalog = () => {
               ))}
             </div>
           )}
+
           {/* Content */}
           {filteredSubTabs[activeSubTab] && (
-            <CatalogContainer
-              item={filteredSubTabs[activeSubTab]}
-              activeTab={activeTab}
-              activeSubTab={activeSubTab}
-              tabName={catalogData[activeTab].name}
-            />
+            <div className="w-full">
+              <CatalogContainer
+                item={filteredSubTabs[activeSubTab]}
+                activeTab={activeTab}
+                activeSubTab={activeSubTab}
+                tabName={catalogData[activeTab].name}
+              />
+            </div>
           )}
         </>
       )}

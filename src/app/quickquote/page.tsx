@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import QuestionSidebar from "@/components/QuestionSidebar";
 import usePresetStore from "@/store/QuickQuoteCatalogStore";
+import Swal from "sweetalert2";
 
 interface Question {
   id: number;
@@ -229,13 +230,33 @@ const QuickQuote = () => {
   };
 
   const resetSurvey = () => {
-    console.log("🔄 Resetting survey...");
-    setShowResult(false);
-    setCurrentId(1);
-    setAnswers({});
-    setMatchedSuggestion(null);
-    setIsInitialized(false); // Reset để có thể load lại
-    setResetTrigger((prev) => prev + 1);
+    if (!showResult && Object.keys(answers).length > 0) {
+      Swal.fire({
+        title: "Bạn có chắc muốn làm lại?",
+        text: "Tiến trình hiện tại sẽ bị xóa.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Làm lại",
+        cancelButtonText: "Hủy",
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setShowResult(false);
+          setCurrentId(1);
+          setAnswers({});
+          setMatchedSuggestion(null);
+          setIsInitialized(false);
+          setResetTrigger((prev) => prev + 1);
+        }
+      });
+    } else {
+      setShowResult(false);
+      setCurrentId(1);
+      setAnswers({});
+      setMatchedSuggestion(null);
+      setIsInitialized(false);
+      setResetTrigger((prev) => prev + 1);
+    }
   };
 
   // Loading state
