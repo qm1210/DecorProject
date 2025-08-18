@@ -1,24 +1,22 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import CatalogContainer from "@/components/CatalogContainer";
 import { useCatalogData } from "@/hooks/useCatalog";
+import ModalPreviewContainer from "./ModalPreviewContent";
 
 interface ModalPreviewProps {
   show: boolean;
   onClose: () => void;
-  tabIndex?: number; // tab cần active khi mở modal
-  subTabIndex?: number; // subtab cần active khi mở modal
+  tabIndex?: number;
 }
 
 const ModalPreview: React.FC<ModalPreviewProps> = ({
   show,
   onClose,
   tabIndex,
-  subTabIndex,
 }) => {
   const { catalogData, loading } = useCatalogData();
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(-1);
   const [activeSubTab, setActiveSubTab] = useState(0);
   const [prevActiveTab, setPrevActiveTab] = useState(0);
 
@@ -33,37 +31,22 @@ const ModalPreview: React.FC<ModalPreviewProps> = ({
     width: 0,
   });
 
-  // Khi mở modal, set tab/subtab theo props
   useEffect(() => {
     if (show) {
-      if (
+      // Reset tab về tabIndex (hoặc 0 nếu không truyền)
+      const newTab =
         typeof tabIndex === "number" &&
         tabIndex >= 0 &&
         tabIndex < catalogData.length
-      ) {
-        setActiveTab(tabIndex);
-      }
-      if (
-        typeof subTabIndex === "number" &&
-        catalogData[tabIndex ?? activeTab]?.listContents
-      ) {
-        const subTabs =
-          catalogData[tabIndex ?? activeTab]?.listContents
-            ?.filter((item) => item.matchingPoint >= 5)
-            ?.sort((a, b) => {
-              if (b.matchingPoint !== a.matchingPoint) {
-                return b.matchingPoint - a.matchingPoint;
-              }
-              return a.style.localeCompare(b.style, "vi", {
-                sensitivity: "base",
-              });
-            }) || [];
-        if (subTabIndex >= 0 && subTabIndex < subTabs.length) {
-          setActiveSubTab(subTabIndex);
-        }
-      }
+          ? tabIndex
+          : 0;
+      setActiveTab(newTab);
+
+      // Reset subtab về đầu tiên
+      setActiveSubTab(0);
+      setPrevActiveTab(newTab);
     }
-  }, [show, tabIndex, subTabIndex, catalogData]);
+  }, [show, tabIndex, catalogData]);
 
   useEffect(() => {
     if (tabRefs.current[activeTab]) {
@@ -301,7 +284,7 @@ const ModalPreview: React.FC<ModalPreviewProps> = ({
                 {/* Content */}
                 {filteredSubTabs[activeSubTab] && (
                   <div className="w-full">
-                    <CatalogContainer
+                    <ModalPreviewContainer
                       item={filteredSubTabs[activeSubTab]}
                       activeTab={activeTab}
                       activeSubTab={activeSubTab}

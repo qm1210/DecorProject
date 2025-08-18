@@ -75,6 +75,10 @@ const QuickQuote = () => {
   const [isInitialized, setIsInitialized] = useState(false);
   const [resetTrigger, setResetTrigger] = useState(0);
   const [showModalPreview, setShowModalPreview] = useState(false);
+  const [previewInfo, setPreviewInfo] = useState<{
+    tabIndex?: number;
+    subTabIndex?: number;
+  } | null>(null);
 
   const preset = usePresetStore((s) => s.preset);
   const clearPreset = usePresetStore((s) => s.clearPreset);
@@ -346,7 +350,7 @@ const QuickQuote = () => {
                   {current.question}
                 </h2>
                 <div className="grid gap-3 max-h-[360px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-                  {current.options.map((opt) => (
+                  {current.options.map((opt, idx) => (
                     <div key={opt.value} className="flex items-center gap-2">
                       <button
                         className={`group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left flex-1
@@ -381,10 +385,12 @@ const QuickQuote = () => {
                         </div>
                       </button>
                       {/* Nút Preview chỉ hiện ở câu 1 và 2 */}
-                      {(currentId === 1 || currentId === 2) && (
+                      {currentId === 1 && (
                         <button
                           className="px-3 py-2 rounded-lg bg-indigo-100 text-indigo-700 font-semibold text-xs hover:cursor-pointer hover:bg-indigo-200 transition flex-shrink-0"
-                          onClick={() => setShowModalPreview(true)}
+                          onClick={() => {
+                            setPreviewInfo({ tabIndex: idx });
+                          }}
                         >
                           Preview
                         </button>
@@ -392,9 +398,10 @@ const QuickQuote = () => {
                     </div>
                   ))}
                   <ModalPreview
-                    show={showModalPreview}
-                    onClose={() => setShowModalPreview(false)}
-                  ></ModalPreview>
+                    show={!!previewInfo}
+                    onClose={() => setPreviewInfo(null)}
+                    tabIndex={previewInfo?.tabIndex}
+                  />
                 </div>
               </div>
             </div>
