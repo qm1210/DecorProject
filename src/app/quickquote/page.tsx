@@ -7,6 +7,7 @@ import axios from "axios";
 import QuestionSidebar from "@/components/QuestionSidebar";
 import usePresetStore from "@/store/QuickQuoteCatalogStore";
 import Swal from "sweetalert2";
+import ModalPreview from "@/components/ModalPreview";
 
 interface Question {
   id: number;
@@ -73,6 +74,7 @@ const QuickQuote = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
   const [resetTrigger, setResetTrigger] = useState(0);
+  const [showModalPreview, setShowModalPreview] = useState(false);
 
   const preset = usePresetStore((s) => s.preset);
   const clearPreset = usePresetStore((s) => s.clearPreset);
@@ -345,42 +347,54 @@ const QuickQuote = () => {
                 </h2>
                 <div className="grid gap-3 max-h-[360px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
                   {current.options.map((opt) => (
-                    <button
-                      key={opt.value}
-                      className={`group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left flex-shrink-0
-                ${
-                  answers[currentId] === opt.value
-                    ? "border-blue-500 bg-blue-50"
-                    : ""
-                }
-              `}
-                      onClick={() => handleSelect(opt.value)}
-                    >
-                      <div className="flex items-center">
-                        <div
-                          className={`w-4 h-4 border-2 rounded-full mr-4 transition-colors
-                  ${
-                    answers[currentId] === opt.value
-                      ? "border-blue-500 bg-blue-500"
-                      : "border-gray-300"
-                  }
-                `}
-                        ></div>
-                        <span
-                          className={`font-medium
-                  ${
-                    answers[currentId] === opt.value
-                      ? "text-blue-700"
-                      : "text-gray-700"
-                  }
-                  group-hover:text-blue-700
-                `}
+                    <div key={opt.value} className="flex items-center gap-2">
+                      <button
+                        className={`group p-4 md:p-5 rounded-xl border-2 border-gray-200 hover:cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-all duration-200 text-left flex-1
+          ${
+            answers[currentId] === opt.value ? "border-blue-500 bg-blue-50" : ""
+          }
+        `}
+                        onClick={() => handleSelect(opt.value)}
+                      >
+                        <div className="flex items-center">
+                          <div
+                            className={`w-4 h-4 border-2 rounded-full mr-4 transition-colors
+              ${
+                answers[currentId] === opt.value
+                  ? "border-blue-500 bg-blue-500"
+                  : "border-gray-300"
+              }
+            `}
+                          ></div>
+                          <span
+                            className={`font-medium
+              ${
+                answers[currentId] === opt.value
+                  ? "text-blue-700"
+                  : "text-gray-700"
+              }
+              group-hover:text-blue-700
+            `}
+                          >
+                            {opt.label}
+                          </span>
+                        </div>
+                      </button>
+                      {/* Nút Preview chỉ hiện ở câu 1 và 2 */}
+                      {(currentId === 1 || currentId === 2) && (
+                        <button
+                          className="px-3 py-2 rounded-lg bg-indigo-100 text-indigo-700 font-semibold text-xs hover:cursor-pointer hover:bg-indigo-200 transition flex-shrink-0"
+                          onClick={() => setShowModalPreview(true)}
                         >
-                          {opt.label}
-                        </span>
-                      </div>
-                    </button>
+                          Preview
+                        </button>
+                      )}
+                    </div>
                   ))}
+                  <ModalPreview
+                    show={showModalPreview}
+                    onClose={() => setShowModalPreview(false)}
+                  ></ModalPreview>
                 </div>
               </div>
             </div>

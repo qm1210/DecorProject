@@ -1,15 +1,13 @@
 "use client";
 
-import axios from "axios";
 import { useState, useEffect, useRef } from "react";
-import { CatalogStyle } from "@/models/Catalog.model";
 import CatalogContainer from "@/components/CatalogContainer";
+import { useCatalogData } from "@/hooks/useCatalog";
 
 const Catalog = () => {
-  const [catalogData, setCatalogData] = useState<CatalogStyle[]>([]);
+  const { catalogData, loading } = useCatalogData();
   const [activeTab, setActiveTab] = useState(0);
   const [activeSubTab, setActiveSubTab] = useState(0);
-  const [loading, setLoading] = useState(true);
   const [prevActiveTab, setPrevActiveTab] = useState(0);
 
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
@@ -22,20 +20,6 @@ const Catalog = () => {
     left: 0,
     width: 0,
   });
-
-  useEffect(() => {
-    const fetchCatalogData = async () => {
-      try {
-        const response = await axios.get("/data/ArchitectureCatalog.json");
-        setCatalogData(response.data);
-      } catch (error) {
-        console.error("Error fetching catalog data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCatalogData();
-  }, []);
 
   useEffect(() => {
     if (tabRefs.current[activeTab]) {
